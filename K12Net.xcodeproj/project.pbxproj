@@ -1,0 +1,584 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4F848CFA1C01B38900C02EDB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F848CFC1C01B38900C02EDB /* Localizable.strings */; };
+		4F8CFB721BFE692D00CA163F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F8CFB711BFE692D00CA163F /* Images.xcassets */; };
+		4FA445E51BFFB3BB0013B65C /* login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FA445E71BFFB3BB0013B65C /* login.storyboard */; };
+		4FD329931C0CE617002F3E8B /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD329921C0CE617002F3E8B /* UIViewExtension.swift */; };
+		4FEC884E1BF8ED8E00A1BA90 /* K12NetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC884D1BF8ED8E00A1BA90 /* K12NetTests.swift */; };
+		4FEC88591BF8ED8E00A1BA90 /* K12NetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88581BF8ED8E00A1BA90 /* K12NetUITests.swift */; };
+		4FEC88B41BF90F6100A1BA90 /* K12NetLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88991BF90F6000A1BA90 /* K12NetLogin.swift */; };
+		4FEC88B51BF90F6100A1BA90 /* K12NetSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC889A1BF90F6000A1BA90 /* K12NetSettings.swift */; };
+		4FEC88B71BF90F6100A1BA90 /* K12NetUserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC889C1BF90F6000A1BA90 /* K12NetUserPreferences.swift */; };
+		4FEC88B81BF90F6100A1BA90 /* K12NetWebRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC889D1BF90F6000A1BA90 /* K12NetWebRequest.swift */; };
+		4FEC88B91BF90F6100A1BA90 /* AsyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC889E1BF90F6000A1BA90 /* AsyncTask.swift */; };
+		4FEC88BA1BF90F6100A1BA90 /* AsyncTaskCompleteListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC889F1BF90F6000A1BA90 /* AsyncTaskCompleteListener.swift */; };
+		4FEC88BB1BF90F6100A1BA90 /* DocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88A01BF90F6000A1BA90 /* DocumentView.swift */; };
+		4FEC88BE1BF90F6100A1BA90 /* LoginAsyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88A31BF90F6000A1BA90 /* LoginAsyncTask.swift */; };
+		4FEC88C01BF90F6100A1BA90 /* PushNotificationRegisterAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88A51BF90F6100A1BA90 /* PushNotificationRegisterAsync.swift */; };
+		4FEC88C31BF90F6100A1BA90 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88A81BF90F6100A1BA90 /* StringExtension.swift */; };
+		4FEC88C41BF90F6100A1BA90 /* StudentListAsyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88A91BF90F6100A1BA90 /* StudentListAsyncTask.swift */; };
+		4FEC88C51BF90F6100A1BA90 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88AA1BF90F6100A1BA90 /* UIViewControllerExtension.swift */; };
+		4FEC88D01BF9117D00A1BA90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88CE1BF9117D00A1BA90 /* AppDelegate.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4FEC884A1BF8ED8E00A1BA90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FEC882D1BF8ED8E00A1BA90 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4FEC88341BF8ED8E00A1BA90;
+			remoteInfo = K12Net;
+		};
+		4FEC88551BF8ED8E00A1BA90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FEC882D1BF8ED8E00A1BA90 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4FEC88341BF8ED8E00A1BA90;
+			remoteInfo = K12Net;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		4F848CF61C01AB5500C02EDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/login.storyboard; sourceTree = "<group>"; };
+		4F848CF71C01AB8800C02EDB /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/login.strings; sourceTree = "<group>"; };
+		4F848CFB1C01B38900C02EDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4F848CFD1C01B38C00C02EDB /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4F8CFB711BFE692D00CA163F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		4FD329901C0CDAD3002F3E8B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/login.strings; sourceTree = "<group>"; };
+		4FD329911C0CDAD3002F3E8B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4FD329921C0CE617002F3E8B /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		4FEC88351BF8ED8E00A1BA90 /* K12Net.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = K12Net.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FEC88491BF8ED8E00A1BA90 /* K12NetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = K12NetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FEC884D1BF8ED8E00A1BA90 /* K12NetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K12NetTests.swift; sourceTree = "<group>"; };
+		4FEC884F1BF8ED8E00A1BA90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FEC88541BF8ED8E00A1BA90 /* K12NetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = K12NetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FEC88581BF8ED8E00A1BA90 /* K12NetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K12NetUITests.swift; sourceTree = "<group>"; };
+		4FEC885A1BF8ED8E00A1BA90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FEC88991BF90F6000A1BA90 /* K12NetLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = K12NetLogin.swift; sourceTree = "<group>"; };
+		4FEC889A1BF90F6000A1BA90 /* K12NetSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = K12NetSettings.swift; sourceTree = "<group>"; };
+		4FEC889C1BF90F6000A1BA90 /* K12NetUserPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = K12NetUserPreferences.swift; sourceTree = "<group>"; };
+		4FEC889D1BF90F6000A1BA90 /* K12NetWebRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = K12NetWebRequest.swift; sourceTree = "<group>"; };
+		4FEC889E1BF90F6000A1BA90 /* AsyncTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncTask.swift; sourceTree = "<group>"; };
+		4FEC889F1BF90F6000A1BA90 /* AsyncTaskCompleteListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncTaskCompleteListener.swift; sourceTree = "<group>"; };
+		4FEC88A01BF90F6000A1BA90 /* DocumentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentView.swift; sourceTree = "<group>"; };
+		4FEC88A31BF90F6000A1BA90 /* LoginAsyncTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAsyncTask.swift; sourceTree = "<group>"; };
+		4FEC88A51BF90F6100A1BA90 /* PushNotificationRegisterAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationRegisterAsync.swift; sourceTree = "<group>"; };
+		4FEC88A81BF90F6100A1BA90 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		4FEC88A91BF90F6100A1BA90 /* StudentListAsyncTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentListAsyncTask.swift; sourceTree = "<group>"; };
+		4FEC88AA1BF90F6100A1BA90 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
+		4FEC88CB1BF9108100A1BA90 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		4FEC88CD1BF9117D00A1BA90 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FEC88CE1BF9117D00A1BA90 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4FEC88321BF8ED8E00A1BA90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FEC88461BF8ED8E00A1BA90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FEC88511BF8ED8E00A1BA90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4FEC882C1BF8ED8E00A1BA90 = {
+			isa = PBXGroup;
+			children = (
+				4FEC88CB1BF9108100A1BA90 /* Default-568h@2x.png */,
+				4FEC88371BF8ED8E00A1BA90 /* K12Net */,
+				4FEC884C1BF8ED8E00A1BA90 /* K12NetTests */,
+				4FEC88571BF8ED8E00A1BA90 /* K12NetUITests */,
+				4FEC88361BF8ED8E00A1BA90 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4FEC88361BF8ED8E00A1BA90 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4FEC88351BF8ED8E00A1BA90 /* K12Net.app */,
+				4FEC88491BF8ED8E00A1BA90 /* K12NetTests.xctest */,
+				4FEC88541BF8ED8E00A1BA90 /* K12NetUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4FEC88371BF8ED8E00A1BA90 /* K12Net */ = {
+			isa = PBXGroup;
+			children = (
+				4FEC88CE1BF9117D00A1BA90 /* AppDelegate.swift */,
+				4FEC889E1BF90F6000A1BA90 /* AsyncTask.swift */,
+				4FEC889F1BF90F6000A1BA90 /* AsyncTaskCompleteListener.swift */,
+				4FEC88A01BF90F6000A1BA90 /* DocumentView.swift */,
+				4F8CFB711BFE692D00CA163F /* Images.xcassets */,
+				4FEC88CD1BF9117D00A1BA90 /* Info.plist */,
+				4FEC88991BF90F6000A1BA90 /* K12NetLogin.swift */,
+				4FEC889A1BF90F6000A1BA90 /* K12NetSettings.swift */,
+				4FEC889C1BF90F6000A1BA90 /* K12NetUserPreferences.swift */,
+				4FEC889D1BF90F6000A1BA90 /* K12NetWebRequest.swift */,
+				4F848CFC1C01B38900C02EDB /* Localizable.strings */,
+				4FA445E71BFFB3BB0013B65C /* login.storyboard */,
+				4FEC88A31BF90F6000A1BA90 /* LoginAsyncTask.swift */,
+				4FEC88A51BF90F6100A1BA90 /* PushNotificationRegisterAsync.swift */,
+				4FEC88A81BF90F6100A1BA90 /* StringExtension.swift */,
+				4FEC88A91BF90F6100A1BA90 /* StudentListAsyncTask.swift */,
+				4FEC88AA1BF90F6100A1BA90 /* UIViewControllerExtension.swift */,
+				4FD329921C0CE617002F3E8B /* UIViewExtension.swift */,
+			);
+			path = K12Net;
+			sourceTree = "<group>";
+		};
+		4FEC884C1BF8ED8E00A1BA90 /* K12NetTests */ = {
+			isa = PBXGroup;
+			children = (
+				4FEC884D1BF8ED8E00A1BA90 /* K12NetTests.swift */,
+				4FEC884F1BF8ED8E00A1BA90 /* Info.plist */,
+			);
+			path = K12NetTests;
+			sourceTree = "<group>";
+		};
+		4FEC88571BF8ED8E00A1BA90 /* K12NetUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4FEC88581BF8ED8E00A1BA90 /* K12NetUITests.swift */,
+				4FEC885A1BF8ED8E00A1BA90 /* Info.plist */,
+			);
+			path = K12NetUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4FEC88341BF8ED8E00A1BA90 /* K12Net */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FEC885D1BF8ED8E00A1BA90 /* Build configuration list for PBXNativeTarget "K12Net" */;
+			buildPhases = (
+				4FEC88311BF8ED8E00A1BA90 /* Sources */,
+				4FEC88321BF8ED8E00A1BA90 /* Frameworks */,
+				4FEC88331BF8ED8E00A1BA90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = K12Net;
+			productName = K12Net;
+			productReference = 4FEC88351BF8ED8E00A1BA90 /* K12Net.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4FEC88481BF8ED8E00A1BA90 /* K12NetTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FEC88601BF8ED8E00A1BA90 /* Build configuration list for PBXNativeTarget "K12NetTests" */;
+			buildPhases = (
+				4FEC88451BF8ED8E00A1BA90 /* Sources */,
+				4FEC88461BF8ED8E00A1BA90 /* Frameworks */,
+				4FEC88471BF8ED8E00A1BA90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4FEC884B1BF8ED8E00A1BA90 /* PBXTargetDependency */,
+			);
+			name = K12NetTests;
+			productName = K12NetTests;
+			productReference = 4FEC88491BF8ED8E00A1BA90 /* K12NetTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4FEC88531BF8ED8E00A1BA90 /* K12NetUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FEC88631BF8ED8E00A1BA90 /* Build configuration list for PBXNativeTarget "K12NetUITests" */;
+			buildPhases = (
+				4FEC88501BF8ED8E00A1BA90 /* Sources */,
+				4FEC88511BF8ED8E00A1BA90 /* Frameworks */,
+				4FEC88521BF8ED8E00A1BA90 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4FEC88561BF8ED8E00A1BA90 /* PBXTargetDependency */,
+			);
+			name = K12NetUITests;
+			productName = K12NetUITests;
+			productReference = 4FEC88541BF8ED8E00A1BA90 /* K12NetUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4FEC882D1BF8ED8E00A1BA90 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = K12Net;
+				TargetAttributes = {
+					4FEC88341BF8ED8E00A1BA90 = {
+						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = FA7PVJE855;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+					4FEC88481BF8ED8E00A1BA90 = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = 4FEC88341BF8ED8E00A1BA90;
+					};
+					4FEC88531BF8ED8E00A1BA90 = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = 4FEC88341BF8ED8E00A1BA90;
+					};
+				};
+			};
+			buildConfigurationList = 4FEC88301BF8ED8E00A1BA90 /* Build configuration list for PBXProject "K12Net" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				tr,
+				ar,
+			);
+			mainGroup = 4FEC882C1BF8ED8E00A1BA90;
+			productRefGroup = 4FEC88361BF8ED8E00A1BA90 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4FEC88341BF8ED8E00A1BA90 /* K12Net */,
+				4FEC88481BF8ED8E00A1BA90 /* K12NetTests */,
+				4FEC88531BF8ED8E00A1BA90 /* K12NetUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4FEC88331BF8ED8E00A1BA90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FA445E51BFFB3BB0013B65C /* login.storyboard in Resources */,
+				4F848CFA1C01B38900C02EDB /* Localizable.strings in Resources */,
+				4F8CFB721BFE692D00CA163F /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FEC88471BF8ED8E00A1BA90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FEC88521BF8ED8E00A1BA90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4FEC88311BF8ED8E00A1BA90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FEC88BA1BF90F6100A1BA90 /* AsyncTaskCompleteListener.swift in Sources */,
+				4FEC88B81BF90F6100A1BA90 /* K12NetWebRequest.swift in Sources */,
+				4FEC88D01BF9117D00A1BA90 /* AppDelegate.swift in Sources */,
+				4FEC88B71BF90F6100A1BA90 /* K12NetUserPreferences.swift in Sources */,
+				4FD329931C0CE617002F3E8B /* UIViewExtension.swift in Sources */,
+				4FEC88C01BF90F6100A1BA90 /* PushNotificationRegisterAsync.swift in Sources */,
+				4FEC88B41BF90F6100A1BA90 /* K12NetLogin.swift in Sources */,
+				4FEC88B91BF90F6100A1BA90 /* AsyncTask.swift in Sources */,
+				4FEC88C51BF90F6100A1BA90 /* UIViewControllerExtension.swift in Sources */,
+				4FEC88B51BF90F6100A1BA90 /* K12NetSettings.swift in Sources */,
+				4FEC88BE1BF90F6100A1BA90 /* LoginAsyncTask.swift in Sources */,
+				4FEC88C41BF90F6100A1BA90 /* StudentListAsyncTask.swift in Sources */,
+				4FEC88C31BF90F6100A1BA90 /* StringExtension.swift in Sources */,
+				4FEC88BB1BF90F6100A1BA90 /* DocumentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FEC88451BF8ED8E00A1BA90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FEC884E1BF8ED8E00A1BA90 /* K12NetTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FEC88501BF8ED8E00A1BA90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FEC88591BF8ED8E00A1BA90 /* K12NetUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4FEC884B1BF8ED8E00A1BA90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4FEC88341BF8ED8E00A1BA90 /* K12Net */;
+			targetProxy = 4FEC884A1BF8ED8E00A1BA90 /* PBXContainerItemProxy */;
+		};
+		4FEC88561BF8ED8E00A1BA90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4FEC88341BF8ED8E00A1BA90 /* K12Net */;
+			targetProxy = 4FEC88551BF8ED8E00A1BA90 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		4F848CFC1C01B38900C02EDB /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F848CFB1C01B38900C02EDB /* Base */,
+				4F848CFD1C01B38C00C02EDB /* tr */,
+				4FD329911C0CDAD3002F3E8B /* ar */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		4FA445E71BFFB3BB0013B65C /* login.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F848CF61C01AB5500C02EDB /* Base */,
+				4F848CF71C01AB8800C02EDB /* tr */,
+				4FD329901C0CDAD3002F3E8B /* ar */,
+			);
+			name = login.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4FEC885B1BF8ED8E00A1BA90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4FEC885C1BF8ED8E00A1BA90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4FEC885E1BF8ED8E00A1BA90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = K12Net/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.atlas.k12net;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Debug;
+		};
+		4FEC885F1BF8ED8E00A1BA90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				INFOPLIST_FILE = K12Net/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.atlas.k12net;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+			};
+			name = Release;
+		};
+		4FEC88611BF8ED8E00A1BA90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = K12NetTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.clazzapps.K12NetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/K12Net.app/K12Net";
+			};
+			name = Debug;
+		};
+		4FEC88621BF8ED8E00A1BA90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = K12NetTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.clazzapps.K12NetTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/K12Net.app/K12Net";
+			};
+			name = Release;
+		};
+		4FEC88641BF8ED8E00A1BA90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = K12NetUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.clazzapps.K12NetUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = K12Net;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		4FEC88651BF8ED8E00A1BA90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = K12NetUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.clazzapps.K12NetUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = K12Net;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4FEC88301BF8ED8E00A1BA90 /* Build configuration list for PBXProject "K12Net" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FEC885B1BF8ED8E00A1BA90 /* Debug */,
+				4FEC885C1BF8ED8E00A1BA90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FEC885D1BF8ED8E00A1BA90 /* Build configuration list for PBXNativeTarget "K12Net" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FEC885E1BF8ED8E00A1BA90 /* Debug */,
+				4FEC885F1BF8ED8E00A1BA90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FEC88601BF8ED8E00A1BA90 /* Build configuration list for PBXNativeTarget "K12NetTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FEC88611BF8ED8E00A1BA90 /* Debug */,
+				4FEC88621BF8ED8E00A1BA90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FEC88631BF8ED8E00A1BA90 /* Build configuration list for PBXNativeTarget "K12NetUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FEC88641BF8ED8E00A1BA90 /* Debug */,
+				4FEC88651BF8ED8E00A1BA90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4FEC882D1BF8ED8E00A1BA90 /* Project object */;
+}

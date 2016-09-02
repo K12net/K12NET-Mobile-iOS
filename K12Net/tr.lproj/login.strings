@@ -1,0 +1,41 @@
+
+/* Class = "UIViewController"; title = "Settings"; ObjectID = "8fT-m0-Fpw"; */
+"8fT-m0-Fpw.title" = "Ayarlar";
+
+/* Class = "UILabel"; text = "Beni Hatırla"; ObjectID = "Phl-ut-RvQ"; */
+"Phl-ut-RvQ.text" = "Beni Hatırla";
+
+/* Class = "UITextField"; placeholder = "Connection URL"; ObjectID = "RuS-zZ-Aix"; */
+"RuS-zZ-Aix.placeholder" = "Bağlantı Adresi";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "YKA-d1-SuG"; */
+"YKA-d1-SuG.title" = "Ayarlar";
+
+/* Class = "UINavigationItem"; title = "K12Net"; ObjectID = "baC-re-lLX"; */
+"baC-re-lLX.title" = "K12NET Frame";
+
+/* Class = "UITextField"; placeholder = "File Server Address"; ObjectID = "cA7-py-IXx"; */
+"cA7-py-IXx.placeholder" = "File Server Address";
+
+/* Class = "UIButton"; normalTitle = "Giriş"; ObjectID = "iMi-Yb-O7T"; */
+"iMi-Yb-O7T.normalTitle" = "Giriş";
+
+/* Class = "UIButton"; normalTitle = "Ayarlar"; ObjectID = "jig-GU-r43"; */
+"jig-GU-r43.normalTitle" = "Ayarlar";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "jyg-b2-QyP"; */
+"jyg-b2-QyP.text" = "Ayarlar";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "oX0-f3-QTp"; */
+"oX0-f3-QTp.normalTitle" = "Kaydet";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "pKO-MT-AvQ"; */
+"pKO-MT-AvQ.placeholder" = "Şifre";
+
+/* Class = "UILabel"; text = "K12Net"; ObjectID = "udB-mR-CXN"; */
+"udB-mR-CXN.text" = "K12NET Frame";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "wFZ-8g-4sc"; */
+"wFZ-8g-4sc.placeholder" = "Kullanıcı Adı";
+
+"udB-mR-CXN.text" = "K12NET Frame";

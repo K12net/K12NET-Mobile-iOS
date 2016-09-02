@@ -1,0 +1,47 @@
+
+/* Class = "UIBarButtonItem"; title = "Close"; ObjectID = "4cR-ce-Ry2"; */
+"4cR-ce-Ry2.title" = "أغلق";
+
+/* Class = "UIViewController"; title = "Settings"; ObjectID = "8fT-m0-Fpw"; */
+"8fT-m0-Fpw.title" = "إعدادات";
+
+/* Class = "UILabel"; text = "Remember Me"; ObjectID = "Phl-ut-RvQ"; */
+"Phl-ut-RvQ.text" = "نتذكر لي";
+
+/* Class = "UITextField"; placeholder = "Connection URL"; ObjectID = "RuS-zZ-Aix"; */
+"RuS-zZ-Aix.placeholder" = "رابط اتصال";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "YKA-d1-SuG"; */
+"YKA-d1-SuG.title" = "إعدادات";
+
+/* Class = "UINavigationItem"; title = "K12Net"; ObjectID = "baC-re-lLX"; */
+"baC-re-lLX.title" = "K12NET Frame";
+
+/* Class = "UITextField"; placeholder = "File Server Address"; ObjectID = "cA7-py-IXx"; */
+"cA7-py-IXx.placeholder" = "File Server Address";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "iMi-Yb-O7T"; */
+"iMi-Yb-O7T.normalTitle" = "دخــول";
+
+/* Class = "UIButton"; normalTitle = "Settings"; ObjectID = "jig-GU-r43"; */
+"jig-GU-r43.normalTitle" = "إعدادات";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "jyg-b2-QyP"; */
+"jyg-b2-QyP.text" = "إعدادات";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "oX0-f3-QTp"; */
+"oX0-f3-QTp.normalTitle" = "حفظ";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "pKO-MT-AvQ"; */
+"pKO-MT-AvQ.placeholder" = "كلمة المرور";
+
+/* Class = "UILabel"; text = "K12Net"; ObjectID = "udB-mR-CXN"; */
+"udB-mR-CXN.text" = "K12NET Frame";
+
+/* Class = "UITextField"; placeholder = "User Name"; ObjectID = "wFZ-8g-4sc"; */
+"wFZ-8g-4sc.placeholder" = "اسم المستخدم";
+
+/* Class = "UIViewController"; title = "K12Net"; ObjectID = "wWA-U1-0xw"; */
+"wWA-U1-0xw.title" = "K12NET Frame";
+
+"udB-mR-CXN.text" = "K12NET Frame";

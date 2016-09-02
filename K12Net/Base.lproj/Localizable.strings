@@ -1,0 +1,27 @@
+/* 
+  Localizable.strings
+  K12Net
+
+  Created by Tarik Canturk on 22/11/15.
+  Copyright © 2015 K12Net. All rights reserved.
+*/
+
+"addressError" = "Connection URL is not correct. Please check it and try again";
+"connectionError" = "Data connection can not be establised. Please check your data or WiFi connectivity";
+"loginError" = "Username or password is incorrect. Please check them and try again.";
+"ok" = "OK";
+"appTitle" = "K12NET Frame";
+"settings" = "Settings";
+"username" = "Username";
+"password" = "Password";
+"login" = "Login";
+"rememberMe" = "Remember Me";
+"connectionUrl" = "ConnectionURL";
+"save" = "Save";
+"connectionUrlFailed" = "Connection URL is not correct. Please check it and try again";
+"noWifi" = "Data connection can not be establised. Please check your data or WiFi connectivity";
+"loginFailed" = "Username or password is incorrect. Please check them and try again.";
+"ok" = "OK";
+"english" = "English";
+"arabic" = "العربية";
+"turkish" = "Türkçe";

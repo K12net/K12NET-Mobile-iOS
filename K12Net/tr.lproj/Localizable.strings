@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  K12Net
+
+  Created by Tarik Canturk on 22/11/15.
+  Copyright © 2015 K12Net. All rights reserved.
+*/
+
+"addressError" = "Bağlantı adresi hatalı. Lütfen kontrol edip tekrar deneyiniz.";
+"connectionError" = "Bağlantı yapılamadı. Lütfen data paketinizi ya da WiFi ayarlarınızı kontrol edin";
+"loginError" = "Kullanıcı adı ya da şifre hatalı. Lütfen kontrol edip tekrar deneyiniz.";
+"ok" = "Tamam";
+"close" = "Kapat";
+"appTitle" = "K12NET Frame";
+"settings" = "Ayarlar";
+"username" = "Kullanıcı Adı";
+"password" = "Şifre";
+"login" = "Giriş";
+"rememberMe" = "Beni Hatırla";
+"connectionUrl" = "Bağlantı Adresi";
+"save" = "Kaydet";
+"connectionUrlFailed" = "";
+"noWifi" = "لم تتم عملية الربط. يرجى التحقق من الاتصال بشبكة الانترنت او WIFI";
+"loginFailed" = "اسم المستخدم او كلمة السر غير صحيحة. يرجى التحقق منهما والمحاولة مرة اخرى.";
+"ok" = "موافق";
+"english" = "English";
+"arabic" = "العربية";
+"turkish" = "Türkçe";
