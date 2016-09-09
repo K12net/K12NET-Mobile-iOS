@@ -16,7 +16,7 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
     public static let ARABIC = "ar";
     public static let TURKISH = "tr";
     
-    static var languageCode = K12NetUserPreferences.getLanguage();
+ //   static var languageCode = K12NetUserPreferences.getLanguage();
     
     @IBOutlet weak var connection_url: UITextField!
     @IBOutlet weak var ftp_address: UITextField!
@@ -124,13 +124,13 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func languageChanged(sender: AnyObject) {
-        if (languageSegmented.selectedSegmentIndex == 0) {
+     /*   if (languageSegmented.selectedSegmentIndex == 0) {
             K12NetSettings.languageCode = K12NetSettings.ENGLISH;
         }
         if (languageSegmented.selectedSegmentIndex == 1) {
             K12NetSettings.languageCode = K12NetSettings.ARABIC;
         }
-        K12NetUserPreferences.saveLanguage(K12NetSettings.languageCode);
+        K12NetUserPreferences.saveLanguage(K12NetSettings.languageCode);*/
         selLabelLanguage();
     }
     

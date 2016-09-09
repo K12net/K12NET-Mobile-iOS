@@ -16,7 +16,7 @@ public class K12NetUserPreferences {
     static let USERNAME = "USERNAME"
     static let PASSWORD = "PASSWORD"
     static let REMEMBER_ME = "REMEMBER_ME"
-        static let LANGUAGE = "LANGUAGE"
+    //    static let LANGUAGE = "LANGUAGE"
     
     
     static let defaults = NSUserDefaults.standardUserDefaults();
@@ -38,7 +38,7 @@ public class K12NetUserPreferences {
         defaults.setObject(value, forKey: key)
     }
     
-    public static func getLanguage() -> String {
+   /* public static func getLanguage() -> String {
         var language : String;
         if getStringValue(LANGUAGE) != nil {
             language = getStringValue(LANGUAGE)!;
@@ -47,7 +47,7 @@ public class K12NetUserPreferences {
             language = "en"
         }
         return language;
-    }
+    }*/
     
     public static func getHomeAddress() -> NSString {
         var url : NSString;
@@ -107,9 +107,9 @@ public class K12NetUserPreferences {
         setStringValue(FILE_SERVER_ADDRESS, value: address)
     }
     
-    public static func saveLanguage(lang: String) {
+  /*  public static func saveLanguage(lang: String) {
         setStringValue(LANGUAGE, value: lang)
-    }
+    }*/
     
     public static func saveUsername(username: String) {
         setStringValue(USERNAME, value: username)

@@ -159,7 +159,7 @@ class DocumentView : UIViewController, UIWebViewDelegate {
 
         var cookieDict : [String : AnyObject] = [:];
         cookieDict[NSHTTPCookieName] = "UICulture";
-        cookieDict[NSHTTPCookieValue] = K12NetUserPreferences.getLanguage();
+        cookieDict[NSHTTPCookieValue] = "language".localized;
         cookieDict[NSHTTPCookieVersion] = 0;
         cookieDict["sessionOnly"] = true;
         cookieDict[NSHTTPCookieDomain] = cookie.domain;
