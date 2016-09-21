@@ -10,6 +10,6 @@ import Foundation
 
 public protocol AsyncTaskCompleteListener {
     
-    func completed(tag: Int32);
+    func completed(_ tag: Int32);
     
 }

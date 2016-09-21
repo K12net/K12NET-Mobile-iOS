@@ -6,9 +6,9 @@
   Copyright © 2015 K12Net. All rights reserved.
 */
 
-"addressError" = "Connection URL is not correct. Please check it and try again";
-"connectionError" = "Data connection can not be establised. Please check your data or WiFi connectivity";
-"loginError" = "Username or password is incorrect. Please check them and try again.";
+"addressError" = "الرابط غير صحيح. يرجى التحقق منه والمحاولة مرة اخرى.";
+"connectionError" = "لم تتم عملية الربط. يرجى التحقق من الاتصال بشبكة الانترنت او WIFI";
+"loginError" = "اسم المستخدم او كلمة السر غير صحيحة. يرجى التحقق منهما والمحاولة مرة اخرى.";
 "ok" = "حسنا";
 "appTitle" = "K12NET Frame";
 "settings" = "اعدادات";
@@ -25,4 +25,4 @@
 "english" = "English";
 "arabic" = "العربية";
 "turkish" = "Türkçe";
-"language"="ar";
+"language" = "ar";

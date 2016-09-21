@@ -12,9 +12,9 @@ import UIKit
 
 class K12NetSettings : UIViewController, UITextFieldDelegate {
     
-    public static let ENGLISH = "en";
-    public static let ARABIC = "ar";
-    public static let TURKISH = "tr";
+    open static let ENGLISH = "en";
+    open static let ARABIC = "ar";
+    open static let TURKISH = "tr";
     
  //   static var languageCode = K12NetUserPreferences.getLanguage();
     
@@ -94,7 +94,7 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
         
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
         
         selLabelLanguage();
@@ -118,12 +118,12 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
         }*/
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
         textField.resignFirstResponder()
         return true
     }
     
-    @IBAction func languageChanged(sender: AnyObject) {
+    @IBAction func languageChanged(_ sender: AnyObject) {
      /*   if (languageSegmented.selectedSegmentIndex == 0) {
             K12NetSettings.languageCode = K12NetSettings.ENGLISH;
         }
@@ -134,12 +134,12 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
         selLabelLanguage();
     }
     
-    @IBAction func save_address(sender: AnyObject) {
+    @IBAction func save_address(_ sender: AnyObject) {
         
         K12NetUserPreferences.saveHomeAddress(connection_url.text!)
         K12NetUserPreferences.saveFSAddress(ftp_address.text!)
         
-        self.navigationController!.popViewControllerAnimated(true);
+        self.navigationController!.popViewController(animated: true);
         
     }
 }

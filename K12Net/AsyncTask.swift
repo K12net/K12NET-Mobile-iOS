@@ -9,28 +9,28 @@
 import Foundation
 import UIKit
 
-public class AsyncTask {
+open class AsyncTask {
     
     var listener : AsyncTaskCompleteListener?;
     
     var tag : Int32 = 0;
     
-    public func setOnTaskComplete(listener : AsyncTaskCompleteListener){
+    open func setOnTaskComplete(_ listener : AsyncTaskCompleteListener){
         self.listener = listener;
     }
     
-    public func Execute(){
+    open func Execute(){
         
-        var queue : dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        dispatch_async(queue) {
+        var queue : DispatchQueue = DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default);
+        queue.async {
             
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
             
             self.doInBackground();
             
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
-            dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.main.async {
                 
                 self.postExecute();
                 

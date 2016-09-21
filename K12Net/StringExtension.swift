@@ -16,14 +16,14 @@ extension String {
         return NSLocalizedString(self, comment: "")
     }
     
-    func substringFromIndex(index: Int) -> String
+    func substringFromIndex(_ index: Int) -> String
     {
         if (index < 0 || index > self.characters.count)
         {
             print("index \(index) out of bounds")
             return ""
         }
-        return self.substringFromIndex(self.startIndex.advancedBy(index))
+        return self.substring(from: self.characters.index(self.startIndex, offsetBy: index))
     }
 }
 

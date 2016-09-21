@@ -24,15 +24,15 @@ class PushNotificationRegisterAsync : AsyncTask {
 
      let electronicIdJson = "{\"changeSet\": [{\"HasMemberChanges\": 0, \"Id\": 0, \"Operation\": 2, \"Entity\": {\"__type\": \"ElectronicId:#Yuce.K12NET.SPServicesLibrary\", \"ID\": \"00000000-0000-0000-0000-000000000000\", \"TypeID\": \""+ASISTO_IOS_APPLICATION_ID+"\", \"Value\": \""+tokenId+"\"}, \"Associations\": [{\"Key\": \"PersonalInfo_ElectronicIds\", \"Value\": [1]}]}, {\"HasMemberChanges\": 0, \"Id\": 1, \"Operation\": 2, \"Entity\": {\"__type\": \"PersonalInfo_ElectronicId:#Yuce.K12NET.SPServicesLibrary\", \"PersonalInfoID\": \""+StudentListAsyncTask.providerId+"\", \"ElectronicIdID\": \"00000000-0000-0000-0000-000000000000\"}, \"Associations\": [{\"Key\": \"ElectronicId\", \"Value\": [0]}]}]}";
         
-        var response: AutoreleasingUnsafeMutablePointer<NSURLResponse?>=nil
+        var response: AutoreleasingUnsafeMutablePointer<URLResponse?>?=nil
         
         let serviceAddress = (K12NetUserPreferences.getHomeAddress() as String) + "/SPSL.Web/ClientBin/Yuce-K12NET-SPServicesLibrary-SPDomainService.svc/json/SubmitChanges?appID=k12net_ios";
         
-        var err = NSErrorPointer();
+        var err: NSErrorPointer = nil;
         var pnPost = K12NetWebRequest.retrievePostRequest(serviceAddress, params: electronicIdJson);
         var data =  K12NetWebRequest.sendSynchronousRequest(pnPost, returningResponse: response)
         
-        var strData = NSString(data: data, encoding: NSUTF8StringEncoding)! as String
+        var strData = NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
         print("\n\nSendMsgWasRead : \(strData)");
         
     }

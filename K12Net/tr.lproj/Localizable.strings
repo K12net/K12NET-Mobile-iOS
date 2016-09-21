@@ -19,11 +19,11 @@
 "rememberMe" = "Beni Hatırla";
 "connectionUrl" = "Bağlantı Adresi";
 "save" = "Kaydet";
-"connectionUrlFailed" = "";
-"noWifi" = "لم تتم عملية الربط. يرجى التحقق من الاتصال بشبكة الانترنت او WIFI";
-"loginFailed" = "اسم المستخدم او كلمة السر غير صحيحة. يرجى التحقق منهما والمحاولة مرة اخرى.";
+"connectionUrlFailed" = "Bağlantı adresi hatalı. Lütfen kontrol edip tekrar deneyiniz.";
+"noWifi" = "Bağlantı yapılamadı. Lütfen data paketinizi ya da WiFi ayarlarınızı kontrol edin";
+"loginFailed" = "Kullanıcı adı ya da şifre hatalı. Lütfen kontrol edip tekrar deneyiniz.";
 "ok" = "موافق";
 "english" = "English";
 "arabic" = "العربية";
 "turkish" = "Türkçe";
-"language"="tr";
+"language" = "tr";

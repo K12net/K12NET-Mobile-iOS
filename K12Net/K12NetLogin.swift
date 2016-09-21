@@ -36,7 +36,7 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         chkRememberMe.setOn(K12NetUserPreferences.getRememberMe(), animated: true);
         txtUsername.text = K12NetUserPreferences.getUsername();
         
-        if chkRememberMe.on {
+        if chkRememberMe.isOn {
             txtPassword.text = K12NetUserPreferences.getPassword();
             
             loginOperation();
@@ -54,15 +54,15 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
     }
     
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
         textField.resignFirstResponder()
         return true
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
         navigationController?.setNavigationBarHidden(true, animated: true);
-        self.navigationController?.toolbarHidden = true;
+        self.navigationController?.isToolbarHidden = true;
         
         if (K12NetLogin.isLogout) {
             txtPassword.text = "";
@@ -87,7 +87,7 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         self.navigationItem.title = K12NetSettings.languageMap[K12NetUserPreferences.getLanguage()]!["appTitle"];*/
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated);
         navigationController?.setNavigationBarHidden(false, animated: true);
     }
@@ -96,39 +96,39 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         super.didReceiveMemoryWarning()
     }
     
-    @IBAction func loginK12Net(sender: AnyObject) {
+    @IBAction func loginK12Net(_ sender: AnyObject) {
         
-        btnLogiin.enabled = false;
+        btnLogiin.isEnabled = false;
         
         K12NetUserPreferences.saveUsername(txtUsername.text!);
         K12NetUserPreferences.savePassword(txtPassword.text!);
-        K12NetUserPreferences.saveRememberMe(chkRememberMe.on);
+        K12NetUserPreferences.saveRememberMe(chkRememberMe.isOn);
         
         loginOperation();
         
     }
     
-    func completed(tag: Int32) {
+    func completed(_ tag: Int32) {
         
-        btnLogiin.enabled = true;
+        btnLogiin.isEnabled = true;
         
         if(LoginAsyncTask.urlError == true) {
             let alertController = UIAlertController(title: "appTitle".localized, message:
-                "connectionUrlFailed".localized, preferredStyle: UIAlertControllerStyle.Alert);
-            alertController.addAction(UIAlertAction(title: "ok".localized, style: .Default, handler: nil));
+                "connectionUrlFailed".localized, preferredStyle: UIAlertControllerStyle.alert);
+            alertController.addAction(UIAlertAction(title: "ok".localized, style: .default, handler: nil));
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
         }
         else if(LoginAsyncTask.connectionError == true) {
             let alertController = UIAlertController(title: "appTitle".localized, message:
-                "noWifi".localized, preferredStyle: UIAlertControllerStyle.Alert);
-            alertController.addAction(UIAlertAction(title: "ok".localized, style: .Default, handler: nil));
+                "noWifi".localized, preferredStyle: UIAlertControllerStyle.alert);
+            alertController.addAction(UIAlertAction(title: "ok".localized, style: .default, handler: nil));
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
         }
         else if(LoginAsyncTask.lastOperationValue == 1) {
             
-            let vc : DocumentView = self.storyboard!.instantiateViewControllerWithIdentifier("document_view") as! DocumentView;
+            let vc : DocumentView = self.storyboard!.instantiateViewController(withIdentifier: "document_view") as! DocumentView;
             navigationController?.pushViewController(vc, animated: true)
             vc.first_time = true;
             vc.windowDepth = 1;
@@ -137,10 +137,10 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
             pnAsyncTask.Execute();
         }
         else {
-            let alertController = UIAlertController(title: "appTitle".localized, message:"loginFailed".localized , preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "ok".localized, style: UIAlertActionStyle.Default,handler: nil))
+            let alertController = UIAlertController(title: "appTitle".localized, message:"loginFailed".localized , preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "ok".localized, style: UIAlertActionStyle.default,handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     

@@ -15,7 +15,7 @@ class DocumentView : UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var progressIndicator: UIActivityIndicatorView!
     
-    var startUrl : NSURL?;
+    var startUrl : URL?;
     
     var last_address: String?;
     
@@ -30,8 +30,8 @@ class DocumentView : UIViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad();
         
-        self.navigationController?.navigationBarHidden = true;
-        self.navigationController?.toolbarHidden = false;
+        self.navigationController?.isNavigationBarHidden = true;
+        self.navigationController?.isToolbarHidden = false;
         last_address = startUrl?.absoluteString;
         
         web_viewer.delegate = self;
@@ -40,22 +40,22 @@ class DocumentView : UIViewController, UIWebViewDelegate {
         
     }
     
-    @IBAction func closeWindow(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true);
+    @IBAction func closeWindow(_ sender: AnyObject) {
+        self.navigationController?.popViewController(animated: true);
     }
     
-    @IBAction func refreshView(sender: AnyObject) {
+    @IBAction func refreshView(_ sender: AnyObject) {
         
         web_viewer.reload();
     }
     
-    @IBAction func backView(sender: AnyObject) {
+    @IBAction func backView(_ sender: AnyObject) {
         if web_viewer.canGoBack {
             web_viewer.goBack();
         }
     }
     
-    @IBAction func nextView(sender: AnyObject) {
+    @IBAction func nextView(_ sender: AnyObject) {
         if web_viewer.canGoForward {
             web_viewer.goForward();
         }
@@ -77,34 +77,34 @@ class DocumentView : UIViewController, UIWebViewDelegate {
             
             if startUrl == nil {
                 
-                startUrl = NSURL(string: K12NetUserPreferences.getHomeAddress() as String);
+                startUrl = URL(string: K12NetUserPreferences.getHomeAddress() as String);
                 
             }
             
             if let urlAddress = startUrl {
                 
-                let urlRequest : NSURLRequest = NSURLRequest(URL: urlAddress, cachePolicy: NSURLRequestCachePolicy.ReturnCacheDataElseLoad, timeoutInterval: 30.0 );
+                let urlRequest : URLRequest = URLRequest(url: urlAddress, cachePolicy: NSURLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 30.0 );
                 
                 browser.loadRequest(urlRequest);
             }
                 
             else {
                 let alertController = UIAlertController(title: "Web View", message:
-                    "K12Net url address is wrong", preferredStyle: UIAlertControllerStyle.Alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                    "K12Net url address is wrong", preferredStyle: UIAlertControllerStyle.alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
                 
-                self.presentViewController(alertController, animated: true, completion: nil)
+                self.present(alertController, animated: true, completion: nil)
                 
                 navigationItem.rightBarButtonItem = nil;
             }
         }
     }
     
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
-        print(request.URL!);
+        print(request.url!);
         
-        let address = request.URL!.absoluteString.lowercaseString;
+        let address = (request as NSURLRequest).url!.absoluteString.lowercased();
         
       /*  var forNewTab = false;
         
@@ -113,23 +113,23 @@ class DocumentView : UIViewController, UIWebViewDelegate {
             forNewTab = true;
         }*/
         
-        if (address.containsString("login.aspx")){
+        if (address.contains("login.aspx")){
             if(K12NetUserPreferences.getRememberMe()) {
                 LoginAsyncTask.loginOperation();
                 
-                webView.loadRequest(NSURLRequest(URL: NSURL(string: last_address!)!, cachePolicy: NSURLRequestCachePolicy.ReturnCacheDataElseLoad, timeoutInterval: 30.0 ));
+                webView.loadRequest(URLRequest(url: URL(string: last_address!)!, cachePolicy: NSURLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 30.0 ));
                 return false;
             }
             else {
-                self.navigationController?.popToRootViewControllerAnimated(true);
+                self.navigationController?.popToRootViewController(animated: true);
             }
             return false;
         }
             
-       else if(address.containsString("logout.aspx")) {
+       else if(address.contains("logout.aspx")) {
             K12NetUserPreferences.saveRememberMe(false);
             K12NetLogin.isLogout = true;
-            self.navigationController?.popToRootViewControllerAnimated(true);
+            self.navigationController?.popToRootViewController(animated: true);
             
             return false;
         }
@@ -150,39 +150,39 @@ class DocumentView : UIViewController, UIWebViewDelegate {
        // let cookie : NSHTTPCookie = NSHTTPCookie(properties: cookieDict)!;
        // NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookie);
         
-        for cookie in NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies! {
+        for cookie in HTTPCookieStorage.shared.cookies! {
             print(cookie);
             print("------");
         }
         
-        var cookie = NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies![0];
+        var cookie = HTTPCookieStorage.shared.cookies![0];
 
-        var cookieDict : [String : AnyObject] = [:];
-        cookieDict[NSHTTPCookieName] = "UICulture";
-        cookieDict[NSHTTPCookieValue] = "language".localized;
-        cookieDict[NSHTTPCookieVersion] = 0;
-        cookieDict["sessionOnly"] = true;
-        cookieDict[NSHTTPCookieDomain] = cookie.domain;
-        cookieDict[NSHTTPCookieOriginURL] = cookie.domain;
-        cookieDict[NSHTTPCookiePath] = cookie.path;
-        cookieDict[NSHTTPCookieSecure] = cookie.secure;
-        cookieDict[NSHTTPCookieExpires] = cookie.expiresDate;
+        var cookieDict : [HTTPCookiePropertyKey : Any] = [:];
+        cookieDict[HTTPCookiePropertyKey.name] = "UICulture";
+        cookieDict[HTTPCookiePropertyKey.value] = "language".localized;
+        cookieDict[HTTPCookiePropertyKey.version] = 0;
+        //cookieDict["sessionOnly"] = true as AnyObject?;
+        cookieDict[HTTPCookiePropertyKey.domain] = cookie.domain;
+        cookieDict[HTTPCookiePropertyKey.originURL] = cookie.domain;
+        cookieDict[HTTPCookiePropertyKey.path] = cookie.path;
+        cookieDict[HTTPCookiePropertyKey.secure] = cookie.isSecure;
+        cookieDict[HTTPCookiePropertyKey.expires] = cookie.expiresDate;
         
          print("------");
         
          print(cookieDict);
 
-        cookie = NSHTTPCookie(properties: cookieDict)!;
-        NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookie);
+        cookie = HTTPCookie(properties: cookieDict as! [HTTPCookiePropertyKey : Any])!;
+        HTTPCookieStorage.shared.setCookie(cookie);
         
-          cookieDict[NSHTTPCookieName] = "Culture";
+          cookieDict[HTTPCookiePropertyKey.name] = "Culture";
         
-        cookie = NSHTTPCookie(properties: cookieDict)!;
-        NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookie);
+        cookie = HTTPCookie(properties: cookieDict as! [HTTPCookiePropertyKey : Any])!;
+        HTTPCookieStorage.shared.setCookie(cookie);
         
         print("------");
 
-        for cookie in NSHTTPCookieStorage.sharedHTTPCookieStorage().cookies! {
+        for cookie in HTTPCookieStorage.shared.cookies! {
             print(cookie);
             print("------");
         }
@@ -190,27 +190,27 @@ class DocumentView : UIViewController, UIWebViewDelegate {
         return true;
     }
     
-    func webViewDidStartLoad(webView : UIWebView) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+    func webViewDidStartLoad(_ webView : UIWebView) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         progressIndicator.startAnimating();
     }
     
-    func webViewDidFinishLoad(webView : UIWebView) {
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+    func webViewDidFinishLoad(_ webView : UIWebView) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         progressIndicator.stopAnimating();
         
         if web_viewer.canGoBack {
-            backButton.enabled = true;
+            backButton.isEnabled = true;
         }
         else {
-            backButton.enabled = false;
+            backButton.isEnabled = false;
         }
         
         if web_viewer.canGoForward {
-            nextButton.enabled = true;
+            nextButton.isEnabled = true;
         }
         else {
-            nextButton.enabled = false;
+            nextButton.isEnabled = false;
         }
         
      //   let htmlString = webView.stringByEvaluatingJavaScriptFromString("document.documentElement.outerHTML");

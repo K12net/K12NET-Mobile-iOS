@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class K12NetUserPreferences {
+open class K12NetUserPreferences {
     
     static let FILE_SERVER_ADDRESS = "FILE_SERVER_ADDRESS"
     static let HOME_ADDRESS = "HOME_ADDRESS"
@@ -19,23 +19,23 @@ public class K12NetUserPreferences {
     //    static let LANGUAGE = "LANGUAGE"
     
     
-    static let defaults = NSUserDefaults.standardUserDefaults();
+    static let defaults = UserDefaults.standard;
     
     
-    static func getStringValue(keyValue:String) -> String? {
-        return defaults.stringForKey(keyValue)
+    static func getStringValue(_ keyValue:String) -> String? {
+        return defaults.string(forKey: keyValue)
     }
     
-    static func setStringValue(key:String, value:String) {
-        defaults.setObject(value, forKey: key)
+    static func setStringValue(_ key:String, value:String) {
+        defaults.set(value, forKey: key)
     }
     
-    static func getBooleanValue(keyValue:String) -> Bool? {
-        return defaults.boolForKey(keyValue)
+    static func getBooleanValue(_ keyValue:String) -> Bool? {
+        return defaults.bool(forKey: keyValue)
     }
     
-    static func setBooleanValue(key:String, value:Bool) {
-        defaults.setObject(value, forKey: key)
+    static func setBooleanValue(_ key:String, value:Bool) {
+        defaults.set(value, forKey: key)
     }
     
    /* public static func getLanguage() -> String {
@@ -49,10 +49,10 @@ public class K12NetUserPreferences {
         return language;
     }*/
     
-    public static func getHomeAddress() -> NSString {
+    open static func getHomeAddress() -> NSString {
         var url : NSString;
         if let url_address = getStringValue(HOME_ADDRESS) {
-            url = url_address;
+            url = url_address as NSString;
         }
         else {
             url = "https://okul.k12net.com"
@@ -60,10 +60,10 @@ public class K12NetUserPreferences {
         return url
     }
     
-    public static func getFSAddress() -> NSString {
+    open static func getFSAddress() -> NSString {
         var url : NSString;
         if let url_address = getStringValue(FILE_SERVER_ADDRESS) {
-            url = url_address;
+            url = url_address as NSString;
         }
         else {
             url = "http://fs.k12net.com/FS/"
@@ -71,7 +71,7 @@ public class K12NetUserPreferences {
         return url
     }
     
-    public static func getUsername() -> String {
+    open static func getUsername() -> String {
         var name = "";
         if let temp_name  = getStringValue(USERNAME) {
             name = temp_name;
@@ -79,7 +79,7 @@ public class K12NetUserPreferences {
         return name
     }
     
-    public static func getPassword() -> String {
+    open static func getPassword() -> String {
         var pass = "";
         if let temp_pass  = getStringValue(PASSWORD) {
             pass = temp_pass;
@@ -87,7 +87,7 @@ public class K12NetUserPreferences {
         return pass
     }
     
-    public static func getRememberMe() -> Bool {
+    open static func getRememberMe() -> Bool {
         var rememberMe = false;
         if let rememberMeValue = getBooleanValue(REMEMBER_ME) {
             rememberMe = rememberMeValue;
@@ -95,15 +95,15 @@ public class K12NetUserPreferences {
         return rememberMe;
     }
     
-    public static func saveRememberMe(state: Bool) {
+    open static func saveRememberMe(_ state: Bool) {
         setBooleanValue(REMEMBER_ME, value: state)
     }
     
-    public static func saveHomeAddress(address: String) {
+    open static func saveHomeAddress(_ address: String) {
         setStringValue(HOME_ADDRESS, value: address)
     }
 
-    public static func saveFSAddress(address: String) {
+    open static func saveFSAddress(_ address: String) {
         setStringValue(FILE_SERVER_ADDRESS, value: address)
     }
     
@@ -111,12 +111,12 @@ public class K12NetUserPreferences {
         setStringValue(LANGUAGE, value: lang)
     }*/
     
-    public static func saveUsername(username: String) {
+    open static func saveUsername(_ username: String) {
         setStringValue(USERNAME, value: username)
     }
     
     
-    public static func savePassword(password: String) {
+    open static func savePassword(_ password: String) {
         setStringValue(PASSWORD, value: password)
     }
     

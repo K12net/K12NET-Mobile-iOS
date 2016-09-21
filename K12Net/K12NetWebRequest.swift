@@ -8,79 +8,79 @@
 
 import Foundation
 
-public class K12NetWebRequest {
+open class K12NetWebRequest {
     
-    private static var lastError : NSError?;
+    fileprivate static var lastError : NSError?;
     
-    public static func getLastError() -> NSError? {
+    open static func getLastError() -> NSError? {
         return K12NetWebRequest.lastError;
     }
     
-    public static func retrieveGetRequest(urlAsString : String) -> NSMutableURLRequest {
+    open static func retrieveGetRequest(_ urlAsString : String) -> NSMutableURLRequest {
         let httpMethod = "GET"
         
-        let request = NSMutableURLRequest(URL: NSURL(string: urlAsString)!);
-        request.HTTPMethod = httpMethod
+        let request = NSMutableURLRequest(url: URL(string: urlAsString)!);
+        request.httpMethod = httpMethod
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         return request;
     }
     
-    public static func retrievePostRequest(urlAsString : String, params : AnyObject) -> NSMutableURLRequest {
+    open static func retrievePostRequest(_ urlAsString : String, params : Any) -> NSMutableURLRequest {
         let httpMethod = "POST"
         
-        var request = NSMutableURLRequest(URL: NSURL(string: urlAsString)!);
-        request.HTTPMethod = httpMethod
+        let request = NSMutableURLRequest(url: URL(string: urlAsString)!);
+        request.httpMethod = httpMethod
         
-        var data : NSData;
+        var data : Data;
         if let new_data = params as? String {
-            data = new_data.dataUsingEncoding(NSUTF8StringEncoding)!;
+            data = new_data.data(using: String.Encoding.utf8)!;
         }
         else {
             do {
-                data = try NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions.init(rawValue: 2))
+                data = try JSONSerialization.data(withJSONObject: params, options: JSONSerialization.WritingOptions.init(rawValue: 2))
             } catch _ {
-                data = "".dataUsingEncoding(NSUTF8StringEncoding)!;
+                data = "".data(using: String.Encoding.utf8)!;
             }
         }
         
-        request.HTTPBody = data;
+        request.httpBody = data;
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
         return request;
     }
     
-    public static func retrievePostRequest(urlAsString : String) -> NSMutableURLRequest {
+    open static func retrievePostRequest(_ urlAsString : String) -> NSMutableURLRequest {
         let httpMethod = "POST"
         
-        let request = NSMutableURLRequest(URL: NSURL(string: urlAsString)!);
-        request.HTTPMethod = httpMethod
+        let request = NSMutableURLRequest(url: URL(string: urlAsString)!);
+        request.httpMethod = httpMethod
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         return request;
     }
     
-    public static func sendSynchronousRequest( getReq : NSMutableURLRequest ,returningResponse : AutoreleasingUnsafeMutablePointer<NSURLResponse?>) -> NSData {
+    open static func sendSynchronousRequest( _ getReq : NSMutableURLRequest ,returningResponse : AutoreleasingUnsafeMutablePointer<URLResponse?>?) -> Data {
         
-        var data : NSData?;
+        var data : Data?;
         K12NetWebRequest.lastError = nil;
         
         do {
-            data = try  NSURLConnection.sendSynchronousRequest(getReq, returningResponse: returningResponse);
-            if let jsonStr = NSString(data: data!, encoding: NSUTF8StringEncoding) {
+            data = try  NSURLConnection.sendSynchronousRequest(getReq as URLRequest, returning: returningResponse);
+            if let jsonStr = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) {
                 if jsonStr.length > 100 {
-                    let splitString = jsonStr.substringToIndex(100) as String;
-                    if (splitString.lowercaseString.containsString("Authentication Failed".lowercaseString)) {
+                    let splitString = jsonStr.substring(to: 100) as String;
+                    if (splitString.lowercased().contains("Authentication Failed".lowercased())) {
                         LoginAsyncTask.loginOperation();
-                        data = try  NSURLConnection.sendSynchronousRequest(getReq, returningResponse: returningResponse);
+                        data = try  NSURLConnection.sendSynchronousRequest(getReq as URLRequest, returning: returningResponse);
                     }
                 }
             }
         } catch let error as NSError {
-            data = NSData();
+            data = Data();
             K12NetWebRequest.lastError = error;
         }
     

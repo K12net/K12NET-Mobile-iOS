@@ -10,7 +10,7 @@ import Foundation;
 import UIKit;
 //import SplunkMint;
 
-public class LoginAsyncTask : AsyncTask {
+open class LoginAsyncTask : AsyncTask {
     
     var strData : NSString = "";
     
@@ -37,7 +37,7 @@ public class LoginAsyncTask : AsyncTask {
     
     static func loginOperation() {
         
-        var response: AutoreleasingUnsafeMutablePointer<NSURLResponse?>=nil
+        var response: AutoreleasingUnsafeMutablePointer<URLResponse?>?=nil
         
         let urlAsString = (K12NetUserPreferences.getHomeAddress() as String) + "/Authentication_JSON_AppService.axd/Login"
         var params : [String:String] = [:];
@@ -50,18 +50,18 @@ public class LoginAsyncTask : AsyncTask {
         LoginAsyncTask.urlError = false;
                 LoginAsyncTask.connectionError = false;
         
-        if let data: NSData = K12NetWebRequest.sendSynchronousRequest(request, returningResponse: response) {
+        if let data: Data = K12NetWebRequest.sendSynchronousRequest(request, returningResponse: response) {
             
             if(K12NetWebRequest.getLastError() == nil) {
                 
-                let jsonStr = NSString(data: data, encoding: NSUTF8StringEncoding);
+                let jsonStr = NSString(data: data, encoding: String.Encoding.utf8.rawValue);
                 
                 print("logintex : \(jsonStr)");
                 
                 var json : NSDictionary?;
                 
                 do {
-                    json = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves) as? NSDictionary
+                    json = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as? NSDictionary
                 } catch _ {
                     json = NSDictionary();
                 }
