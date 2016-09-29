@@ -30,13 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application( _ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data ) {
         
-        let characterSet: CharacterSet = CharacterSet( charactersIn: "<>" )
+        var token = ""
+        for i in 0..<deviceToken.count {
+            token = token + String(format: "%02.2hhx", arguments: [deviceToken[i]])
+        }
         
-        let deviceTokenString: String = ( deviceToken.description as NSString )
-            .trimmingCharacters( in: characterSet )
-            .replacingOccurrences( of: " ", with: "" ) as String
-        
-        K12NetLogin.tokenId = deviceTokenString;
+        K12NetLogin.tokenId = token;
         
     }
     
@@ -74,7 +73,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "TodoListShouldRefresh"), object: self)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "TodoListShouldRefresh"), object: self);
+        
+        K12NetUserPreferences.increaseBadgeCount();
+        
+        K12NetLogin.refreshAppBadge();
         
         var temp : NSDictionary = userInfo as NSDictionary
         if let info = userInfo["aps"] as? Dictionary<String, AnyObject>

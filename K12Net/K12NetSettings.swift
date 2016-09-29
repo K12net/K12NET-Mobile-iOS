@@ -28,9 +28,9 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
     
     var keyboardFrame : CGRect = CGRect();
     
-    static var languageMap : [String : [String : String]] = [:];
+   // static var languageMap : [String : [String : String]] = [:];
     
-    static func setLanguageMap(){
+   /* static func setLanguageMap(){
         
         languageMap[ENGLISH] = [:];
         languageMap[ENGLISH]!["appTitle"] = "iSIS";
@@ -68,7 +68,7 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
         
         
     }
-    
+    */
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -26,7 +26,7 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        K12NetSettings.setLanguageMap();
+       // K12NetSettings.setLanguageMap();
         
         setupKeyboardNotifcationListenerForScrollView(scrollView, moveView: true);
         
@@ -94,6 +94,11 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    static func refreshAppBadge() {
+        
+        UIApplication.shared.applicationIconBadgeNumber = K12NetUserPreferences.getBadgeCount();
     }
     
     @IBAction func loginK12Net(_ sender: AnyObject) {

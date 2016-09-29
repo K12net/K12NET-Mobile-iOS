@@ -38,6 +38,10 @@ class DocumentView : UIViewController, UIWebViewDelegate {
         
         self.configureView();
         
+        K12NetUserPreferences.resetBadgeCount();
+        
+        K12NetLogin.refreshAppBadge();
+        
     }
     
     @IBAction func closeWindow(_ sender: AnyObject) {
@@ -83,7 +87,8 @@ class DocumentView : UIViewController, UIWebViewDelegate {
             
             if let urlAddress = startUrl {
                 
-                let urlRequest : URLRequest = URLRequest(url: urlAddress, cachePolicy: NSURLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 30.0 );
+                let randomNumber = arc4random();
+                let urlRequest : URLRequest = URLRequest(url: urlAddress);//, cachePolicy: NSURLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 30.0 );
                 
                 browser.loadRequest(urlRequest);
             }

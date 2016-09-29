@@ -22,7 +22,6 @@
 "connectionUrlFailed" = "Bağlantı adresi hatalı. Lütfen kontrol edip tekrar deneyiniz.";
 "noWifi" = "Bağlantı yapılamadı. Lütfen data paketinizi ya da WiFi ayarlarınızı kontrol edin";
 "loginFailed" = "Kullanıcı adı ya da şifre hatalı. Lütfen kontrol edip tekrar deneyiniz.";
-"ok" = "موافق";
 "english" = "English";
 "arabic" = "العربية";
 "turkish" = "Türkçe";

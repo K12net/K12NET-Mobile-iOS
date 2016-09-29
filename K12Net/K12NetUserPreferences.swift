@@ -16,6 +16,7 @@ open class K12NetUserPreferences {
     static let USERNAME = "USERNAME"
     static let PASSWORD = "PASSWORD"
     static let REMEMBER_ME = "REMEMBER_ME"
+    static let BADGE_COUNT = "BADGE_COUNT"
     //    static let LANGUAGE = "LANGUAGE"
     
     
@@ -27,6 +28,14 @@ open class K12NetUserPreferences {
     }
     
     static func setStringValue(_ key:String, value:String) {
+        defaults.set(value, forKey: key)
+    }
+    
+    static func getNumberValue(_ keyValue:String) -> Int? {
+        return defaults.integer(forKey: keyValue)
+    }
+    
+    static func setNumberValue(_ key:String, value:Int) {
         defaults.set(value, forKey: key)
     }
     
@@ -95,6 +104,14 @@ open class K12NetUserPreferences {
         return rememberMe;
     }
     
+    open static func getBadgeCount() -> Int {
+        var badgeCount = 0;
+        if let safeBadgeCount = getNumberValue(BADGE_COUNT) {
+            badgeCount = safeBadgeCount;
+        }
+        return badgeCount;
+    }
+    
     open static func saveRememberMe(_ state: Bool) {
         setBooleanValue(REMEMBER_ME, value: state)
     }
@@ -120,5 +137,13 @@ open class K12NetUserPreferences {
         setStringValue(PASSWORD, value: password)
     }
     
+    open static func increaseBadgeCount() {
+        var badgeCount = getBadgeCount();
+        badgeCount += 1;
+        setNumberValue(BADGE_COUNT, value: badgeCount);
+    }
     
+    open static func resetBadgeCount() {
+        setNumberValue(BADGE_COUNT, value: 0);
+    }
 }
