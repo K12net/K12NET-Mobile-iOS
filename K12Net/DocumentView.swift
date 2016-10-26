@@ -234,5 +234,9 @@ class DocumentView : UIViewController, UIWebViewDelegate {
             last_address = last_address!.substringFromIndex(7);
         }*/
         
+        K12NetUserPreferences.resetBadgeCount();
+        
+        K12NetLogin.refreshAppBadge();
+        
     }
 }
