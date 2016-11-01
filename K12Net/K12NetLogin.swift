@@ -31,7 +31,13 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         setupKeyboardNotifcationListenerForScrollView(scrollView, moveView: true);
         
        // self.view.addBackground("Background");
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named:"Background")!);
+        //self.view.backgroundColor = UIColor(patternImage: UIImage(named:"Background")!);
+        
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.frame = view.bounds;
+        let k12netBlue = UIColor(red: 0.5859375, green: 0.82421875, blue: 0.8984375, alpha: 1.0).cgColor;
+        gradient.colors = [k12netBlue, UIColor.white.cgColor]
+        view.layer.insertSublayer(gradient, at: 0)
         
         chkRememberMe.setOn(K12NetUserPreferences.getRememberMe(), animated: true);
         txtUsername.text = K12NetUserPreferences.getUsername();

@@ -12,7 +12,7 @@
 "YKA-d1-SuG.title" = "Ayarlar";
 
 /* Class = "UINavigationItem"; title = "K12Net"; ObjectID = "baC-re-lLX"; */
-"baC-re-lLX.title" = "K12NET Frame";
+"baC-re-lLX.title" = "K12NET Mobil";
 
 /* Class = "UITextField"; placeholder = "File Server Address"; ObjectID = "cA7-py-IXx"; */
 "cA7-py-IXx.placeholder" = "File Server Address";
@@ -33,9 +33,9 @@
 "pKO-MT-AvQ.placeholder" = "Şifre";
 
 /* Class = "UILabel"; text = "K12Net"; ObjectID = "udB-mR-CXN"; */
-"udB-mR-CXN.text" = "K12NET Frame";
+"udB-mR-CXN.text" = "K12NET Mobil";
 
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "wFZ-8g-4sc"; */
 "wFZ-8g-4sc.placeholder" = "Kullanıcı Adı";
 
-"udB-mR-CXN.text" = "K12NET Frame";
+"udB-mR-CXN.text" = "K12NET Mobil";

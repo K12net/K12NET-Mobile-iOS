@@ -55,11 +55,11 @@
 		4F8B089B1D8D24FC0014CAA7 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/login.strings; sourceTree = "<group>"; };
 		4FD329911C0CDAD3002F3E8B /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4FD329921C0CE617002F3E8B /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		4FEC88351BF8ED8E00A1BA90 /* K12Net.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = K12Net.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4FEC88491BF8ED8E00A1BA90 /* K12NetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = K12NetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FEC88351BF8ED8E00A1BA90 /* K12Net Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "K12Net Mobile.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FEC88491BF8ED8E00A1BA90 /* K12Net MobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "K12Net MobileTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FEC884D1BF8ED8E00A1BA90 /* K12NetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K12NetTests.swift; sourceTree = "<group>"; };
 		4FEC884F1BF8ED8E00A1BA90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4FEC88541BF8ED8E00A1BA90 /* K12NetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = K12NetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FEC88541BF8ED8E00A1BA90 /* K12Net MobileUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "K12Net MobileUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FEC88581BF8ED8E00A1BA90 /* K12NetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K12NetUITests.swift; sourceTree = "<group>"; };
 		4FEC885A1BF8ED8E00A1BA90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FEC88991BF90F6000A1BA90 /* K12NetLogin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = K12NetLogin.swift; sourceTree = "<group>"; };
@@ -118,9 +118,9 @@
 		4FEC88361BF8ED8E00A1BA90 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4FEC88351BF8ED8E00A1BA90 /* K12Net.app */,
-				4FEC88491BF8ED8E00A1BA90 /* K12NetTests.xctest */,
-				4FEC88541BF8ED8E00A1BA90 /* K12NetUITests.xctest */,
+				4FEC88351BF8ED8E00A1BA90 /* K12Net Mobile.app */,
+				4FEC88491BF8ED8E00A1BA90 /* K12Net MobileTests.xctest */,
+				4FEC88541BF8ED8E00A1BA90 /* K12Net MobileUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,9 +172,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4FEC88341BF8ED8E00A1BA90 /* K12Net */ = {
+		4FEC88341BF8ED8E00A1BA90 /* K12Net Mobile */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FEC885D1BF8ED8E00A1BA90 /* Build configuration list for PBXNativeTarget "K12Net" */;
+			buildConfigurationList = 4FEC885D1BF8ED8E00A1BA90 /* Build configuration list for PBXNativeTarget "K12Net Mobile" */;
 			buildPhases = (
 				4FEC88311BF8ED8E00A1BA90 /* Sources */,
 				4FEC88321BF8ED8E00A1BA90 /* Frameworks */,
@@ -184,14 +184,14 @@
 			);
 			dependencies = (
 			);
-			name = K12Net;
+			name = "K12Net Mobile";
 			productName = K12Net;
-			productReference = 4FEC88351BF8ED8E00A1BA90 /* K12Net.app */;
+			productReference = 4FEC88351BF8ED8E00A1BA90 /* K12Net Mobile.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4FEC88481BF8ED8E00A1BA90 /* K12NetTests */ = {
+		4FEC88481BF8ED8E00A1BA90 /* K12Net MobileTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FEC88601BF8ED8E00A1BA90 /* Build configuration list for PBXNativeTarget "K12NetTests" */;
+			buildConfigurationList = 4FEC88601BF8ED8E00A1BA90 /* Build configuration list for PBXNativeTarget "K12Net MobileTests" */;
 			buildPhases = (
 				4FEC88451BF8ED8E00A1BA90 /* Sources */,
 				4FEC88461BF8ED8E00A1BA90 /* Frameworks */,
@@ -202,14 +202,14 @@
 			dependencies = (
 				4FEC884B1BF8ED8E00A1BA90 /* PBXTargetDependency */,
 			);
-			name = K12NetTests;
+			name = "K12Net MobileTests";
 			productName = K12NetTests;
-			productReference = 4FEC88491BF8ED8E00A1BA90 /* K12NetTests.xctest */;
+			productReference = 4FEC88491BF8ED8E00A1BA90 /* K12Net MobileTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4FEC88531BF8ED8E00A1BA90 /* K12NetUITests */ = {
+		4FEC88531BF8ED8E00A1BA90 /* K12Net MobileUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FEC88631BF8ED8E00A1BA90 /* Build configuration list for PBXNativeTarget "K12NetUITests" */;
+			buildConfigurationList = 4FEC88631BF8ED8E00A1BA90 /* Build configuration list for PBXNativeTarget "K12Net MobileUITests" */;
 			buildPhases = (
 				4FEC88501BF8ED8E00A1BA90 /* Sources */,
 				4FEC88511BF8ED8E00A1BA90 /* Frameworks */,
@@ -220,9 +220,9 @@
 			dependencies = (
 				4FEC88561BF8ED8E00A1BA90 /* PBXTargetDependency */,
 			);
-			name = K12NetUITests;
+			name = "K12Net MobileUITests";
 			productName = K12NetUITests;
-			productReference = 4FEC88541BF8ED8E00A1BA90 /* K12NetUITests.xctest */;
+			productReference = 4FEC88541BF8ED8E00A1BA90 /* K12Net MobileUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -258,7 +258,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4FEC88301BF8ED8E00A1BA90 /* Build configuration list for PBXProject "K12Net" */;
+			buildConfigurationList = 4FEC88301BF8ED8E00A1BA90 /* Build configuration list for PBXProject "K12Net Mobile" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -273,9 +273,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4FEC88341BF8ED8E00A1BA90 /* K12Net */,
-				4FEC88481BF8ED8E00A1BA90 /* K12NetTests */,
-				4FEC88531BF8ED8E00A1BA90 /* K12NetUITests */,
+				4FEC88341BF8ED8E00A1BA90 /* K12Net Mobile */,
+				4FEC88481BF8ED8E00A1BA90 /* K12Net MobileTests */,
+				4FEC88531BF8ED8E00A1BA90 /* K12Net MobileUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -350,12 +350,12 @@
 /* Begin PBXTargetDependency section */
 		4FEC884B1BF8ED8E00A1BA90 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4FEC88341BF8ED8E00A1BA90 /* K12Net */;
+			target = 4FEC88341BF8ED8E00A1BA90 /* K12Net Mobile */;
 			targetProxy = 4FEC884A1BF8ED8E00A1BA90 /* PBXContainerItemProxy */;
 		};
 		4FEC88561BF8ED8E00A1BA90 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4FEC88341BF8ED8E00A1BA90 /* K12Net */;
+			target = 4FEC88341BF8ED8E00A1BA90 /* K12Net Mobile */;
 			targetProxy = 4FEC88551BF8ED8E00A1BA90 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -512,7 +512,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.clazzapps.K12NetTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/K12Net.app/K12Net";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/K12Net Mobile.app/K12Net Mobile";
 			};
 			name = Debug;
 		};
@@ -525,7 +525,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.clazzapps.K12NetTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/K12Net.app/K12Net";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/K12Net Mobile.app/K12Net Mobile";
 			};
 			name = Release;
 		};
@@ -558,7 +558,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4FEC88301BF8ED8E00A1BA90 /* Build configuration list for PBXProject "K12Net" */ = {
+		4FEC88301BF8ED8E00A1BA90 /* Build configuration list for PBXProject "K12Net Mobile" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FEC885B1BF8ED8E00A1BA90 /* Debug */,
@@ -567,7 +567,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FEC885D1BF8ED8E00A1BA90 /* Build configuration list for PBXNativeTarget "K12Net" */ = {
+		4FEC885D1BF8ED8E00A1BA90 /* Build configuration list for PBXNativeTarget "K12Net Mobile" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FEC885E1BF8ED8E00A1BA90 /* Debug */,
@@ -576,7 +576,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FEC88601BF8ED8E00A1BA90 /* Build configuration list for PBXNativeTarget "K12NetTests" */ = {
+		4FEC88601BF8ED8E00A1BA90 /* Build configuration list for PBXNativeTarget "K12Net MobileTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FEC88611BF8ED8E00A1BA90 /* Debug */,
@@ -585,7 +585,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FEC88631BF8ED8E00A1BA90 /* Build configuration list for PBXNativeTarget "K12NetUITests" */ = {
+		4FEC88631BF8ED8E00A1BA90 /* Build configuration list for PBXNativeTarget "K12Net MobileUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FEC88641BF8ED8E00A1BA90 /* Debug */,

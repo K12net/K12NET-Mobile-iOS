@@ -10,7 +10,7 @@
 "connectionError" = "Data connection can not be establised. Please check your data or WiFi connectivity";
 "loginError" = "Username or password is incorrect. Please check them and try again.";
 "ok" = "OK";
-"appTitle" = "K12NET Frame";
+"appTitle" = "K12NET Mobile";
 "settings" = "Settings";
 "username" = "Username";
 "password" = "Password";

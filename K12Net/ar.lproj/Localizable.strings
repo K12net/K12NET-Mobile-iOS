@@ -10,7 +10,7 @@
 "connectionError" = "لم تتم عملية الربط. يرجى التحقق من الاتصال بشبكة الانترنت او WIFI";
 "loginError" = "اسم المستخدم او كلمة السر غير صحيحة. يرجى التحقق منهما والمحاولة مرة اخرى.";
 "ok" = "حسنا";
-"appTitle" = "K12NET Frame";
+"appTitle" = "K12NET Mobile";
 "settings" = "اعدادات";
 "username" = "كلمة السر";
 "password" = "كلمة السر";
