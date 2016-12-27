@@ -123,21 +123,21 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         
         btnLogiin.isEnabled = true;
         
-        if(LoginAsyncTask.urlError == true) {
+        if(LoginAsyncTask.urlError) {
             let alertController = UIAlertController(title: "appTitle".localized, message:
                 "connectionUrlFailed".localized, preferredStyle: UIAlertControllerStyle.alert);
             alertController.addAction(UIAlertAction(title: "ok".localized, style: .default, handler: nil));
             
             self.present(alertController, animated: true, completion: nil)
         }
-        else if(LoginAsyncTask.connectionError == true) {
+        else if(LoginAsyncTask.connectionError) {
             let alertController = UIAlertController(title: "appTitle".localized, message:
                 "noWifi".localized, preferredStyle: UIAlertControllerStyle.alert);
             alertController.addAction(UIAlertAction(title: "ok".localized, style: .default, handler: nil));
             
             self.present(alertController, animated: true, completion: nil)
         }
-        else if(LoginAsyncTask.lastOperationValue == 1) {
+        else if(LoginAsyncTask.lastOperationValue) {
             
             let vc : DocumentView = self.storyboard!.instantiateViewController(withIdentifier: "document_view") as! DocumentView;
             navigationController?.pushViewController(vc, animated: true)

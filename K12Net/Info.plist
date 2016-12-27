@@ -23,11 +23,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.5</string>
+	<string>1.9</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>8</string>
+	<string>12</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
@@ -53,8 +53,14 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Save app calendar information to device calendar</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Send user photos as app mail attachment</string>
 	<key>NSHumanReadableCopyright</key>
 	<string></string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Send user photos as app mail attachment</string>
 	<key>UILaunchStoryboardName</key>
 	<string>login</string>
 	<key>UIMainStoryboardFile</key>

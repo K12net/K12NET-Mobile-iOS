@@ -17,7 +17,7 @@ open class LoginAsyncTask : AsyncTask {
     var username : String;
     var password : String;
     
-    static var lastOperationValue = 0;
+    static var lastOperationValue = false;
     static var urlError = false;
     static var connectionError = false;
     
@@ -67,12 +67,12 @@ open class LoginAsyncTask : AsyncTask {
                 }
                 
                 if let parseJSON = json {
-                    if let success = parseJSON["d"] as? Int {
+                    if let success = parseJSON["d"] as? Bool {
                         LoginAsyncTask.lastOperationValue = success;
                           
                     }
                     else {
-                        LoginAsyncTask.lastOperationValue = 0;
+                        LoginAsyncTask.lastOperationValue = false;
                     }
                     
                 }

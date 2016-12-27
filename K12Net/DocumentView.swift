@@ -164,7 +164,7 @@ class DocumentView : UIViewController, UIWebViewDelegate {
 
         var cookieDict : [HTTPCookiePropertyKey : Any] = [:];
         cookieDict[HTTPCookiePropertyKey.name] = "UICulture";
-        cookieDict[HTTPCookiePropertyKey.value] = "language".localized;
+        cookieDict[HTTPCookiePropertyKey.value] = K12NetUserPreferences.getLanguage();
         cookieDict[HTTPCookiePropertyKey.version] = 0;
         //cookieDict["sessionOnly"] = true as AnyObject?;
         cookieDict[HTTPCookiePropertyKey.domain] = cookie.domain;
@@ -180,7 +180,18 @@ class DocumentView : UIViewController, UIWebViewDelegate {
         cookie = HTTPCookie(properties: cookieDict as! [HTTPCookiePropertyKey : Any])!;
         HTTPCookieStorage.shared.setCookie(cookie);
         
-          cookieDict[HTTPCookiePropertyKey.name] = "Culture";
+        print("------");
+        
+        cookieDict[HTTPCookiePropertyKey.name] = "Culture";
+        cookieDict[HTTPCookiePropertyKey.value] = K12NetUserPreferences.getLanguage();
+        
+        cookie = HTTPCookie(properties: cookieDict as! [HTTPCookiePropertyKey : Any])!;
+        HTTPCookieStorage.shared.setCookie(cookie);
+        
+        print("------");
+        
+        cookieDict[HTTPCookiePropertyKey.name] = "AppID";
+        cookieDict[HTTPCookiePropertyKey.value] = PushNotificationRegisterAsync.ASISTO_IOS_APPLICATION_ID;
         
         cookie = HTTPCookie(properties: cookieDict as! [HTTPCookiePropertyKey : Any])!;
         HTTPCookieStorage.shared.setCookie(cookie);

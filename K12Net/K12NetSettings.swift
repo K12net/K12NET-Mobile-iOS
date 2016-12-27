@@ -26,6 +26,8 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
     
     var keyboardFrame : CGRect = CGRect();
     
+    let languageMap = [TURKISH,ENGLISH,ARABIC];
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,6 +45,20 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
         ftp_address.text = K12NetUserPreferences.getFSAddress() as String;
         
         setupKeyboardNotifcationListenerForScrollView(scrollView, moveView: true);
+        
+        var languageIndex = 0;
+        switch K12NetUserPreferences.getLanguage() {
+        case "tr":
+            languageIndex = 0;
+        case "en":
+            languageIndex = 1;
+        case "ar":
+            languageIndex = 2;
+        default:
+            languageIndex = 0;
+        };
+        
+        languageSegmented.selectedSegmentIndex = languageIndex;
         
         self.connection_url.delegate = self;
         self.ftp_address.delegate = self;
@@ -62,4 +78,11 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
         self.navigationController!.popViewController(animated: true);
         
     }
+    
+    @IBAction func segmentedValueChanged(_ sender: Any) {
+        
+        K12NetUserPreferences.saveLanguage(lang: languageMap[languageSegmented.selectedSegmentIndex]);
+        
+    }
+    
 }
