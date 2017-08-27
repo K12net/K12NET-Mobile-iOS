@@ -36,8 +36,7 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
         //self.view.backgroundColor = UIColor(patternImage: UIImage(named:"Background")!);
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.frame = view.bounds;
-        let k12netBlue = UIColor(red: 0.5859375, green: 0.82421875, blue: 0.8984375, alpha: 1.0).cgColor;
-        gradient.colors = [k12netBlue, UIColor.white.cgColor]
+        gradient.colors = [AppStaticDefinition.K12NET_LOGIN_SCREEN_START_COLOR, AppStaticDefinition.K12NET_LOGIN_SCREEN_END_COLOR];
         view.layer.insertSublayer(gradient, at: 0)
 
         

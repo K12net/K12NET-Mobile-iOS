@@ -10,8 +10,6 @@ import Foundation
 
 class PushNotificationRegisterAsync : AsyncTask {
     
-    open static let ASISTO_IOS_APPLICATION_ID = "99260947-ba8f-e511-bf62-3c15c2ddcd05";
-    
     var tokenId = "";
     
     init(token : String) {
@@ -20,19 +18,19 @@ class PushNotificationRegisterAsync : AsyncTask {
     
     override func doInBackground(){
         
-        var requestQuery = (K12NetUserPreferences.getHomeAddress() as String) + "/SPSL.Web/ClientBin/Yuce-K12NET-SPServicesLibrary-SPDomainService.svc/json/SubmitChanges";
+     //   var requestQuery = (K12NetUserPreferences.getHomeAddress() as String) + "/SPSL.Web/ClientBin/Yuce-K12NET-SPServicesLibrary-SPDomainService.svc/json/SubmitChanges";
 
-     let electronicIdJson = "{\"changeSet\": [{\"HasMemberChanges\": 0, \"Id\": 0, \"Operation\": 2, \"Entity\": {\"__type\": \"ElectronicId:#Yuce.K12NET.SPServicesLibrary\", \"ID\": \"00000000-0000-0000-0000-000000000000\", \"TypeID\": \""+PushNotificationRegisterAsync.ASISTO_IOS_APPLICATION_ID+"\", \"Value\": \""+tokenId+"\"}, \"Associations\": [{\"Key\": \"PersonalInfo_ElectronicIds\", \"Value\": [1]}]}, {\"HasMemberChanges\": 0, \"Id\": 1, \"Operation\": 2, \"Entity\": {\"__type\": \"PersonalInfo_ElectronicId:#Yuce.K12NET.SPServicesLibrary\", \"PersonalInfoID\": \""+StudentListAsyncTask.providerId+"\", \"ElectronicIdID\": \"00000000-0000-0000-0000-000000000000\"}, \"Associations\": [{\"Key\": \"ElectronicId\", \"Value\": [0]}]}]}";
+     let electronicIdJson = "{\"changeSet\": [{\"HasMemberChanges\": 0, \"Id\": 0, \"Operation\": 2, \"Entity\": {\"__type\": \"ElectronicId:#Yuce.K12NET.SPServicesLibrary\", \"ID\": \"00000000-0000-0000-0000-000000000000\", \"TypeID\": \""+AppStaticDefinition.K12NET_IOS_APPLICATION_ID+"\", \"Value\": \""+tokenId+"\"}, \"Associations\": [{\"Key\": \"PersonalInfo_ElectronicIds\", \"Value\": [1]}]}, {\"HasMemberChanges\": 0, \"Id\": 1, \"Operation\": 2, \"Entity\": {\"__type\": \"PersonalInfo_ElectronicId:#Yuce.K12NET.SPServicesLibrary\", \"PersonalInfoID\": \""+StudentListAsyncTask.providerId+"\", \"ElectronicIdID\": \"00000000-0000-0000-0000-000000000000\"}, \"Associations\": [{\"Key\": \"ElectronicId\", \"Value\": [0]}]}]}";
         
-        var response: AutoreleasingUnsafeMutablePointer<URLResponse?>?=nil
+        let response: AutoreleasingUnsafeMutablePointer<URLResponse?>?=nil
         
-        let serviceAddress = (K12NetUserPreferences.getHomeAddress() as String) + "/SPSL.Web/ClientBin/Yuce-K12NET-SPServicesLibrary-SPDomainService.svc/json/SubmitChanges?appID=k12net_ios";
+        let serviceAddress = (K12NetUserPreferences.getHomeAddress() as String) + "/SPSL.Web/ClientBin/Yuce-K12NET-SPServicesLibrary-SPDomainService.svc/json/SubmitChanges?appID=" + AppStaticDefinition.K12NET_IOS_APP_NAME;
         
-        var err: NSErrorPointer = nil;
-        var pnPost = K12NetWebRequest.retrievePostRequest(serviceAddress, params: electronicIdJson);
-        var data =  K12NetWebRequest.sendSynchronousRequest(pnPost, returningResponse: response)
+        //var err: NSErrorPointer = nil;
+        let pnPost = K12NetWebRequest.retrievePostRequest(serviceAddress, params: electronicIdJson);
+        let data =  K12NetWebRequest.sendSynchronousRequest(pnPost, returningResponse: response)
         
-        var strData = NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
+        let strData = NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
         print("\n\nSendMsgWasRead : \(strData)");
         
     }

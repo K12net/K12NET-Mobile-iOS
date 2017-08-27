@@ -79,7 +79,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         K12NetLogin.refreshAppBadge();
         
-        var temp : NSDictionary = userInfo as NSDictionary
+        //var temp : NSDictionary = userInfo as NSDictionary
         if let info = userInfo["aps"] as? Dictionary<String, AnyObject>
         {
             let alertMsg = info["alert"] as! String

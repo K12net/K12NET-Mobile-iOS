@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mG3-rm-Rac">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mG3-rm-Rac">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -15,7 +15,7 @@
         <!--K12Net Mobile-->
         <scene sceneID="zz6-bN-fxO">
             <objects>
-                <viewController title="K12Net Mobile" id="wWA-U1-0xw" customClass="K12NetLogin" customModule="K12Net_Mobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="K12Net Mobile" id="wWA-U1-0xw" customClass="K12NetLogin" customModule="Yukselis_Koleji" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Sn4-4m-Xfy"/>
                         <viewControllerLayoutGuide type="bottom" id="95X-YQ-oYx"/>
@@ -218,7 +218,7 @@
         <!--Document View-->
         <scene sceneID="boD-5d-4V1">
             <objects>
-                <viewController restorationIdentifier="document_view" storyboardIdentifier="document_view" id="vxU-z1-K1a" customClass="DocumentView" customModule="K12Net_Mobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController restorationIdentifier="document_view" storyboardIdentifier="document_view" id="vxU-z1-K1a" customClass="DocumentView" customModule="Yukselis_Koleji" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XL1-UN-qyW"/>
                         <viewControllerLayoutGuide type="bottom" id="x2e-z5-KmM"/>
@@ -299,7 +299,7 @@
         <!--Settings-->
         <scene sceneID="aYN-zu-ARd">
             <objects>
-                <viewController title="Settings" id="8fT-m0-Fpw" customClass="K12NetSettings" customModule="K12Net_Mobile" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Settings" id="8fT-m0-Fpw" customClass="K12NetSettings" customModule="Yukselis_Koleji" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eqm-l9-4sK"/>
                         <viewControllerLayoutGuide type="bottom" id="rMf-OH-jfV"/>
@@ -474,7 +474,7 @@
         <scene sceneID="CUV-hB-zHV">
             <objects>
                 <navigationController navigationBarHidden="YES" toolbarHidden="NO" id="mG3-rm-Rac" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="6pd-1k-btq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6pd-1k-btq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -500,7 +500,7 @@
         <scene sceneID="5wx-pf-ZJ3">
             <objects>
                 <navigationController navigationBarHidden="YES" toolbarHidden="NO" hidesBarsOnSwipe="YES" id="c8C-WC-Xah" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="vm9-Ge-LB4">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vm9-Ge-LB4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -525,7 +525,7 @@
     </scenes>
     <resources>
         <image name="Back" width="32" height="32"/>
-        <image name="Logo" width="171" height="171"/>
+        <image name="Logo" width="29" height="29"/>
         <image name="Next" width="32" height="32"/>
     </resources>
 </document>

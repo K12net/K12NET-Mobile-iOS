@@ -87,7 +87,7 @@ class DocumentView : UIViewController, UIWebViewDelegate {
             
             if let urlAddress = startUrl {
                 
-                let randomNumber = arc4random();
+               // let randomNumber = arc4random();
                 let urlRequest : URLRequest = URLRequest(url: urlAddress);//, cachePolicy: NSURLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 30.0 );
                 
                 browser.loadRequest(urlRequest);
@@ -177,7 +177,7 @@ class DocumentView : UIViewController, UIWebViewDelegate {
         
          print(cookieDict);
 
-        cookie = HTTPCookie(properties: cookieDict as! [HTTPCookiePropertyKey : Any])!;
+        cookie = HTTPCookie(properties: cookieDict )!;
         HTTPCookieStorage.shared.setCookie(cookie);
         
         print("------");
@@ -185,15 +185,15 @@ class DocumentView : UIViewController, UIWebViewDelegate {
         cookieDict[HTTPCookiePropertyKey.name] = "Culture";
         cookieDict[HTTPCookiePropertyKey.value] = K12NetUserPreferences.getLanguage();
         
-        cookie = HTTPCookie(properties: cookieDict as! [HTTPCookiePropertyKey : Any])!;
+        cookie = HTTPCookie(properties: cookieDict )!;
         HTTPCookieStorage.shared.setCookie(cookie);
         
         print("------");
         
         cookieDict[HTTPCookiePropertyKey.name] = "AppID";
-        cookieDict[HTTPCookiePropertyKey.value] = PushNotificationRegisterAsync.ASISTO_IOS_APPLICATION_ID;
+        cookieDict[HTTPCookiePropertyKey.value] = AppStaticDefinition.K12NET_IOS_APPLICATION_ID;
         
-        cookie = HTTPCookie(properties: cookieDict as! [HTTPCookiePropertyKey : Any])!;
+        cookie = HTTPCookie(properties: cookieDict )!;
         HTTPCookieStorage.shared.setCookie(cookie);
         
         print("------");
@@ -244,6 +244,14 @@ class DocumentView : UIViewController, UIWebViewDelegate {
      /*   if(last_address != nil && last_address!.hasPrefix("newtab:")) {
             last_address = last_address!.substringFromIndex(7);
         }*/
+        
+        let htmlCode = webView.stringByEvaluatingJavaScript(from: "document.head.innerHTML");
+        if(htmlCode?.contains("atlas-mobile-web-app-no-sleep"))! {
+            UIApplication.shared.isIdleTimerDisabled = true;
+        }
+        else {
+            UIApplication.shared.isIdleTimerDisabled = false;
+        }
         
         K12NetUserPreferences.resetBadgeCount();
         

@@ -35,9 +35,12 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.frame = view.bounds;
-        let k12netBlue = UIColor(red: 0.5859375, green: 0.82421875, blue: 0.8984375, alpha: 1.0).cgColor;
-        gradient.colors = [k12netBlue, UIColor.white.cgColor]
+        gradient.colors = [AppStaticDefinition.K12NET_LOGIN_SCREEN_START_COLOR, AppStaticDefinition.K12NET_LOGIN_SCREEN_END_COLOR];
         view.layer.insertSublayer(gradient, at: 0)
+        
+       // lblAppTitle.text = AppStaticDefinition.K12NET_IOS_APP_TITLE;
+       // lblAppTitle.font = UIFont(name: "Helvetica", size: AppStaticDefinition.K12NET_IOS_APP_TITLE_SIZE);
+       // lblAppTitle.textColor = UIColor.white;
         
         chkRememberMe.setOn(K12NetUserPreferences.getRememberMe(), animated: true);
         txtUsername.text = K12NetUserPreferences.getUsername();

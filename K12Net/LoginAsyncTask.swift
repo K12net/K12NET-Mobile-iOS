@@ -37,7 +37,7 @@ open class LoginAsyncTask : AsyncTask {
     
     static func loginOperation() {
         
-        var response: AutoreleasingUnsafeMutablePointer<URLResponse?>?=nil
+        let response: AutoreleasingUnsafeMutablePointer<URLResponse?>?=nil
         
         let urlAsString = (K12NetUserPreferences.getHomeAddress() as String) + "/Authentication_JSON_AppService.axd/Login"
         var params : [String:String] = [:];
@@ -45,7 +45,7 @@ open class LoginAsyncTask : AsyncTask {
         params["password"] = K12NetUserPreferences.getPassword();
         params["createPersistentCookie"] = "false";
         
-        var request = K12NetWebRequest.retrievePostRequest(urlAsString, params: params);
+        let request = K12NetWebRequest.retrievePostRequest(urlAsString, params: params);
         
         LoginAsyncTask.urlError = false;
                 LoginAsyncTask.connectionError = false;

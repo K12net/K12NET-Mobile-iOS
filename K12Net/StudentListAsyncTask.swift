@@ -19,19 +19,19 @@ open class StudentListAsyncTask : AsyncTask {
     
     override func doInBackground(){
         
-        var response: AutoreleasingUnsafeMutablePointer<URLResponse?>?=nil
+        let response: AutoreleasingUnsafeMutablePointer<URLResponse?>?=nil
         
-        var error: NSErrorPointer? = nil
-        var getUserUrl = (K12NetUserPreferences.getHomeAddress() as String) + "/SPSL.Web/ClientBin/Yuce-K12NET-SPSL-Web-AuthenticationService.svc/json/GetUser"
+        let error: NSErrorPointer? = nil
+        let getUserUrl = (K12NetUserPreferences.getHomeAddress() as String) + "/SPSL.Web/ClientBin/Yuce-K12NET-SPSL-Web-AuthenticationService.svc/json/GetUser"
         
-        var request = K12NetWebRequest.retrieveGetRequest(getUserUrl);
+        let request = K12NetWebRequest.retrieveGetRequest(getUserUrl);
         
         var data =  K12NetWebRequest.sendSynchronousRequest(request, returningResponse: response)
         
         if data.count > 0 && error == nil {
             do {
-                var json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary;
-                let html = NSString(data: data, encoding: String.Encoding.utf8.rawValue);
+                let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as? NSDictionary;
+                //let html = NSString(data: data, encoding: String.Encoding.utf8.rawValue);
                 if let topJson  = json as NSDictionary?  {
                     
                     if let userResult = topJson["GetUserResult"] as? NSDictionary  {
