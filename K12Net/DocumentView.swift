@@ -21,6 +21,8 @@ class DocumentView : UIViewController, UIWebViewDelegate {
     
     var first_time = true;
     
+    var simple_page = false;
+    
     var windowDepth = 0;
     
     @IBOutlet weak var refreshButton: UIBarButtonItem!
@@ -36,11 +38,18 @@ class DocumentView : UIViewController, UIWebViewDelegate {
         
         web_viewer.delegate = self;
         
-        self.configureView();
-        
-        K12NetUserPreferences.resetBadgeCount();
-        
-        K12NetLogin.refreshAppBadge();
+        if(simple_page){
+            self.web_viewer.loadRequest(URLRequest(url: startUrl!));
+            progressIndicator.stopAnimating();
+        }
+        else  {
+            
+            self.configureView();
+            
+            K12NetUserPreferences.resetBadgeCount();
+            
+            K12NetLogin.refreshAppBadge();
+        }
         
     }
     
@@ -57,6 +66,9 @@ class DocumentView : UIViewController, UIWebViewDelegate {
         if web_viewer.canGoBack {
             web_viewer.goBack();
         }
+        else if(simple_page) {
+            self.navigationController?.popViewController(animated: true);
+        }
     }
     
     @IBAction func nextView(_ sender: AnyObject) {
@@ -64,15 +76,15 @@ class DocumentView : UIViewController, UIWebViewDelegate {
             web_viewer.goForward();
         }
         
-    /*    NSURLCache.sharedURLCache().removeAllCachedResponses()
-        NSURLCache.sharedURLCache().diskCapacity = 0
-        NSURLCache.sharedURLCache().memoryCapacity = 0
-        
-        let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage();
-        for cookie in storage.cookies! {
-            storage.deleteCookie(cookie);
-        }
-        NSUserDefaults.standardUserDefaults().synchronize();*/
+        /*    NSURLCache.sharedURLCache().removeAllCachedResponses()
+         NSURLCache.sharedURLCache().diskCapacity = 0
+         NSURLCache.sharedURLCache().memoryCapacity = 0
+         
+         let storage = NSHTTPCookieStorage.sharedHTTPCookieStorage();
+         for cookie in storage.cookies! {
+         storage.deleteCookie(cookie);
+         }
+         NSUserDefaults.standardUserDefaults().synchronize();*/
     }
     
     func configureView() {
@@ -87,7 +99,7 @@ class DocumentView : UIViewController, UIWebViewDelegate {
             
             if let urlAddress = startUrl {
                 
-               // let randomNumber = arc4random();
+                // let randomNumber = arc4random();
                 let urlRequest : URLRequest = URLRequest(url: urlAddress);//, cachePolicy: NSURLRequest.CachePolicy.returnCacheDataElseLoad, timeoutInterval: 30.0 );
                 
                 browser.loadRequest(urlRequest);
@@ -111,12 +123,12 @@ class DocumentView : UIViewController, UIWebViewDelegate {
         
         let address = (request as NSURLRequest).url!.absoluteString.lowercased();
         
-      /*  var forNewTab = false;
-        
-        if(address.hasPrefix("newtab:")) {
-            address = address.substringFromIndex(7);
-            forNewTab = true;
-        }*/
+        /*  var forNewTab = false;
+         
+         if(address.hasPrefix("newtab:")) {
+         address = address.substringFromIndex(7);
+         forNewTab = true;
+         }*/
         
         if (address.contains("login.aspx")){
             if(K12NetUserPreferences.getRememberMe()) {
@@ -131,7 +143,7 @@ class DocumentView : UIViewController, UIWebViewDelegate {
             return false;
         }
             
-       else if(address.contains("logout.aspx")) {
+        else if(address.contains("logout.aspx")) {
             K12NetUserPreferences.saveRememberMe(false);
             K12NetLogin.isLogout = true;
             self.navigationController?.popToRootViewController(animated: true);
@@ -139,68 +151,52 @@ class DocumentView : UIViewController, UIWebViewDelegate {
             return false;
         }
         
-     /*   if(navigationType == UIWebViewNavigationType.LinkClicked && forNewTab) {
-            // UIApplication.sharedApplication().openURL(request.URL!);
-            
-            let vc : DocumentView = self.storyboard!.instantiateViewControllerWithIdentifier("document_view") as! DocumentView;
-            vc.first_time = true;
-            vc.windowDepth = windowDepth+1;
-            vc.startUrl = NSURL(string: address);
-            navigationController?.pushViewController(vc, animated: true)
-            
-            progressIndicator.stopAnimating();
-            return false;
-        }*/
+        /*   if(navigationType == UIWebViewNavigationType.LinkClicked && forNewTab) {
+         // UIApplication.sharedApplication().openURL(request.URL!);
+         
+         let vc : DocumentView = self.storyboard!.instantiateViewControllerWithIdentifier("document_view") as! DocumentView;
+         vc.first_time = true;
+         vc.windowDepth = windowDepth+1;
+         vc.startUrl = NSURL(string: address);
+         navigationController?.pushViewController(vc, animated: true)
+         
+         progressIndicator.stopAnimating();
+         return false;
+         }*/
         
-       // let cookie : NSHTTPCookie = NSHTTPCookie(properties: cookieDict)!;
-       // NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookie);
+        // let cookie : NSHTTPCookie = NSHTTPCookie(properties: cookieDict)!;
+        // NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(cookie);
         
-        for cookie in HTTPCookieStorage.shared.cookies! {
-            print(cookie);
-            print("------");
-        }
-        
-        var cookie = HTTPCookieStorage.shared.cookies![0];
-
         var cookieDict : [HTTPCookiePropertyKey : Any] = [:];
         cookieDict[HTTPCookiePropertyKey.name] = "UICulture";
         cookieDict[HTTPCookiePropertyKey.value] = K12NetUserPreferences.getLanguage();
         cookieDict[HTTPCookiePropertyKey.version] = 0;
-        //cookieDict["sessionOnly"] = true as AnyObject?;
-        cookieDict[HTTPCookiePropertyKey.domain] = cookie.domain;
-        cookieDict[HTTPCookiePropertyKey.originURL] = cookie.domain;
-        cookieDict[HTTPCookiePropertyKey.path] = cookie.path;
-        cookieDict[HTTPCookiePropertyKey.secure] = cookie.isSecure;
-        cookieDict[HTTPCookiePropertyKey.expires] = cookie.expiresDate;
         
-         print("------");
+        if(HTTPCookieStorage.shared.cookies != nil && (HTTPCookieStorage.shared.cookies?.count)! > 0) {
+            var cookie = HTTPCookieStorage.shared.cookies![0];
+            cookieDict[HTTPCookiePropertyKey.domain] = cookie.domain;
+            cookieDict[HTTPCookiePropertyKey.originURL] = cookie.domain;
+            cookieDict[HTTPCookiePropertyKey.path] = cookie.path;
+            cookieDict[HTTPCookiePropertyKey.secure] = cookie.isSecure;
+            cookieDict[HTTPCookiePropertyKey.expires] = cookie.expiresDate;
+        }
         
-         print(cookieDict);
-
-        cookie = HTTPCookie(properties: cookieDict )!;
-        HTTPCookieStorage.shared.setCookie(cookie);
-        
-        print("------");
+        if let cookieNew = HTTPCookie(properties: cookieDict ) {
+            HTTPCookieStorage.shared.setCookie(cookieNew);
+        }
         
         cookieDict[HTTPCookiePropertyKey.name] = "Culture";
         cookieDict[HTTPCookiePropertyKey.value] = K12NetUserPreferences.getLanguage();
         
-        cookie = HTTPCookie(properties: cookieDict )!;
-        HTTPCookieStorage.shared.setCookie(cookie);
-        
-        print("------");
+        if let cookieNew = HTTPCookie(properties: cookieDict ) {
+            HTTPCookieStorage.shared.setCookie(cookieNew);
+        }
         
         cookieDict[HTTPCookiePropertyKey.name] = "AppID";
         cookieDict[HTTPCookiePropertyKey.value] = AppStaticDefinition.K12NET_IOS_APPLICATION_ID;
         
-        cookie = HTTPCookie(properties: cookieDict )!;
-        HTTPCookieStorage.shared.setCookie(cookie);
-        
-        print("------");
-
-        for cookie in HTTPCookieStorage.shared.cookies! {
-            print(cookie);
-            print("------");
+        if let cookieNew = HTTPCookie(properties: cookieDict ) {
+            HTTPCookieStorage.shared.setCookie(cookieNew);
         }
         
         return true;
@@ -215,7 +211,7 @@ class DocumentView : UIViewController, UIWebViewDelegate {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         progressIndicator.stopAnimating();
         
-        if web_viewer.canGoBack {
+        if web_viewer.canGoBack || simple_page {
             backButton.isEnabled = true;
         }
         else {
@@ -229,21 +225,21 @@ class DocumentView : UIViewController, UIWebViewDelegate {
             nextButton.isEnabled = false;
         }
         
-     //   let htmlString = webView.stringByEvaluatingJavaScriptFromString("document.documentElement.outerHTML");
+        //   let htmlString = webView.stringByEvaluatingJavaScriptFromString("document.documentElement.outerHTML");
         
-      //  print (htmlString);
+        //  print (htmlString);
         
         //  let jsonStrng = webView.stringByEvaluatingJavaScriptFromString("(function(fields) { var O=[]; for(var i=0; i<fields.length;i++) {O.push(fields[i].value);} return JSON.stringify(O); })(document.querySelectorAll('input[type=\"text\"]'))");
         
-     /*   let jsInjection = "javascript: var allLinks = document.getElementsByTagName('a'); if (allLinks) {var i;for (i=0; i<allLinks.length; i++) {var link = allLinks[i];var target = link.getAttribute('target'); if (target && target == '_blank') {link.setAttribute('target','_self');link.href = 'newtab:'+link.href;}}}";
-        
-        webView.stringByEvaluatingJavaScriptFromString(jsInjection);*/
+        /*   let jsInjection = "javascript: var allLinks = document.getElementsByTagName('a'); if (allLinks) {var i;for (i=0; i<allLinks.length; i++) {var link = allLinks[i];var target = link.getAttribute('target'); if (target && target == '_blank') {link.setAttribute('target','_self');link.href = 'newtab:'+link.href;}}}";
+         
+         webView.stringByEvaluatingJavaScriptFromString(jsInjection);*/
         
         last_address = webView.request?.mainDocumentURL?.absoluteString;
         
-     /*   if(last_address != nil && last_address!.hasPrefix("newtab:")) {
-            last_address = last_address!.substringFromIndex(7);
-        }*/
+        /*   if(last_address != nil && last_address!.hasPrefix("newtab:")) {
+         last_address = last_address!.substringFromIndex(7);
+         }*/
         
         let htmlCode = webView.stringByEvaluatingJavaScript(from: "document.head.innerHTML");
         if(htmlCode?.contains("atlas-mobile-web-app-no-sleep"))! {

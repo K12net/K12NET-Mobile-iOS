@@ -53,7 +53,7 @@ open class K12NetUserPreferences {
             language = getStringValue(LANGUAGE)!;
         }
         else {
-            language = "language".localized
+            language = AppStaticDefinition.K12NET_DEFAULT_LANGUAGE;
         }
         return language;
     }
@@ -64,7 +64,7 @@ open class K12NetUserPreferences {
             url = url_address as NSString;
         }
         else {
-            url = "https://okul.k12net.com"
+            url = AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL as NSString;
         }
         return url
     }
@@ -75,7 +75,7 @@ open class K12NetUserPreferences {
             url = url_address as NSString;
         }
         else {
-            url = "http://fs.k12net.com/FS/"
+            url = AppStaticDefinition.K12NET_FS_DEFAULT_URL as NSString;
         }
         return url
     }

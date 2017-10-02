@@ -33,12 +33,13 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
         
         navigationController?.setNavigationBarHidden(false, animated: true);
         
-        //self.view.backgroundColor = UIColor(patternImage: UIImage(named:"Background")!);
-        let gradient: CAGradientLayer = CAGradientLayer()
-        gradient.frame = view.bounds;
-        gradient.colors = [AppStaticDefinition.K12NET_LOGIN_SCREEN_START_COLOR, AppStaticDefinition.K12NET_LOGIN_SCREEN_END_COLOR];
-        view.layer.insertSublayer(gradient, at: 0)
-
+        if(AppStaticDefinition.K12NET_UPDATE_VIEW_COLOR) {
+            //self.view.backgroundColor = UIColor(patternImage: UIImage(named:"Background")!);
+            let gradient: CAGradientLayer = CAGradientLayer()
+            gradient.frame = view.bounds;
+            gradient.colors = [AppStaticDefinition.K12NET_LOGIN_SCREEN_START_COLOR, AppStaticDefinition.K12NET_LOGIN_SCREEN_END_COLOR];
+            view.layer.insertSublayer(gradient, at: 0)
+        }
         
         connection_url.text = K12NetUserPreferences.getHomeAddress() as String;
         ftp_address.text = K12NetUserPreferences.getFSAddress() as String;

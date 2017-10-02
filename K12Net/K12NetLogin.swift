@@ -32,11 +32,12 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         
        // self.view.addBackground("Background");
         //self.view.backgroundColor = UIColor(patternImage: UIImage(named:"Background")!);
-        
-        let gradient: CAGradientLayer = CAGradientLayer()
-        gradient.frame = view.bounds;
-        gradient.colors = [AppStaticDefinition.K12NET_LOGIN_SCREEN_START_COLOR, AppStaticDefinition.K12NET_LOGIN_SCREEN_END_COLOR];
-        view.layer.insertSublayer(gradient, at: 0)
+        if(AppStaticDefinition.K12NET_UPDATE_VIEW_COLOR) {
+            let gradient: CAGradientLayer = CAGradientLayer()
+            gradient.frame = view.bounds;
+            gradient.colors = [AppStaticDefinition.K12NET_LOGIN_SCREEN_START_COLOR, AppStaticDefinition.K12NET_LOGIN_SCREEN_END_COLOR];
+            view.layer.insertSublayer(gradient, at: 0)
+        }
         
        // lblAppTitle.text = AppStaticDefinition.K12NET_IOS_APP_TITLE;
        // lblAppTitle.font = UIFont(name: "Helvetica", size: AppStaticDefinition.K12NET_IOS_APP_TITLE_SIZE);
@@ -145,6 +146,8 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
             let vc : DocumentView = self.storyboard!.instantiateViewController(withIdentifier: "document_view") as! DocumentView;
             navigationController?.pushViewController(vc, animated: true)
             vc.first_time = true;
+            vc.simple_page = false;
+            vc.startUrl = nil;
             vc.windowDepth = 1;
             
             let pnAsyncTask = StudentListAsyncTask();
@@ -167,5 +170,14 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         
     }
     
+    @IBAction func clickForgotPassword(_ sender: Any) {
+        let vc : DocumentView = self.storyboard!.instantiateViewController(withIdentifier: "document_view") as! DocumentView;
+        vc.startUrl = URL(string:"https://okul.k12net.com/ResetPassword.aspx");
+        vc.simple_page = true;
+        vc.first_time = false;
+        vc.windowDepth = 1;
+        navigationController?.pushViewController(vc, animated: true);
+        
+    }
 }
 
