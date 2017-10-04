@@ -63,6 +63,19 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         removeKeyboardNotificationListeners();
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        
+        if(AppStaticDefinition.K12NET_UPDATE_VIEW_COLOR) {
+            view.layer.sublayers?.remove(at: 0);
+            let gradient: CAGradientLayer = CAGradientLayer();
+            gradient.frame = CGRect(x:0, y:0, width:view.bounds.height, height:view.bounds.width);
+            gradient.colors = [AppStaticDefinition.K12NET_LOGIN_SCREEN_START_COLOR, AppStaticDefinition.K12NET_LOGIN_SCREEN_END_COLOR];
+            view.layer.insertSublayer(gradient, at: 0)
+        }
+
+        
+    }
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
         textField.resignFirstResponder()
