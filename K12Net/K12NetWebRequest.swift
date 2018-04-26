@@ -48,6 +48,8 @@ open class K12NetWebRequest {
         request.httpBody = data;
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue(K12NetUserPreferences.getDeviceToken() as String, forHTTPHeaderField: "Atlas-DeviceID");
+        request.addValue(AppStaticDefinition.K12NET_IOS_APPLICATION_ID, forHTTPHeaderField: "Atlas-DeviceTypeID");
         
         return request;
     }

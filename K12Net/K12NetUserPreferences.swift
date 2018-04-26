@@ -18,6 +18,7 @@ open class K12NetUserPreferences {
     static let REMEMBER_ME = "REMEMBER_ME"
     static let BADGE_COUNT = "BADGE_COUNT"
     static let LANGUAGE = "LANGUAGE"
+    static let DEVICE_TOKEN = "DEVICE_TOKEN"
     
     
     static let defaults = UserDefaults.standard;
@@ -112,6 +113,14 @@ open class K12NetUserPreferences {
         return badgeCount;
     }
     
+    open static func getDeviceToken() -> String {
+        var devId = "";
+        if let dev_Id = getStringValue(DEVICE_TOKEN) {
+            devId = dev_Id;
+        }
+        return devId
+    }
+    
     open static func saveRememberMe(_ state: Bool) {
         setBooleanValue(REMEMBER_ME, value: state)
     }
@@ -145,5 +154,9 @@ open class K12NetUserPreferences {
     
     open static func resetBadgeCount() {
         setNumberValue(BADGE_COUNT, value: 0);
+    }
+    
+    open static func saveDeviceToken(_ deviceToken: String) {
+        setStringValue(DEVICE_TOKEN, value: deviceToken)
     }
 }

@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         K12NetLogin.tokenId = token;
+        K12NetUserPreferences.saveDeviceToken(token)
         
     }
     

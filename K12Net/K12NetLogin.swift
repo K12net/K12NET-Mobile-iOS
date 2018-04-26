@@ -162,9 +162,6 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
             vc.simple_page = false;
             vc.startUrl = nil;
             vc.windowDepth = 1;
-            
-            let pnAsyncTask = StudentListAsyncTask();
-            pnAsyncTask.Execute();
         }
         else {
             let alertController = UIAlertController(title: "appTitle".localized, message:"loginFailed".localized , preferredStyle: UIAlertControllerStyle.alert)

@@ -185,6 +185,15 @@ class DocumentView : UIViewController, UIWebViewDelegate {
             HTTPCookieStorage.shared.setCookie(cookieNew);
         }
         
+        if(HTTPCookieStorage.shared.cookies != nil && (HTTPCookieStorage.shared.cookies?.count)! > 0) {
+            var cookie = HTTPCookieStorage.shared.cookies![0];
+            cookieDict[HTTPCookiePropertyKey.domain] = cookie.domain;
+            cookieDict[HTTPCookiePropertyKey.originURL] = cookie.domain;
+            cookieDict[HTTPCookiePropertyKey.path] = cookie.path;
+            cookieDict[HTTPCookiePropertyKey.secure] = cookie.isSecure;
+            cookieDict[HTTPCookiePropertyKey.expires] = cookie.expiresDate;
+        }
+        
         cookieDict[HTTPCookiePropertyKey.name] = "Culture";
         cookieDict[HTTPCookiePropertyKey.value] = K12NetUserPreferences.getLanguage();
         
