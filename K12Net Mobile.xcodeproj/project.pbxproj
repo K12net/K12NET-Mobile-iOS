@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		166CD69D20E2989D007DAD2F /* Localizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166CD69C20E2989C007DAD2F /* Localizer.swift */; };
+		16F22E5920F9E6A200DE86C6 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16F22E5820F9E6A200DE86C6 /* UserNotifications.framework */; };
 		4F41758D1F4381D100D56A8C /* AppStaticDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F41758C1F4381D100D56A8C /* AppStaticDefinition.swift */; };
 		4F848CFA1C01B38900C02EDB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F848CFC1C01B38900C02EDB /* Localizable.strings */; };
 		4F8B08961D8D22500014CAA7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F8B08951D8D22500014CAA7 /* Images.xcassets */; };
@@ -20,14 +22,15 @@
 		4FEC88BA1BF90F6100A1BA90 /* AsyncTaskCompleteListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC889F1BF90F6000A1BA90 /* AsyncTaskCompleteListener.swift */; };
 		4FEC88BB1BF90F6100A1BA90 /* DocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88A01BF90F6000A1BA90 /* DocumentView.swift */; };
 		4FEC88BE1BF90F6100A1BA90 /* LoginAsyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88A31BF90F6000A1BA90 /* LoginAsyncTask.swift */; };
-		4FEC88C01BF90F6100A1BA90 /* PushNotificationRegisterAsync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88A51BF90F6100A1BA90 /* PushNotificationRegisterAsync.swift */; };
 		4FEC88C31BF90F6100A1BA90 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88A81BF90F6100A1BA90 /* StringExtension.swift */; };
-		4FEC88C41BF90F6100A1BA90 /* StudentListAsyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88A91BF90F6100A1BA90 /* StudentListAsyncTask.swift */; };
 		4FEC88C51BF90F6100A1BA90 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88AA1BF90F6100A1BA90 /* UIViewControllerExtension.swift */; };
 		4FEC88D01BF9117D00A1BA90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88CE1BF9117D00A1BA90 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		166CD69C20E2989C007DAD2F /* Localizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizer.swift; sourceTree = "<group>"; };
+		16B6DCE820A462BA0078C42B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/login.strings; sourceTree = "<group>"; };
+		16F22E5820F9E6A200DE86C6 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		4F41758C1F4381D100D56A8C /* AppStaticDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStaticDefinition.swift; sourceTree = "<group>"; };
 		4F848CFB1C01B38900C02EDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4F848CFD1C01B38C00C02EDB /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -47,9 +50,7 @@
 		4FEC889F1BF90F6000A1BA90 /* AsyncTaskCompleteListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncTaskCompleteListener.swift; sourceTree = "<group>"; };
 		4FEC88A01BF90F6000A1BA90 /* DocumentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentView.swift; sourceTree = "<group>"; };
 		4FEC88A31BF90F6000A1BA90 /* LoginAsyncTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAsyncTask.swift; sourceTree = "<group>"; };
-		4FEC88A51BF90F6100A1BA90 /* PushNotificationRegisterAsync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationRegisterAsync.swift; sourceTree = "<group>"; };
 		4FEC88A81BF90F6100A1BA90 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		4FEC88A91BF90F6100A1BA90 /* StudentListAsyncTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentListAsyncTask.swift; sourceTree = "<group>"; };
 		4FEC88AA1BF90F6100A1BA90 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		4FEC88CD1BF9117D00A1BA90 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FEC88CE1BF9117D00A1BA90 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,17 +61,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16F22E5920F9E6A200DE86C6 /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16F22E5720F9E6A100DE86C6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				16F22E5820F9E6A200DE86C6 /* UserNotifications.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4FEC882C1BF8ED8E00A1BA90 = {
 			isa = PBXGroup;
 			children = (
 				4FEC88371BF8ED8E00A1BA90 /* K12Net */,
 				4FEC88361BF8ED8E00A1BA90 /* Products */,
+				16F22E5720F9E6A100DE86C6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,6 +96,7 @@
 		4FEC88371BF8ED8E00A1BA90 /* K12Net */ = {
 			isa = PBXGroup;
 			children = (
+				166CD69C20E2989C007DAD2F /* Localizer.swift */,
 				4FEC88CE1BF9117D00A1BA90 /* AppDelegate.swift */,
 				4FEC889E1BF90F6000A1BA90 /* AsyncTask.swift */,
 				4FEC889F1BF90F6000A1BA90 /* AsyncTaskCompleteListener.swift */,
@@ -99,9 +111,7 @@
 				4F848CFC1C01B38900C02EDB /* Localizable.strings */,
 				4F8B08971D8D24DD0014CAA7 /* login.storyboard */,
 				4FEC88A31BF90F6000A1BA90 /* LoginAsyncTask.swift */,
-				4FEC88A51BF90F6100A1BA90 /* PushNotificationRegisterAsync.swift */,
 				4FEC88A81BF90F6100A1BA90 /* StringExtension.swift */,
-				4FEC88A91BF90F6100A1BA90 /* StudentListAsyncTask.swift */,
 				4FEC88AA1BF90F6100A1BA90 /* UIViewControllerExtension.swift */,
 				4FD329921C0CE617002F3E8B /* UIViewExtension.swift */,
 				4F41758C1F4381D100D56A8C /* AppStaticDefinition.swift */,
@@ -135,8 +145,11 @@
 		4FEC882D1BF8ED8E00A1BA90 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = K12Net;
 				TargetAttributes = {
 					4FEC88341BF8ED8E00A1BA90 = {
@@ -145,6 +158,9 @@
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -195,14 +211,13 @@
 				4FEC88D01BF9117D00A1BA90 /* AppDelegate.swift in Sources */,
 				4FEC88B71BF90F6100A1BA90 /* K12NetUserPreferences.swift in Sources */,
 				4F41758D1F4381D100D56A8C /* AppStaticDefinition.swift in Sources */,
+				166CD69D20E2989D007DAD2F /* Localizer.swift in Sources */,
 				4FD329931C0CE617002F3E8B /* UIViewExtension.swift in Sources */,
-				4FEC88C01BF90F6100A1BA90 /* PushNotificationRegisterAsync.swift in Sources */,
 				4FEC88B41BF90F6100A1BA90 /* K12NetLogin.swift in Sources */,
 				4FEC88B91BF90F6100A1BA90 /* AsyncTask.swift in Sources */,
 				4FEC88C51BF90F6100A1BA90 /* UIViewControllerExtension.swift in Sources */,
 				4FEC88B51BF90F6100A1BA90 /* K12NetSettings.swift in Sources */,
 				4FEC88BE1BF90F6100A1BA90 /* LoginAsyncTask.swift in Sources */,
-				4FEC88C41BF90F6100A1BA90 /* StudentListAsyncTask.swift in Sources */,
 				4FEC88C31BF90F6100A1BA90 /* StringExtension.swift in Sources */,
 				4FEC88BB1BF90F6100A1BA90 /* DocumentView.swift in Sources */,
 			);
@@ -227,6 +242,7 @@
 				4F8B08981D8D24DD0014CAA7 /* Base */,
 				4F8B089A1D8D24F90014CAA7 /* ar */,
 				4F8B089B1D8D24FC0014CAA7 /* tr */,
+				16B6DCE820A462BA0078C42B /* en */,
 			);
 			name = login.storyboard;
 			sourceTree = "<group>";
@@ -243,14 +259,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -291,14 +315,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -331,9 +363,10 @@
 				CODE_SIGN_ENTITLEMENTS = K12Net/K12Net.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SU64EDQ7U5;
 				INFOPLIST_FILE = K12Net/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.atlas.k12netframe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -350,9 +383,10 @@
 				CODE_SIGN_ENTITLEMENTS = K12Net/K12Net.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SU64EDQ7U5;
 				INFOPLIST_FILE = K12Net/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.atlas.k12netframe;
 				PRODUCT_NAME = "$(TARGET_NAME)";

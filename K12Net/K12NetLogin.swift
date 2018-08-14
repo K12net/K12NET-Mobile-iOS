@@ -23,11 +23,14 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
     static var tokenId = "";
     static var isLogout = false;
     
+    static var controller :K12NetLogin? = nil;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
        // K12NetSettings.setLanguageMap();
         
+        K12NetLogin.controller = self;
         setupKeyboardNotifcationListenerForScrollView(scrollView, moveView: true);
         
        // self.view.addBackground("Background");
@@ -45,18 +48,14 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         
         chkRememberMe.setOn(K12NetUserPreferences.getRememberMe(), animated: true);
         txtUsername.text = K12NetUserPreferences.getUsername();
+        txtPassword.text = K12NetUserPreferences.getPassword();
         
         if chkRememberMe.isOn {
-            txtPassword.text = K12NetUserPreferences.getPassword();
-            
             loginOperation();
         }
         
         self.txtUsername!.delegate = self;
         self.txtPassword!.delegate = self;
-        
-        selLabelLanguage();
-        
     }
     
     deinit {
@@ -88,31 +87,12 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         self.navigationController?.isToolbarHidden = true;
         
         if (K12NetLogin.isLogout) {
-            txtPassword.text = "";
-            chkRememberMe.setOn(false, animated: true);
             K12NetLogin.isLogout = false;
         }
-        
-        selLabelLanguage();
-        
-    }
-    
-    func selLabelLanguage(){
-       // lblAppTitle.text = K12NetSettings.languageMap[K12NetUserPreferences.getLanguage()]!["appTitle"];
-        
-       // txtUsername.placeholder = K12NetSettings.languageMap[K12NetUserPreferences.getLanguage()]!["username"];
-        
-       /* txtPassword.placeholder = K12NetSettings.languageMap[K12NetUserPreferences.getLanguage()]!["password"];
-        lblRememberMe.text = K12NetSettings.languageMap[K12NetUserPreferences.getLanguage()]!["rememberMe"];
-        btnSettings.setTitle(K12NetSettings.languageMap[K12NetUserPreferences.getLanguage()]!["settings"], forState: .Normal);
-        btnLogiin.setTitle(K12NetSettings.languageMap[K12NetUserPreferences.getLanguage()]!["login"], forState: .Normal);
-        
-        self.navigationItem.title = K12NetSettings.languageMap[K12NetUserPreferences.getLanguage()]!["appTitle"];*/
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated);
-        navigationController?.setNavigationBarHidden(false, animated: true);
     }
     
     override func didReceiveMemoryWarning() {
@@ -182,7 +162,7 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
     
     @IBAction func clickForgotPassword(_ sender: Any) {
         let vc : DocumentView = self.storyboard!.instantiateViewController(withIdentifier: "document_view") as! DocumentView;
-        vc.startUrl = URL(string:"https://okul.k12net.com/ResetPassword.aspx");
+        vc.startUrl = URL(string:AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL + "/ResetPassword.aspx");
         vc.simple_page = true;
         vc.first_time = false;
         vc.windowDepth = 1;

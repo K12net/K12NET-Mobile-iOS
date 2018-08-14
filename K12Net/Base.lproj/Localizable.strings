@@ -10,6 +10,8 @@
 "connectionError" = "Data connection can not be establised. Please check your data or WiFi connectivity";
 "loginError" = "Username or password is incorrect. Please check them and try again.";
 "ok" = "OK";
+"OK" = "OK";
+"Cancel" = "Cancel";
 "appTitle" = "K12NET Mobile";
 "settings" = "Settings";
 "username" = "Username";
@@ -21,8 +23,9 @@
 "connectionUrlFailed" = "Connection URL is not correct. Please check it and try again";
 "noWifi" = "Data connection can not be establised. Please check your data or WiFi connectivity";
 "loginFailed" = "Username or password is incorrect. Please check them and try again.";
-"ok" = "OK";
 "english" = "English";
 "arabic" = "العربية";
 "turkish" = "Türkçe";
 "language" = "en";
+"confirmation" = "Confirmation";
+"navToNotify" = "You are about to navigate notification page. Do you really want to exit current view?";

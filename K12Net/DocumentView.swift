@@ -28,12 +28,18 @@ class DocumentView : UIViewController, UIWebViewDelegate {
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var nextButton: UIBarButtonItem!
+    @IBOutlet weak var homeButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad();
         
         self.navigationController?.isNavigationBarHidden = true;
         self.navigationController?.isToolbarHidden = false;
+        
+        if(startUrl == nil) {
+            startUrl = URL(string: K12NetUserPreferences.getHomeAddress() as String);
+        }
+        
         last_address = startUrl?.absoluteString;
         
         web_viewer.delegate = self;
@@ -51,6 +57,12 @@ class DocumentView : UIViewController, UIWebViewDelegate {
             K12NetLogin.refreshAppBadge();
         }
         
+    }
+    
+    @IBAction func homeView(_ sender: AnyObject) {
+        startUrl = URL(string: K12NetUserPreferences.getHomeAddress() as String);
+        self.web_viewer.loadRequest(URLRequest(url: startUrl!));
+        progressIndicator.stopAnimating();
     }
     
     @IBAction func closeWindow(_ sender: AnyObject) {
@@ -173,7 +185,7 @@ class DocumentView : UIViewController, UIWebViewDelegate {
         cookieDict[HTTPCookiePropertyKey.version] = 0;
         
         if(HTTPCookieStorage.shared.cookies != nil && (HTTPCookieStorage.shared.cookies?.count)! > 0) {
-            var cookie = HTTPCookieStorage.shared.cookies![0];
+            let cookie = HTTPCookieStorage.shared.cookies![0];
             cookieDict[HTTPCookiePropertyKey.domain] = cookie.domain;
             cookieDict[HTTPCookiePropertyKey.originURL] = cookie.domain;
             cookieDict[HTTPCookiePropertyKey.path] = cookie.path;
@@ -186,7 +198,7 @@ class DocumentView : UIViewController, UIWebViewDelegate {
         }
         
         if(HTTPCookieStorage.shared.cookies != nil && (HTTPCookieStorage.shared.cookies?.count)! > 0) {
-            var cookie = HTTPCookieStorage.shared.cookies![0];
+            let cookie = HTTPCookieStorage.shared.cookies![0];
             cookieDict[HTTPCookiePropertyKey.domain] = cookie.domain;
             cookieDict[HTTPCookiePropertyKey.originURL] = cookie.domain;
             cookieDict[HTTPCookiePropertyKey.path] = cookie.path;

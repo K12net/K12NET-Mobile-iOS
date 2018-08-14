@@ -7,26 +7,57 @@
 //
 
 import UIKit
-//import SplunkMint;
-//import Parse;
+import UserNotifications;
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        UIApplication.shared.setStatusBarStyle(UIStatusBarStyle.lightContent, animated: true);
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent;
         
-        let type : UIUserNotificationType = [.badge, .alert, .sound];
-        let setting = UIUserNotificationSettings(types: type, categories: nil);
-        UIApplication.shared.registerUserNotificationSettings(setting);
-        UIApplication.shared.registerForRemoteNotifications();
+        if #available(iOS 10.0, *) {
+            let center  = UNUserNotificationCenter.current()
+            center.delegate = self
+            
+            center.requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
+                if let error = error {
+                    print("Error: \(error)");
+                }
+                if granted {
+                    DispatchQueue.main.async {
+                        UIApplication.shared.registerForRemoteNotifications()
+                    }
+                } else {
+                    print("Notification access denied.")
+                }
+            }
+            
+            if let remoteNotification = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? NSDictionary {
+                self.handlerRemoteNotification((remoteNotification) as! [AnyHashable : Any] as! [String : AnyObject]);
+            }
+        }
+        else {
+            UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil))
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+        
+        Localizer.DoTheSwizzling();
+        
         return true
         
     }
+    
+    /*func application(_ application: UIApplication,
+                     handleActionWithIdentifier identifier: String?,
+                     forRemoteNotification userInfo: [AnyHashable : Any],
+                     completionHandler: @escaping () -> Swift.Void) {
+        
+        self.handlerRemoteNotification(userInfo);
+        completionHandler()
+    }*/
     
     func application( _ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data ) {
         
@@ -72,6 +103,88 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    func handlerRemoteNotification(_ userInfo: [AnyHashable: Any]) {
+        if #available(iOS 10.0, *) {
+        } else {
+            if UIApplication.shared.applicationState != .active { return }
+        }
+        
+        if let info = userInfo["aps"] as? Dictionary<String, AnyObject>
+        {
+            var message = "";
+            var title = "";
+            var intent = "";
+            var portal = "";
+            var query = "";
+            
+            if let alert = info["alert"] as? Dictionary<String, AnyObject>
+            {
+                if alert.keys.contains("body") {message = alert["body"] as! String;}
+                if alert.keys.contains("title") {title = alert["title"] as! String;}
+                if alert.keys.contains("intent") {intent = alert["intent"] as! String;}
+                if alert.keys.contains("portal") {portal = alert["portal"] as! String;}
+                if alert.keys.contains("query") {query = alert["query"] as! String;}
+            } else {
+                message = info["alert"] as! String;
+            }
+            
+            if !message.isEmpty
+            {
+                if !portal.isEmpty
+                {
+                    let dialogMessage = UIAlertController(title: title, message: message + "\n\n" + "navToNotify".localized, preferredStyle: .alert)
+                    
+                    let ok = UIAlertAction(title: "OK".localized, style: .default, handler: { (action) -> Void in
+                        let vc : DocumentView = K12NetLogin.controller!.storyboard!.instantiateViewController(withIdentifier: "document_view") as! DocumentView;
+                        
+                        vc.startUrl = URL(string:String(format: AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL + "/Default.aspx?intent=%@&portal=%@&query=%@",intent.urlEncode(),portal.urlEncode(),query.urlEncode()));
+                        vc.simple_page = true;
+                        vc.first_time = false;
+                        vc.windowDepth = 1;
+                        
+                        K12NetLogin.controller?.navigationController?.pushViewController(vc, animated: true);
+                    })
+                    
+                    // Create Cancel button with action handlder
+                    let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel) { (action) -> Void in
+                        
+                    }
+                    
+                    //Add OK and Cancel button to dialog message
+                    dialogMessage.addAction(ok)
+                    dialogMessage.addAction(cancel)
+                    
+                    // Present dialog message to user
+                    K12NetLogin.controller?.present(dialogMessage, animated: true, completion: nil)
+                } else {
+                    let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                    
+                    let ok = UIAlertAction(title: "OK".localized, style: .default, handler: { (action) -> Void in
+                    })
+                    
+                    dialogMessage.addAction(ok)
+                    K12NetLogin.controller?.present(dialogMessage, animated: true, completion: nil)
+                }
+            }
+        }
+    }
+    
+    //Called when a notification is delivered to a foreground app.
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("User Info = ",notification.request.content.userInfo)
+        handlerRemoteNotification(notification.request.content.userInfo)
+        completionHandler([.alert, .badge, .sound])
+    }
+    
+    //Called to let your app know which action was selected by the user for a given notification.
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("User Info 1 = ",response.notification.request.content.userInfo)
+        handlerRemoteNotification(response.notification.request.content.userInfo)
+        completionHandler()
+    }
+    
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         
         NotificationCenter.default.post(name: Notification.Name(rawValue: "TodoListShouldRefresh"), object: self);
@@ -80,14 +193,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         K12NetLogin.refreshAppBadge();
         
-        //var temp : NSDictionary = userInfo as NSDictionary
-        if let info = userInfo["aps"] as? Dictionary<String, AnyObject>
-        {
-            let alertMsg = info["alert"] as! String
-            var alert: UIAlertView!
-            alert = UIAlertView(title: "", message: alertMsg, delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+        if #available(iOS 10.0, *) {
+            if UIApplication.shared.applicationState != .active {
+                
+            } else {
+            }
+        } else {
+            handlerRemoteNotification(userInfo)
         }
+        
+        print("application = ",userInfo)
+        
     }
     
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {

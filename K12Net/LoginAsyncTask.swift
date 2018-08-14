@@ -37,6 +37,31 @@ open class LoginAsyncTask : AsyncTask {
     
     static func loginOperation() {
         
+        let cookies = HTTPCookieStorage.shared.cookies
+        
+        if(cookies != nil) {
+            for cookie in cookies! {
+                
+                if(cookie.name.contains("NotCompletedPollCount")) {
+                    let newDate = Calendar.current.date(byAdding: .year, value: -10, to: Date());
+                    
+                    var cookieDict : [HTTPCookiePropertyKey : Any] = [:];
+                    cookieDict[HTTPCookiePropertyKey.name] = "NotCompletedPollCount";
+                    cookieDict[HTTPCookiePropertyKey.value] = "";
+                    cookieDict[HTTPCookiePropertyKey.version] = cookie.version;
+                    cookieDict[HTTPCookiePropertyKey.domain] = cookie.domain;
+                    cookieDict[HTTPCookiePropertyKey.originURL] = cookie.domain;
+                    cookieDict[HTTPCookiePropertyKey.path] = cookie.path;
+                    cookieDict[HTTPCookiePropertyKey.secure] = cookie.isSecure;
+                    cookieDict[HTTPCookiePropertyKey.expires] = newDate;
+                    
+                    if let cookieNew = HTTPCookie(properties: cookieDict ) {
+                        HTTPCookieStorage.shared.setCookie(cookieNew);
+                    }
+                }
+            }
+        }
+        
         let response: AutoreleasingUnsafeMutablePointer<URLResponse?>?=nil
         
         let urlAsString = (K12NetUserPreferences.getHomeAddress() as String) + "/Authentication_JSON_AppService.axd/Login"
@@ -48,47 +73,46 @@ open class LoginAsyncTask : AsyncTask {
         let request = K12NetWebRequest.retrievePostRequest(urlAsString, params: params);
         
         LoginAsyncTask.urlError = false;
-                LoginAsyncTask.connectionError = false;
+        LoginAsyncTask.connectionError = false;
         
-        if let data: Data = K12NetWebRequest.sendSynchronousRequest(request, returningResponse: response) {
+        let data: Data = K12NetWebRequest.sendSynchronousRequest(request, returningResponse: response)
+        
+        if(K12NetWebRequest.getLastError() == nil) {
             
-            if(K12NetWebRequest.getLastError() == nil) {
-                
-                let jsonStr = NSString(data: data, encoding: String.Encoding.utf8.rawValue);
-                
-                print("logintex : \(jsonStr)");
-                
-                var json : NSDictionary?;
-                
-                do {
-                    json = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as? NSDictionary
-                } catch _ {
-                    json = NSDictionary();
-                }
-                
-                if let parseJSON = json {
-                    if let success = parseJSON["d"] as? Bool {
-                        LoginAsyncTask.lastOperationValue = success;
-                          
-                    }
-                    else {
-                        LoginAsyncTask.lastOperationValue = false;
-                    }
+            let jsonStr = NSString(data: data, encoding: String.Encoding.utf8.rawValue);
+            
+            print("logintex : \(String(describing: jsonStr))");
+            
+            var json : NSDictionary?;
+            
+            do {
+                json = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as? NSDictionary
+            } catch _ {
+                json = NSDictionary();
+            }
+            
+            if let parseJSON = json {
+                if let success = parseJSON["d"] as? Bool {
+                    LoginAsyncTask.lastOperationValue = success;
                     
                 }
+                else {
+                    LoginAsyncTask.lastOperationValue = false;
+                }
+                
             }
-            else {
-                print("lasterror");
-                print(K12NetWebRequest.getLastError());
-                if(K12NetWebRequest.getLastError()?.code == -1003) { //NSURLErrorDomain
-                    LoginAsyncTask.urlError = true;
-                }
-                else if(K12NetWebRequest.getLastError()?.code == NSURLErrorTimedOut ||
-                    K12NetWebRequest.getLastError()?.code == NSURLErrorCannotConnectToHost ||
-                    K12NetWebRequest.getLastError()?.code == NSURLErrorNetworkConnectionLost ||
-                    K12NetWebRequest.getLastError()?.code == NSURLErrorNotConnectedToInternet) {
-                    LoginAsyncTask.connectionError = true;
-                }
+        }
+        else {
+            print("lasterror");
+            print(K12NetWebRequest.getLastError() ?? "");
+            if(K12NetWebRequest.getLastError()?.code == -1003) { //NSURLErrorDomain
+                LoginAsyncTask.urlError = true;
+            }
+            else if(K12NetWebRequest.getLastError()?.code == NSURLErrorTimedOut ||
+                K12NetWebRequest.getLastError()?.code == NSURLErrorCannotConnectToHost ||
+                K12NetWebRequest.getLastError()?.code == NSURLErrorNetworkConnectionLost ||
+                K12NetWebRequest.getLastError()?.code == NSURLErrorNotConnectedToInternet) {
+                LoginAsyncTask.connectionError = true;
             }
         }
     }

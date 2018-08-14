@@ -21,7 +21,7 @@ open class AsyncTask {
     
     open func Execute(){
         
-        let queue : DispatchQueue = DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default);
+        let queue : DispatchQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.default);
         queue.async {
             
             UIApplication.shared.isNetworkActivityIndicatorVisible = true

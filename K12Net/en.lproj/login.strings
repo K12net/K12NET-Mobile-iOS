@@ -33,7 +33,11 @@
 "pKO-MT-AvQ.placeholder" = "Password";
 
 /* Class = "UILabel"; text = "K12Net"; ObjectID = "udB-mR-CXN"; */
-"udB-mR-CXN.text" = "K12Net";
+"udB-mR-CXN.text" = "K12NET Mobile";
 
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "wFZ-8g-4sc"; */
 "wFZ-8g-4sc.placeholder" = "Username";
+
+"x5Z-ND-sH3.text" = "Forgot Password";
+
+"x5Z-ND-sH3.normalTitle" = "Forgot Password";

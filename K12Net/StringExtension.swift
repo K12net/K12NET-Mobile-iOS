@@ -18,12 +18,28 @@ extension String {
     
     func substringFromIndex(_ index: Int) -> String
     {
-        if (index < 0 || index > self.characters.count)
+        /*if (index < 0 || index > self.characters.count)
         {
             print("index \(index) out of bounds")
             return ""
         }
-        return self.substring(from: self.characters.index(self.startIndex, offsetBy: index))
+        return self.substring(from: self.characters.index(self.startIndex, offsetBy: index))*/
+        if (index < 0 || index > self.count)
+        {
+            print("index \(index) out of bounds")
+            return ""
+        }
+        return self.substring(from: self.index(self.startIndex, offsetBy: index))
+    }
+    
+    public func urlEncode() -> String {
+        let allowedCharacterSet = (CharacterSet(charactersIn: "!*'();:@&=+$,/?%#[] ").inverted)
+        
+        if let escapedString = self.addingPercentEncoding(withAllowedCharacters: allowedCharacterSet) {
+            return escapedString;
+        }
+        
+        return self;
     }
 }
 

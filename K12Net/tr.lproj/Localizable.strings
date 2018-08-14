@@ -10,6 +10,8 @@
 "connectionError" = "Bağlantı yapılamadı. Lütfen data paketinizi ya da WiFi ayarlarınızı kontrol edin";
 "loginError" = "Kullanıcı adı ya da şifre hatalı. Lütfen kontrol edip tekrar deneyiniz.";
 "ok" = "Tamam";
+"OK" = "Tamam";
+"Cancel" = "İptal";
 "close" = "Kapat";
 "appTitle" = "K12NET Mobil";
 "settings" = "Ayarlar";
@@ -26,3 +28,5 @@
 "arabic" = "العربية";
 "turkish" = "Türkçe";
 "language" = "tr";
+"confirmation" = "Uyarı";
+"navToNotify" = "Bildirim sayfasına yönlendirilmek üzeresiniz. Bu sayfadan ayrılmak istediğinize emin misiniz?";

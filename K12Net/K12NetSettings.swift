@@ -64,7 +64,7 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
         self.ftp_address.delegate = self;
         
     }
-    
+    	
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
         textField.resignFirstResponder()
         return true
@@ -75,14 +75,11 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
         K12NetUserPreferences.saveHomeAddress(connection_url.text!)
         K12NetUserPreferences.saveFSAddress(ftp_address.text!)
         
-        self.navigationController!.popViewController(animated: true);
-        
+        Localizer.RefreshUI(self);
     }
     
     @IBAction func segmentedValueChanged(_ sender: Any) {
-        
         K12NetUserPreferences.saveLanguage(lang: languageMap[languageSegmented.selectedSegmentIndex]);
-        
     }
     
 }
