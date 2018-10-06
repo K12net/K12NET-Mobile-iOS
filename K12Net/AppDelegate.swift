@@ -14,9 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent;
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         if #available(iOS 10.0, *) {
             let center  = UNUserNotificationCenter.current()
@@ -35,11 +33,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
             }
             
-            if let remoteNotification = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? NSDictionary {
+            if let remoteNotification = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? NSDictionary {
                 self.handlerRemoteNotification((remoteNotification) as! [AnyHashable : Any] as! [String : AnyObject]);
             }
         }
         else {
+            if #available(iOS 9.0, *) {
+                
+            } else {
+                UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent;
+            }
+        
             UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil))
             UIApplication.shared.registerForRemoteNotifications()
         }

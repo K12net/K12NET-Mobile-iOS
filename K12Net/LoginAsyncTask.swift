@@ -10,7 +10,7 @@ import Foundation;
 import UIKit;
 //import SplunkMint;
 
-open class LoginAsyncTask : AsyncTask {
+open class LoginAsyncTask : AsyncTask  {
     
     var strData : NSString = "";
     
@@ -61,7 +61,7 @@ open class LoginAsyncTask : AsyncTask {
                 }
             }
         }
-        
+                
         let response: AutoreleasingUnsafeMutablePointer<URLResponse?>?=nil
         
         let urlAsString = (K12NetUserPreferences.getHomeAddress() as String) + "/Authentication_JSON_AppService.axd/Login"

@@ -8,7 +8,8 @@
 
 import UIKit
 
-class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListener {
+class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListener , XMLParserDelegate{
+    var latestVersion = "";
     
     @IBOutlet weak var txtUsername: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
@@ -24,6 +25,14 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
     static var isLogout = false;
     
     static var controller :K12NetLogin? = nil;
+    
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
+        if elementName == "ios" {
+            if let version = attributeDict["version"] {
+                self.latestVersion = version;
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,12 +59,78 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         txtUsername.text = K12NetUserPreferences.getUsername();
         txtPassword.text = K12NetUserPreferences.getPassword();
         
+        //todo: App provider must include their own PrivacyPolicy by changing below url
+        var xmlString = ""
+        if let url = URL(string: "http://fs.k12net.com/mobile/files/versions.k12net.txt") {
+            do {
+                xmlString = try String(contentsOf: url)
+                
+                let xmlData = xmlString.data(using: String.Encoding.utf8)!
+                let parser = XMLParser(data: xmlData)
+                
+                parser.delegate = self;
+                
+                parser.parse()
+            } catch {
+                print("Error download url \(url) : \(error)")
+            }
+        } else {
+            // the URL was bad!
+        }
+        
+        if(self.latestVersion != "") {
+            let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String;
+            
+            if(appVersion != nil) {
+                let latestVersionList = self.latestVersion.split(separator: ".").map{ Int($0)!};
+                let appVersionList = appVersion?.split(separator: ".").map{ Int($0)!};
+                var index = 0;
+                var hasNewUpdate = false;
+                
+                for version in latestVersionList {
+                    if((appVersionList?.count)! > index && version > (appVersionList?[index])!) {
+                        hasNewUpdate = true;
+                        break;
+                    }
+                    
+                    index = index + 1;
+                }
+                
+                if(hasNewUpdate) {
+                    let alert = UIAlertController(title: "alert".localized, message: "newUpdateAvailableWarning".localized, preferredStyle: UIAlertController.Style.alert)
+                    
+                    let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel) { (action) -> Void in
+                        
+                    }
+                    
+                    alert.addAction(UIAlertAction(title: "update".localized, style: UIAlertAction.Style.default, handler: { action in
+                        let appUrl = URL(string: "https://itunes.apple.com/tr/app/k12net-mobil/id1155767502?l=tr&mt=8")
+                        
+                        if #available(iOS 10.0, *) {
+                            UIApplication.shared.open(appUrl!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+                        } else {
+                            UIApplication.shared.openURL(appUrl!)
+                        }
+                        
+                    }));
+                    alert.addAction(cancel)
+                    
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+            
+        }
+        
         if chkRememberMe.isOn {
             loginOperation();
         }
         
         self.txtUsername!.delegate = self;
         self.txtPassword!.delegate = self;
+    }
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     
     deinit {
@@ -122,14 +197,14 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         
         if(LoginAsyncTask.urlError) {
             let alertController = UIAlertController(title: "appTitle".localized, message:
-                "connectionUrlFailed".localized, preferredStyle: UIAlertControllerStyle.alert);
+                "connectionUrlFailed".localized, preferredStyle: UIAlertController.Style.alert);
             alertController.addAction(UIAlertAction(title: "ok".localized, style: .default, handler: nil));
             
             self.present(alertController, animated: true, completion: nil)
         }
         else if(LoginAsyncTask.connectionError) {
             let alertController = UIAlertController(title: "appTitle".localized, message:
-                "noWifi".localized, preferredStyle: UIAlertControllerStyle.alert);
+                "noWifi".localized, preferredStyle: UIAlertController.Style.alert);
             alertController.addAction(UIAlertAction(title: "ok".localized, style: .default, handler: nil));
             
             self.present(alertController, animated: true, completion: nil)
@@ -144,8 +219,8 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
             vc.windowDepth = 1;
         }
         else {
-            let alertController = UIAlertController(title: "appTitle".localized, message:"loginFailed".localized , preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "ok".localized, style: UIAlertActionStyle.default,handler: nil))
+            let alertController = UIAlertController(title: "appTitle".localized, message:"loginFailed".localized , preferredStyle: UIAlertController.Style.alert)
+            alertController.addAction(UIAlertAction(title: "ok".localized, style: UIAlertAction.Style.default,handler: nil))
             
             self.present(alertController, animated: true, completion: nil)
         }
@@ -171,3 +246,8 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
     }
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+}

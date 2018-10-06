@@ -59,7 +59,7 @@ open class K12NetUserPreferences {
         return language;
     }
     
-    open static func getHomeAddress() -> NSString {
+    public static func getHomeAddress() -> NSString {
         var url : NSString;
         if let url_address = getStringValue(HOME_ADDRESS) {
             url = url_address as NSString;
@@ -70,7 +70,7 @@ open class K12NetUserPreferences {
         return url
     }
     
-    open static func getFSAddress() -> NSString {
+    public static func getFSAddress() -> NSString {
         var url : NSString;
         if let url_address = getStringValue(FILE_SERVER_ADDRESS) {
             url = url_address as NSString;
@@ -81,7 +81,7 @@ open class K12NetUserPreferences {
         return url
     }
     
-    open static func getUsername() -> String {
+    public static func getUsername() -> String {
         var name = "";
         if let temp_name  = getStringValue(USERNAME) {
             name = temp_name;
@@ -89,7 +89,7 @@ open class K12NetUserPreferences {
         return name
     }
     
-    open static func getPassword() -> String {
+    public static func getPassword() -> String {
         var pass = "";
         if let temp_pass  = getStringValue(PASSWORD) {
             pass = temp_pass;
@@ -97,7 +97,7 @@ open class K12NetUserPreferences {
         return pass
     }
     
-    open static func getRememberMe() -> Bool {
+    public static func getRememberMe() -> Bool {
         var rememberMe = false;
         if let rememberMeValue = getBooleanValue(REMEMBER_ME) {
             rememberMe = rememberMeValue;
@@ -105,7 +105,7 @@ open class K12NetUserPreferences {
         return rememberMe;
     }
     
-    open static func getBadgeCount() -> Int {
+    public static func getBadgeCount() -> Int {
         var badgeCount = 0;
         if let safeBadgeCount = getNumberValue(BADGE_COUNT) {
             badgeCount = safeBadgeCount;
@@ -113,7 +113,7 @@ open class K12NetUserPreferences {
         return badgeCount;
     }
     
-    open static func getDeviceToken() -> String {
+    public static func getDeviceToken() -> String {
         var devId = "";
         if let dev_Id = getStringValue(DEVICE_TOKEN) {
             devId = dev_Id;
@@ -121,15 +121,15 @@ open class K12NetUserPreferences {
         return devId
     }
     
-    open static func saveRememberMe(_ state: Bool) {
+    public static func saveRememberMe(_ state: Bool) {
         setBooleanValue(REMEMBER_ME, value: state)
     }
     
-    open static func saveHomeAddress(_ address: String) {
+    public static func saveHomeAddress(_ address: String) {
         setStringValue(HOME_ADDRESS, value: address)
     }
 
-    open static func saveFSAddress(_ address: String) {
+    public static func saveFSAddress(_ address: String) {
         setStringValue(FILE_SERVER_ADDRESS, value: address)
     }
     
@@ -137,26 +137,26 @@ open class K12NetUserPreferences {
         setStringValue(LANGUAGE, value: lang)
     }
     
-    open static func saveUsername(_ username: String) {
+    public static func saveUsername(_ username: String) {
         setStringValue(USERNAME, value: username)
     }
     
     
-    open static func savePassword(_ password: String) {
+    public static func savePassword(_ password: String) {
         setStringValue(PASSWORD, value: password)
     }
     
-    open static func increaseBadgeCount() {
+    public static func increaseBadgeCount() {
         var badgeCount = getBadgeCount();
         badgeCount += 1;
         setNumberValue(BADGE_COUNT, value: badgeCount);
     }
     
-    open static func resetBadgeCount() {
+    public static func resetBadgeCount() {
         setNumberValue(BADGE_COUNT, value: 0);
     }
     
-    open static func saveDeviceToken(_ deviceToken: String) {
+    public static func saveDeviceToken(_ deviceToken: String) {
         setStringValue(DEVICE_TOKEN, value: deviceToken)
     }
 }

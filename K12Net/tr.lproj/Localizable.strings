@@ -30,3 +30,7 @@
 "language" = "tr";
 "confirmation" = "Uyarı";
 "navToNotify" = "Bildirim sayfasına yönlendirilmek üzeresiniz. Bu sayfadan ayrılmak istediğinize emin misiniz?";
+"alert" = "Uyarı";
+"newUpdateAvailableWarning" = "Yeni güncelleme bulunmaktadır. İsterseniz daha sonra güncelleyebilirsiniz.";
+"update" = "Güncelle";
+"browse" = "Tarayıcıda Aç";

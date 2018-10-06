@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mG3-rm-Rac">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mG3-rm-Rac">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -58,7 +56,7 @@
                                         <color key="onTintColor" red="0.0" green="0.56464199120000003" blue="0.90862238220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember Me" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phl-ut-RvQ">
-                                        <rect key="frame" x="115.5" y="290" width="95" height="16"/>
+                                        <rect key="frame" x="115.5" y="289.5" width="95" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="95" id="Dzi-I2-AGT"/>
                                         </constraints>
@@ -67,7 +65,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jig-GU-r43">
-                                        <rect key="frame" x="230.5" y="284" width="51" height="28"/>
+                                        <rect key="frame" x="230.5" y="283.5" width="51" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="52" id="hJA-Gc-uAw"/>
                                         </constraints>
@@ -86,7 +84,7 @@
                                         </connections>
                                     </button>
                                     <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMi-Yb-O7T">
-                                        <rect key="frame" x="91.5" y="322" width="160" height="30"/>
+                                        <rect key="frame" x="91.5" y="321.5" width="160" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.56464199115588365" blue="0.90862238219895286" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="160" id="dKu-c8-mF8"/>
@@ -101,13 +99,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="K12NET Mobile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udB-mR-CXN">
-                                        <rect key="frame" x="8" y="136" width="326" height="58"/>
+                                        <rect key="frame" x="8" y="136" width="327" height="58"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="48"/>
                                         <color key="textColor" red="0.0" green="0.56464199120000003" blue="0.90862238220000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x5Z-ND-sH3" userLabel="btnForgotPassword">
-                                        <rect key="frame" x="120.5" y="360" width="102" height="28"/>
+                                        <rect key="frame" x="120.5" y="359.5" width="102" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="52" id="ylm-85-qM5"/>
                                         </constraints>
@@ -304,9 +302,16 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="wve-3x-t0o"/>
                         <barButtonItem id="iE9-p4-9dM"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="wEJ-4E-gO9"/>
-                        <barButtonItem systemItem="refresh" id="6E4-Ui-swo">
+                        <barButtonItem enabled="NO" image="Browse" id="6E4-Ui-swo" userLabel="Browser Button">
+                            <inset key="imageInsets" minX="0.0" minY="0.0" maxX="21" maxY="0.0"/>
                             <connections>
-                                <action selector="refreshView:" destination="vxU-z1-K1a" id="fzt-xz-cPD"/>
+                                <action selector="browseView:" destination="vxU-z1-K1a" id="E9x-HS-aKn"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="refresh" id="QTh-WI-Wif">
+                            <inset key="imageInsets" minX="0.0" minY="0.0" maxX="3" maxY="0.0"/>
+                            <connections>
+                                <action selector="refreshView:" destination="vxU-z1-K1a" id="Hy3-c7-daH"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -314,10 +319,10 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="backButton" destination="HEx-59-zdx" id="VuO-09-knh"/>
+                        <outlet property="browseButton" destination="6E4-Ui-swo" id="84Z-8a-Elb"/>
                         <outlet property="homeButton" destination="umc-Io-4dP" id="fZx-3V-7YY"/>
                         <outlet property="nextButton" destination="Klk-Yp-Duq" id="RZH-DL-cca"/>
                         <outlet property="progressIndicator" destination="2hx-D6-BBP" id="w3l-8a-9jy"/>
-                        <outlet property="refreshButton" destination="6E4-Ui-swo" id="7Hv-uK-U7Y"/>
                         <outlet property="web_viewer" destination="OR4-n3-eIv" id="avf-ay-g5u"/>
                     </connections>
                 </viewController>
@@ -341,7 +346,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="603"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jyg-b2-QyP">
-                                        <rect key="frame" x="103.5" y="149" width="169" height="58"/>
+                                        <rect key="frame" x="103" y="149" width="169" height="58"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="400" id="Rdb-V2-ia7"/>
                                             <constraint firstAttribute="height" constant="72" id="yNA-6o-vFk"/>
@@ -552,6 +557,7 @@
     </scenes>
     <resources>
         <image name="Back" width="32" height="32"/>
+        <image name="Browse" width="32" height="32"/>
         <image name="Logo" width="171" height="171"/>
         <image name="Next" width="32" height="32"/>
         <image name="home_white" width="32" height="32"/>

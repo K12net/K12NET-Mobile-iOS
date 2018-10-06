@@ -19,9 +19,9 @@ extension UIView {
         imageViewBackground.image = UIImage(named: imageName)
         
         // you can change the content mode:
-        imageViewBackground.contentMode = UIViewContentMode.scaleAspectFill
+        imageViewBackground.contentMode = UIView.ContentMode.scaleAspectFill
         
         self.addSubview(imageViewBackground)
-        self.sendSubview(toBack: imageViewBackground)
+        self.sendSubviewToBack(imageViewBackground)
     }
 }

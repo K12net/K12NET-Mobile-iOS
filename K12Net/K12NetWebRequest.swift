@@ -12,11 +12,11 @@ open class K12NetWebRequest {
     
     fileprivate static var lastError : NSError?;
     
-    open static func getLastError() -> NSError? {
+    public static func getLastError() -> NSError? {
         return K12NetWebRequest.lastError;
     }
     
-    open static func retrieveGetRequest(_ urlAsString : String) -> NSMutableURLRequest {
+    public static func retrieveGetRequest(_ urlAsString : String) -> NSMutableURLRequest {
         let httpMethod = "GET"
         
         let request = NSMutableURLRequest(url: URL(string: urlAsString)!);
@@ -27,7 +27,7 @@ open class K12NetWebRequest {
         return request;
     }
     
-    open static func retrievePostRequest(_ urlAsString : String, params : Any) -> NSMutableURLRequest {
+    public static func retrievePostRequest(_ urlAsString : String, params : Any) -> NSMutableURLRequest {
         let httpMethod = "POST"
         
         let request = NSMutableURLRequest(url: URL(string: urlAsString)!);
@@ -54,7 +54,7 @@ open class K12NetWebRequest {
         return request;
     }
     
-    open static func retrievePostRequest(_ urlAsString : String) -> NSMutableURLRequest {
+    public static func retrievePostRequest(_ urlAsString : String) -> NSMutableURLRequest {
         let httpMethod = "POST"
         
         let request = NSMutableURLRequest(url: URL(string: urlAsString)!);
@@ -65,7 +65,7 @@ open class K12NetWebRequest {
         return request;
     }
     
-    open static func sendSynchronousRequest( _ getReq : NSMutableURLRequest ,returningResponse : AutoreleasingUnsafeMutablePointer<URLResponse?>?) -> Data {
+    public static func sendSynchronousRequest( _ getReq : NSMutableURLRequest ,returningResponse : AutoreleasingUnsafeMutablePointer<URLResponse?>?) -> Data {
         
         var data : Data?;
         K12NetWebRequest.lastError = nil;

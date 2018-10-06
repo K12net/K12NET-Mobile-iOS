@@ -25,6 +25,7 @@ class DocumentView : UIViewController, UIWebViewDelegate {
     
     var windowDepth = 0;
     
+    @IBOutlet weak var browseButton: UIBarButtonItem!
     @IBOutlet weak var refreshButton: UIBarButtonItem!
     @IBOutlet weak var backButton: UIBarButtonItem!
     @IBOutlet weak var nextButton: UIBarButtonItem!
@@ -32,9 +33,6 @@ class DocumentView : UIViewController, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        
-        self.navigationController?.isNavigationBarHidden = true;
-        self.navigationController?.isToolbarHidden = false;
         
         if(startUrl == nil) {
             startUrl = URL(string: K12NetUserPreferences.getHomeAddress() as String);
@@ -59,6 +57,19 @@ class DocumentView : UIViewController, UIWebViewDelegate {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isToolbarHidden = false;
+        self.navigationController?.isNavigationBarHidden = true;
+        browseButton?.tintColor = .clear;
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+    }
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .default
+    }
+    
     @IBAction func homeView(_ sender: AnyObject) {
         startUrl = URL(string: K12NetUserPreferences.getHomeAddress() as String);
         self.web_viewer.loadRequest(URLRequest(url: startUrl!));
@@ -67,6 +78,19 @@ class DocumentView : UIViewController, UIWebViewDelegate {
     
     @IBAction func closeWindow(_ sender: AnyObject) {
         self.navigationController?.popViewController(animated: true);
+    }
+    
+    @IBAction func browseView(_ sender: AnyObject) {
+        if(startUrl == nil) {
+            return
+        }
+        
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(startUrl!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(startUrl!)
+        }
+        
     }
     
     @IBAction func refreshView(_ sender: AnyObject) {
@@ -119,8 +143,8 @@ class DocumentView : UIViewController, UIWebViewDelegate {
                 
             else {
                 let alertController = UIAlertController(title: "Web View", message:
-                    "K12Net url address is wrong", preferredStyle: UIAlertControllerStyle.alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+                    "K12Net url address is wrong", preferredStyle: UIAlertController.Style.alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default,handler: nil))
                 
                 self.present(alertController, animated: true, completion: nil)
                 
@@ -129,7 +153,7 @@ class DocumentView : UIViewController, UIWebViewDelegate {
         }
     }
     
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         
         print(request.url!);
         
@@ -275,4 +299,10 @@ class DocumentView : UIViewController, UIWebViewDelegate {
         K12NetLogin.refreshAppBadge();
         
     }
+}
+
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+    return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

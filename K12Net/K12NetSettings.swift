@@ -12,9 +12,9 @@ import UIKit
 
 class K12NetSettings : UIViewController, UITextFieldDelegate {
     
-    open static let ENGLISH = "en";
-    open static let ARABIC = "ar";
-    open static let TURKISH = "tr";
+    public static let ENGLISH = "en";
+    public static let ARABIC = "ar";
+    public static let TURKISH = "tr";
     
     @IBOutlet weak var connection_url: UITextField!
     @IBOutlet weak var ftp_address: UITextField!
@@ -63,6 +63,10 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
         self.connection_url.delegate = self;
         self.ftp_address.delegate = self;
         
+    }
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
     }
     	
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
