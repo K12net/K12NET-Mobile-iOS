@@ -184,6 +184,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     //Add OK and Cancel button to dialog message
                     dialogMessage.addAction(ok)
                     dialogMessage.addAction(cancel)
+                    K12NetLogin.controller?.addActionSheetForiPad(actionSheet: dialogMessage)
                     
                     // Present dialog message to user
                     K12NetLogin.controller?.present(dialogMessage, animated: true, completion: nil)
@@ -194,6 +195,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     })
                     
                     dialogMessage.addAction(ok)
+                    K12NetLogin.controller?.addActionSheetForiPad(actionSheet: dialogMessage)
                     K12NetLogin.controller?.present(dialogMessage, animated: true, completion: nil)
                 }
             }

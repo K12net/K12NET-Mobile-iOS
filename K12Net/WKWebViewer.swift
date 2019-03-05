@@ -136,6 +136,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
                 "K12Net url address is wrong", preferredStyle: UIAlertController.Style.alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default,handler: nil))
             
+            container.addActionSheetForiPad(actionSheet: alertController)
             container.present(alertController, animated: true, completion: nil)
             
             container.navigationItem.rightBarButtonItem = nil;
@@ -410,6 +411,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
             completionHandler()
         }))
         
+        container.addActionSheetForiPad(actionSheet: alertController)
         container.present(alertController, animated: true, completion: nil)
         
     }
@@ -427,6 +429,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
             completionHandler(false)
         }))
         
+        container.addActionSheetForiPad(actionSheet: alertController)
         container.present(alertController, animated: true, completion: nil)
     }
     
@@ -451,6 +454,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
             completionHandler(nil)
         }))
         
+        container.addActionSheetForiPad(actionSheet: alertController)
         container.present(alertController, animated: true, completion: nil)
     }
     

@@ -137,6 +137,7 @@ class WebViewer : NSObject, UIWebViewDelegate, IWebView {
                     "K12Net url address is wrong", preferredStyle: UIAlertController.Style.alert)
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default,handler: nil))
                 
+                self.container.addActionSheetForiPad(actionSheet: alertController)
                 self.container.present(alertController, animated: true, completion: nil)
                 
                 self.container.navigationItem.rightBarButtonItem = nil;

@@ -13,6 +13,14 @@ private var moveViewKey : UInt8 = 1
 
 extension UIViewController {
     
+    public func addActionSheetForiPad(actionSheet: UIAlertController) {
+        if let popoverPresentationController = actionSheet.popoverPresentationController {
+            popoverPresentationController.sourceView = self.view
+            popoverPresentationController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
+            popoverPresentationController.permittedArrowDirections = []
+        }
+    }
+    
     public func setupKeyboardNotifcationListenerForScrollView(_ scrollView: UIScrollView, moveView : Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(UIViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(UIViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)

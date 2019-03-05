@@ -113,6 +113,7 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
             
             alert.addAction(cancel)
             
+            self.addActionSheetForiPad(actionSheet: alert)
             self.present(alert, animated: true, completion: nil)
         } else if chkRememberMe.isOn {
             loginOperation();
@@ -192,6 +193,7 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
                 "connectionUrlFailed".localized, preferredStyle: UIAlertController.Style.alert);
             alertController.addAction(UIAlertAction(title: "ok".localized, style: .default, handler: nil));
             
+            self.addActionSheetForiPad(actionSheet: alertController)
             self.present(alertController, animated: true, completion: nil)
         }
         else if(LoginAsyncTask.connectionError) {
@@ -199,6 +201,7 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
                 "noWifi".localized, preferredStyle: UIAlertController.Style.alert);
             alertController.addAction(UIAlertAction(title: "ok".localized, style: .default, handler: nil));
             
+            self.addActionSheetForiPad(actionSheet: alertController)
             self.present(alertController, animated: true, completion: nil)
         }
         else if(LoginAsyncTask.lastOperationValue) {
@@ -214,6 +217,7 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
             let alertController = UIAlertController(title: "appTitle".localized, message:"loginFailed".localized , preferredStyle: UIAlertController.Style.alert)
             alertController.addAction(UIAlertAction(title: "ok".localized, style: UIAlertAction.Style.default,handler: nil))
             
+            self.addActionSheetForiPad(actionSheet: alertController)
             self.present(alertController, animated: true, completion: nil)
         }
     }
