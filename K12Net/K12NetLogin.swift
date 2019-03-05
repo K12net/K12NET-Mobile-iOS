@@ -37,13 +37,9 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       // K12NetSettings.setLanguageMap();
-        
         K12NetLogin.controller = self;
         setupKeyboardNotifcationListenerForScrollView(scrollView, moveView: true);
         
-       // self.view.addBackground("Background");
-        //self.view.backgroundColor = UIColor(patternImage: UIImage(named:"Background")!);
         if(AppStaticDefinition.K12NET_UPDATE_VIEW_COLOR) {
             let gradient: CAGradientLayer = CAGradientLayer()
             gradient.frame = view.bounds;
@@ -51,16 +47,13 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
             view.layer.insertSublayer(gradient, at: 0)
         }
         
-       // lblAppTitle.text = AppStaticDefinition.K12NET_IOS_APP_TITLE;
-       // lblAppTitle.font = UIFont(name: "Helvetica", size: AppStaticDefinition.K12NET_IOS_APP_TITLE_SIZE);
-       // lblAppTitle.textColor = UIColor.white;
-        
         chkRememberMe.setOn(K12NetUserPreferences.getRememberMe(), animated: true);
         txtUsername.text = K12NetUserPreferences.getUsername();
         txtPassword.text = K12NetUserPreferences.getPassword();
         
-        //todo: App provider must include their own PrivacyPolicy by changing below url
+        var hasNewUpdate = false;
         var xmlString = ""
+        //todo: App provider must include their own PrivacyPolicy by changing below url
         if let url = URL(string: "http://fs.k12net.com/mobile/files/versions.k12net.txt") {
             do {
                 xmlString = try String(contentsOf: url)
@@ -85,7 +78,6 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
                 let latestVersionList = self.latestVersion.split(separator: ".").map{ Int($0)!};
                 let appVersionList = appVersion?.split(separator: ".").map{ Int($0)!};
                 var index = 0;
-                var hasNewUpdate = false;
                 
                 for version in latestVersionList {
                     if((appVersionList?.count)! > index && version > (appVersionList?[index])!) {
@@ -95,33 +87,34 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
                     
                     index = index + 1;
                 }
-                
-                if(hasNewUpdate) {
-                    let alert = UIAlertController(title: "alert".localized, message: "newUpdateAvailableWarning".localized, preferredStyle: UIAlertController.Style.alert)
-                    
-                    let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel) { (action) -> Void in
-                        
-                    }
-                    
-                    alert.addAction(UIAlertAction(title: "update".localized, style: UIAlertAction.Style.default, handler: { action in
-                        let appUrl = URL(string: "https://itunes.apple.com/tr/app/k12net-mobil/id1155767502?l=tr&mt=8")
-                        
-                        if #available(iOS 10.0, *) {
-                            UIApplication.shared.open(appUrl!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
-                        } else {
-                            UIApplication.shared.openURL(appUrl!)
-                        }
-                        
-                    }));
-                    alert.addAction(cancel)
-                    
-                    self.present(alert, animated: true, completion: nil)
-                }
             }
             
         }
         
-        if chkRememberMe.isOn {
+        if(hasNewUpdate) {
+            let alert = UIAlertController(title: "alert".localized, message: "newUpdateAvailableWarning".localized, preferredStyle: UIAlertController.Style.alert)
+            
+            let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel) { (action) -> Void in
+                if self.chkRememberMe.isOn {
+                    self.loginOperation();
+                }
+            }
+            
+            alert.addAction(UIAlertAction(title: "update".localized, style: UIAlertAction.Style.default, handler: { action in
+                let appUrl = URL(string: "https://itunes.apple.com/tr/app/k12net-mobil/id1155767502?l=tr&mt=8")
+                
+                if #available(iOS 10.0, *) {
+                    UIApplication.shared.open(appUrl!, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+                } else {
+                    UIApplication.shared.openURL(appUrl!)
+                }
+                
+            }));
+            
+            alert.addAction(cancel)
+            
+            self.present(alert, animated: true, completion: nil)
+        } else if chkRememberMe.isOn {
             loginOperation();
         }
         
@@ -174,8 +167,7 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         super.didReceiveMemoryWarning()
     }
     
-    static func refreshAppBadge() {
-        
+    static func refreshAppBadge() {        
         UIApplication.shared.applicationIconBadgeNumber = K12NetUserPreferences.getBadgeCount();
     }
     

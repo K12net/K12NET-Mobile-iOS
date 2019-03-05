@@ -20,7 +20,7 @@ open class LoginAsyncTask : AsyncTask  {
     static var lastOperationValue = false;
     static var urlError = false;
     static var connectionError = false;
-    
+    static var loginStarted = false;
     
     init(username : String, password : String) {
         self.username = username;
@@ -36,6 +36,7 @@ open class LoginAsyncTask : AsyncTask  {
     }
     
     static func loginOperation() {
+        loginStarted = true;
         
         let cookies = HTTPCookieStorage.shared.cookies
         
@@ -95,6 +96,9 @@ open class LoginAsyncTask : AsyncTask  {
                 if let success = parseJSON["d"] as? Bool {
                     LoginAsyncTask.lastOperationValue = success;
                     
+                    let task = HttpAsyncTask(operation: "SetLanguage");
+                    
+                    task.Execute();
                 }
                 else {
                     LoginAsyncTask.lastOperationValue = false;
@@ -115,5 +119,8 @@ open class LoginAsyncTask : AsyncTask  {
                 LoginAsyncTask.connectionError = true;
             }
         }
+        
+        loginStarted = false;
     }
+    
 }

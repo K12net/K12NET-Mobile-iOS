@@ -33,3 +33,5 @@
 "newUpdateAvailableWarning" = "A new update is available. You can update application later if you want.";
 "update" = "Update";
 "browse" = "Browse";
+"Open" = "Open";
+"Loading" = "Loading...";

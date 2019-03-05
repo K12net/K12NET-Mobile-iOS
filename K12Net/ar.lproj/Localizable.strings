@@ -33,3 +33,5 @@
 "newUpdateAvailableWarning" = "تم العثور على تحديث جديد. يمكنك تحديث التطبيق لاحقًا إذا كنت تريد.";
 "update" = "تحديث";
 "browse" = "Browse";
+"Open" = "Open";
+"Loading" = "Loading...";

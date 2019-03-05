@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		162F47C2221BDCEA0012D329 /* WKWebViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162F47C1221BDCE90012D329 /* WKWebViewer.swift */; };
+		162F47C4221BDD050012D329 /* WebViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162F47C3221BDD050012D329 /* WebViewer.swift */; };
+		162F47C6221BE87F0012D329 /* IWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162F47C5221BE87F0012D329 /* IWebView.swift */; };
 		166CD69D20E2989D007DAD2F /* Localizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166CD69C20E2989C007DAD2F /* Localizer.swift */; };
+		16AA43A321E9DE31003C439C /* HttpAsyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA43A221E9DE31003C439C /* HttpAsyncTask.swift */; };
+		16E0088022173D2D00E0D92E /* DocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E0087F22173D2D00E0D92E /* DocumentView.swift */; };
 		16F22E5920F9E6A200DE86C6 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16F22E5820F9E6A200DE86C6 /* UserNotifications.framework */; };
+		16FE2D432216A81400B88330 /* DocViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FE2D422216A81300B88330 /* DocViewer.swift */; };
 		4F41758D1F4381D100D56A8C /* AppStaticDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F41758C1F4381D100D56A8C /* AppStaticDefinition.swift */; };
 		4F848CFA1C01B38900C02EDB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4F848CFC1C01B38900C02EDB /* Localizable.strings */; };
 		4F8B08961D8D22500014CAA7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F8B08951D8D22500014CAA7 /* Images.xcassets */; };
@@ -20,7 +26,6 @@
 		4FEC88B81BF90F6100A1BA90 /* K12NetWebRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC889D1BF90F6000A1BA90 /* K12NetWebRequest.swift */; };
 		4FEC88B91BF90F6100A1BA90 /* AsyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC889E1BF90F6000A1BA90 /* AsyncTask.swift */; };
 		4FEC88BA1BF90F6100A1BA90 /* AsyncTaskCompleteListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC889F1BF90F6000A1BA90 /* AsyncTaskCompleteListener.swift */; };
-		4FEC88BB1BF90F6100A1BA90 /* DocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88A01BF90F6000A1BA90 /* DocumentView.swift */; };
 		4FEC88BE1BF90F6100A1BA90 /* LoginAsyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88A31BF90F6000A1BA90 /* LoginAsyncTask.swift */; };
 		4FEC88C31BF90F6100A1BA90 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88A81BF90F6100A1BA90 /* StringExtension.swift */; };
 		4FEC88C51BF90F6100A1BA90 /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC88AA1BF90F6100A1BA90 /* UIViewControllerExtension.swift */; };
@@ -28,10 +33,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		162F47C1221BDCE90012D329 /* WKWebViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewer.swift; sourceTree = "<group>"; };
+		162F47C3221BDD050012D329 /* WebViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewer.swift; sourceTree = "<group>"; };
+		162F47C5221BE87F0012D329 /* IWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWebView.swift; sourceTree = "<group>"; };
 		166CD69C20E2989C007DAD2F /* Localizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizer.swift; sourceTree = "<group>"; };
 		16997B8F21688832008BE33A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		16AA43A221E9DE31003C439C /* HttpAsyncTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpAsyncTask.swift; sourceTree = "<group>"; };
 		16B6DCE820A462BA0078C42B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/login.strings; sourceTree = "<group>"; };
+		16E0087F22173D2D00E0D92E /* DocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentView.swift; sourceTree = "<group>"; };
 		16F22E5820F9E6A200DE86C6 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		16FE2D422216A81300B88330 /* DocViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewer.swift; sourceTree = "<group>"; };
 		4F41758C1F4381D100D56A8C /* AppStaticDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStaticDefinition.swift; sourceTree = "<group>"; };
 		4F848CFB1C01B38900C02EDB /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4F848CFD1C01B38C00C02EDB /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -49,7 +60,6 @@
 		4FEC889D1BF90F6000A1BA90 /* K12NetWebRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = K12NetWebRequest.swift; sourceTree = "<group>"; };
 		4FEC889E1BF90F6000A1BA90 /* AsyncTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncTask.swift; sourceTree = "<group>"; };
 		4FEC889F1BF90F6000A1BA90 /* AsyncTaskCompleteListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncTaskCompleteListener.swift; sourceTree = "<group>"; };
-		4FEC88A01BF90F6000A1BA90 /* DocumentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentView.swift; sourceTree = "<group>"; };
 		4FEC88A31BF90F6000A1BA90 /* LoginAsyncTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAsyncTask.swift; sourceTree = "<group>"; };
 		4FEC88A81BF90F6100A1BA90 /* StringExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		4FEC88AA1BF90F6100A1BA90 /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -101,7 +111,6 @@
 				4FEC88CE1BF9117D00A1BA90 /* AppDelegate.swift */,
 				4FEC889E1BF90F6000A1BA90 /* AsyncTask.swift */,
 				4FEC889F1BF90F6000A1BA90 /* AsyncTaskCompleteListener.swift */,
-				4FEC88A01BF90F6000A1BA90 /* DocumentView.swift */,
 				4F8B08951D8D22500014CAA7 /* Images.xcassets */,
 				4FEC88CD1BF9117D00A1BA90 /* Info.plist */,
 				4F8B088E1D8D0FF50014CAA7 /* K12Net.entitlements */,
@@ -116,6 +125,12 @@
 				4FEC88AA1BF90F6100A1BA90 /* UIViewControllerExtension.swift */,
 				4FD329921C0CE617002F3E8B /* UIViewExtension.swift */,
 				4F41758C1F4381D100D56A8C /* AppStaticDefinition.swift */,
+				16AA43A221E9DE31003C439C /* HttpAsyncTask.swift */,
+				16FE2D422216A81300B88330 /* DocViewer.swift */,
+				16E0087F22173D2D00E0D92E /* DocumentView.swift */,
+				162F47C1221BDCE90012D329 /* WKWebViewer.swift */,
+				162F47C3221BDD050012D329 /* WebViewer.swift */,
+				162F47C5221BE87F0012D329 /* IWebView.swift */,
 			);
 			path = K12Net;
 			sourceTree = "<group>";
@@ -209,18 +224,23 @@
 			files = (
 				4FEC88BA1BF90F6100A1BA90 /* AsyncTaskCompleteListener.swift in Sources */,
 				4FEC88B81BF90F6100A1BA90 /* K12NetWebRequest.swift in Sources */,
+				162F47C4221BDD050012D329 /* WebViewer.swift in Sources */,
+				16FE2D432216A81400B88330 /* DocViewer.swift in Sources */,
 				4FEC88D01BF9117D00A1BA90 /* AppDelegate.swift in Sources */,
 				4FEC88B71BF90F6100A1BA90 /* K12NetUserPreferences.swift in Sources */,
 				4F41758D1F4381D100D56A8C /* AppStaticDefinition.swift in Sources */,
 				166CD69D20E2989D007DAD2F /* Localizer.swift in Sources */,
 				4FD329931C0CE617002F3E8B /* UIViewExtension.swift in Sources */,
+				162F47C2221BDCEA0012D329 /* WKWebViewer.swift in Sources */,
+				16AA43A321E9DE31003C439C /* HttpAsyncTask.swift in Sources */,
+				162F47C6221BE87F0012D329 /* IWebView.swift in Sources */,
 				4FEC88B41BF90F6100A1BA90 /* K12NetLogin.swift in Sources */,
 				4FEC88B91BF90F6100A1BA90 /* AsyncTask.swift in Sources */,
+				16E0088022173D2D00E0D92E /* DocumentView.swift in Sources */,
 				4FEC88C51BF90F6100A1BA90 /* UIViewControllerExtension.swift in Sources */,
 				4FEC88B51BF90F6100A1BA90 /* K12NetSettings.swift in Sources */,
 				4FEC88BE1BF90F6100A1BA90 /* LoginAsyncTask.swift in Sources */,
 				4FEC88C31BF90F6100A1BA90 /* StringExtension.swift in Sources */,
-				4FEC88BB1BF90F6100A1BA90 /* DocumentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

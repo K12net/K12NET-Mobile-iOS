@@ -17,7 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         if #available(iOS 10.0, *) {
+            application.applicationIconBadgeNumber = 0;
+            
             let center  = UNUserNotificationCenter.current()
+            
             center.delegate = self
             
             center.requestAuthorization(options: [.badge, .alert, .sound]) { (granted, error) in
@@ -35,6 +38,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             if let remoteNotification = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? NSDictionary {
                 self.handlerRemoteNotification((remoteNotification) as! [AnyHashable : Any] as! [String : AnyObject]);
+            }
+            else {
+                DispatchQueue.main.async {
+                    let settings = UIUserNotificationSettings(types: [.badge, .sound, .alert], categories: nil)
+                    UIApplication.shared.registerUserNotificationSettings(settings)
+                }
             }
         }
         else {
@@ -54,7 +63,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
     }
     
-    /*func application(_ application: UIApplication,
+    /*func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
+        if notificationSettings.types != UIUserNotificationType() {
+            application.registerForRemoteNotifications()
+        }
+    }
+    
+    func application(_ application: UIApplication,
                      handleActionWithIdentifier identifier: String?,
                      forRemoteNotification userInfo: [AnyHashable : Any],
                      completionHandler: @escaping () -> Swift.Void) {
@@ -77,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application( _ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error ) {
         
-        //print( error.localizedDescription )
+        print( error.localizedDescription )
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -139,14 +154,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     let dialogMessage = UIAlertController(title: title, message: message + "\n\n" + "navToNotify".localized, preferredStyle: .alert)
                     
                     let ok = UIAlertAction(title: "OK".localized, style: .default, handler: { (action) -> Void in
-                        let vc : DocumentView = K12NetLogin.controller!.storyboard!.instantiateViewController(withIdentifier: "document_view") as! DocumentView;
+                        if (!LoginAsyncTask.loginStarted) {
+                            let viewController = K12NetLogin.controller?.navigationController?.topViewController
+                            
+                            if(viewController != nil && viewController is DocumentView) {
+                                let dv = (viewController as! DocumentView);
+                                
+                                if(dv.preloader != nil && !dv.preloader.isHidden) {
+                                    return
+                                }
+                            }
+                            let vc : DocumentView = K12NetLogin.controller!.storyboard!.instantiateViewController(withIdentifier: "document_view") as! DocumentView;
+                            
+                            vc.startUrl = URL(string:String(format: AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL + "/Default.aspx?intent=%@&portal=%@&query=%@",intent.urlEncode(),portal.urlEncode(),query.urlEncode()));
+                            vc.simple_page = true;
+                            vc.first_time = false;
+                            vc.windowDepth = 1;
+                            
+                            K12NetLogin.controller?.navigationController?.pushViewController(vc, animated: true);
+                        }
                         
-                        vc.startUrl = URL(string:String(format: AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL + "/Default.aspx?intent=%@&portal=%@&query=%@",intent.urlEncode(),portal.urlEncode(),query.urlEncode()));
-                        vc.simple_page = true;
-                        vc.first_time = false;
-                        vc.windowDepth = 1;
-                        
-                        K12NetLogin.controller?.navigationController?.pushViewController(vc, animated: true);
                     })
                     
                     // Create Cancel button with action handlder
@@ -171,6 +198,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
             }
         }
+    }
+    @available(iOS 10.0, *)
+    func userNotificationCenter(center: UNUserNotificationCenter, willPresentNotification notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void) {
+        print("User Info = ",notification.request.content.userInfo)
+        handlerRemoteNotification(notification.request.content.userInfo)
+        completionHandler([.alert, .badge, .sound])
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(center: UNUserNotificationCenter, didReceiveNotificationResponse response: UNNotificationResponse, withCompletionHandler completionHandler: () -> Void) {
+        print("User Info 1 = ",response.notification.request.content.userInfo)
+        handlerRemoteNotification(response.notification.request.content.userInfo)
+        completionHandler()
     }
     
     //Called when a notification is delivered to a foreground app.

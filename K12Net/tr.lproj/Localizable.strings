@@ -34,3 +34,5 @@
 "newUpdateAvailableWarning" = "Yeni güncelleme bulunmaktadır. İsterseniz daha sonra güncelleyebilirsiniz.";
 "update" = "Güncelle";
 "browse" = "Tarayıcıda Aç";
+"Open" = "Aç";
+"Loading" = "Yükleniyor...";

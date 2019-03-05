@@ -12,6 +12,7 @@ open class K12NetUserPreferences {
     
     static let FILE_SERVER_ADDRESS = "FILE_SERVER_ADDRESS"
     static let HOME_ADDRESS = "HOME_ADDRESS"
+    static var LANG_UPDATED = false
     
     static let USERNAME = "USERNAME"
     static let PASSWORD = "PASSWORD"
@@ -134,6 +135,8 @@ open class K12NetUserPreferences {
     }
     
     public static func saveLanguage(lang: String) {
+        LANG_UPDATED = (lang != getLanguage())
+        
         setStringValue(LANGUAGE, value: lang)
     }
     
