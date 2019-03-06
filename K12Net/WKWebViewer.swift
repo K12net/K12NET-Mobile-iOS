@@ -271,6 +271,12 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         }
         
         if((address.contains("getfile.aspx") || address.contains("getimage.aspx")) && !address.contains(".google.com")) {
+            
+            if(container.preloader.isHidden == false) {
+                decisionHandler(.cancel)
+                return
+            }
+            
             container.preloader.startAnimating()
             container.preloader.isHidden = false
             
@@ -307,6 +313,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
                                 let open = DocViewer(barButton: self.container.backButton, controller: self.container.navigationController!)
                                 let activityVC = UIActivityViewController(activityItems: [destinationFileUrl],applicationActivities: [open])
                                 
+                                self.container.addActionSheetForiPad(actionSheet: activityVC)
                                 self.container.present(activityVC, animated: true, completion: nil)
                                 
                                 DispatchQueue.main.async {

@@ -150,7 +150,12 @@ class WebViewer : NSObject, UIWebViewDelegate, IWebView {
         
         print(address);
         
-        if(address.contains("getfile.aspx") && !address.contains(".google.com")) {
+        if((address.contains("getfile.aspx") || address.contains("getimage.aspx")) && !address.contains(".google.com")) {
+            
+            if(container.preloader.isHidden == false) {
+                return false;
+            }
+            
             self.container.preloader.startAnimating()
             self.container.preloader.isHidden = false
             
@@ -187,6 +192,7 @@ class WebViewer : NSObject, UIWebViewDelegate, IWebView {
                                 let open = DocViewer(barButton: self.container.backButton, controller: self.container.navigationController!)
                                 let activityVC = UIActivityViewController(activityItems: [destinationFileUrl],applicationActivities: [open])
                                 
+                                self.container.addActionSheetForiPad(actionSheet: activityVC)
                                 self.container.present(activityVC, animated: true, completion: nil)
                                 
                                 DispatchQueue.main.async {

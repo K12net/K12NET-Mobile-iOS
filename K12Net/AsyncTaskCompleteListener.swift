@@ -11,5 +11,4 @@ import Foundation
 public protocol AsyncTaskCompleteListener {
     
     func completed(_ tag: Int32);
-    
 }

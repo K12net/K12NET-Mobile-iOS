@@ -13,7 +13,7 @@ private var moveViewKey : UInt8 = 1
 
 extension UIViewController {
     
-    public func addActionSheetForiPad(actionSheet: UIAlertController) {
+    public func addActionSheetForiPad(actionSheet: UIViewController) {
         if let popoverPresentationController = actionSheet.popoverPresentationController {
             popoverPresentationController.sourceView = self.view
             popoverPresentationController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0)
