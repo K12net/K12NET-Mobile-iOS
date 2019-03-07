@@ -1,0 +1,16 @@
+/* 
+  InfoPlist.strings
+  K12Net Mobile
+
+  Created by Ilhami Sisnelioglu on 7.03.2019.
+  Copyright © 2019 K12Net. All rights reserved.
+*/
+NSCalendarsUsageDescription = "Save app calendar information to device calendar";
+NSCameraUsageDescription = "Send user photos as app mail attachment";
+NSMicrophoneUsageDescription = "Send user videos as app mail attachment";
+NSSpeechRecognitionUsageDescription = "Send data as app mail attachment";
+NSMediaLibraryUsageDescription = "Send data as app mail attachment";
+NSMusicUsageDescription = "Send data as app mail attachment";
+NSPhotoLibraryUsageDescription = "Send user photos as app mail attachment";
+NSLocationWhenInUseUsageDescription = "Used by bus services";
+NSAppleMusicUsageDescription = "Send data as app mail attachment";

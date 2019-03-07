@@ -1,0 +1,17 @@
+/* 
+  InfoPlist.strings
+  K12Net Mobile
+
+  Created by Ilhami Sisnelioglu on 7.03.2019.
+  Copyright © 2019 K12Net. All rights reserved.
+*/
+
+NSCalendarsUsageDescription = "Save app calendar information to device calendar";
+NSCameraUsageDescription = "Kullanıcı videolarını uygulama üzerinden paylaş";
+NSMicrophoneUsageDescription = "Kullanıcı verilerini uygulama üzerinden paylaş";
+NSSpeechRecognitionUsageDescription = "Kullanıcı verilerini uygulama üzerinden paylaş";
+NSMediaLibraryUsageDescription = "Kullanıcı verilerini uygulama üzerinden paylaş";
+NSMusicUsageDescription = "Kullanıcı verilerini uygulama üzerinden paylaş";
+NSPhotoLibraryUsageDescription = "Kullanıcı fotoğraflarını uygulama üzerinden paylaş";
+NSLocationWhenInUseUsageDescription = "Öğrenci servisleri tarafından kullanılır";
+NSAppleMusicUsageDescription = "Kullanıcı verilerini uygulama üzerinden paylaş";

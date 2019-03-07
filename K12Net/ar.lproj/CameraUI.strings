@@ -1,0 +1,15 @@
+/* 
+  CameraUI.strings
+  K12Net Mobile
+
+  Created by Ilhami Sisnelioglu on 7.03.2019.
+  Copyright © 2019 K12Net. All rights reserved.
+*/
+"PHOTO" = "PHOTO";
+"AEAF_LOCK_TEXT" = "AE/AF LOCK";
+"API_CANCEL_TITLE" = "Cancel";
+"HDR_AUTO" = "Auto";
+"HDR_ON" = "On";
+"HDR_OFF" = "Off";
+"TIMER_OFF_TEXT" = "Off";
+"USE_PHOTO" = "Use Photo";

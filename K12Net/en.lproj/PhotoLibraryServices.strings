@@ -1,0 +1,10 @@
+/* 
+  PhotoLibraryServices.strings
+  K12Net Mobile
+
+  Created by Ilhami Sisnelioglu on 7.03.2019.
+  Copyright © 2019 K12Net. All rights reserved.
+*/
+"PHOTOS" = "Photos";
+"CAMERA_ROLL" = "Camera roll";
+"ALL_SCREENSHOTS" = "Screenshots";

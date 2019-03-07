@@ -1,0 +1,16 @@
+/* 
+  PhotoLibrary.strings
+  K12Net Mobile
+
+  Created by Ilhami Sisnelioglu on 7.03.2019.
+  Copyright © 2019 K12Net. All rights reserved.
+*/
+"CANCEL" = "İptal";
+"RETAKE" = "Tekrar";
+"STREAM_SHARED_BY_ME_SUBTITLE" = "Sizden";
+"STREAM_SHARED_BY_SUBTITLE" = "%@'den";
+"ALBUM_IMAGE_COUNT_FORMAT" = "%@ Fotoğraflar";
+"ALBUM_VIDEO_COUNT_FORMAT" = "%@ Videolar";
+"1_ALBUM_PHOTO" = "1 Fotoğraf";
+"1_ALBUM_VIDEO" = "1 Video";
+"ALBUM_TWO_TYPES_LABEL_COMMAS" = "%@, %@";
