@@ -14,6 +14,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
     
     static var commonProcessPool : WKProcessPool = WKProcessPool()
     
+    var popupWebView: WKWebView?
     var web_viewer: WKWebView!
     var container: DocumentView!
     
@@ -24,7 +25,13 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
     }
     
     func loadView() {
+        let preferences = WKPreferences()
+        preferences.javaScriptEnabled = true
+        preferences.javaScriptCanOpenWindowsAutomatically = true
+        preferences.setValue(true, forKey: "allowFileAccessFromFileURLs")
+        
         let webConfiguration = WKWebViewConfiguration()
+        webConfiguration.preferences = preferences
         
         var Ycord : CGFloat = 0.0 // for top space
         if UIScreen.main.bounds.height == 812 { //Check for iPhone-x
@@ -80,6 +87,36 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         
         container.preloader.removeFromSuperview()
         container.view.addSubview(container.preloader)
+    }
+    
+    open func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        decisionHandler(.allow)
+    }
+    
+    public func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        
+        popupWebView = WKWebView(frame: container.view.bounds, configuration: configuration)
+        popupWebView!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        popupWebView!.navigationDelegate = self
+        popupWebView!.uiDelegate = self
+        container.view.addSubview(popupWebView!)
+        
+        return popupWebView!
+    }
+    
+    func webViewDidClose(_ webView: WKWebView) {
+        if webView == popupWebView {
+            popupWebView?.removeFromSuperview()
+            popupWebView = nil
+        }
     }
     
     func viewDidLoad() {        
@@ -170,6 +207,13 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
     }
     
     func backView(_ sender: AnyObject) {
+        if popupWebView != nil {
+            popupWebView?.removeFromSuperview()
+            popupWebView = nil
+            
+            return
+        }
+        
         if web_viewer.canGoBack {
             web_viewer.goBack();
         }
@@ -227,6 +271,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        
         let hostAddress = navigationAction.request.url?.host
         
         let address = navigationAction.request.url!.absoluteString.lowercased();
@@ -465,18 +510,6 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         container.present(alertController, animated: true, completion: nil)
     }
     
-    /*func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-     
-         if let urlResponse = navigationResponse.response as? HTTPURLResponse,
-         let url = urlResponse.url,
-         let allHeaderFields = urlResponse.allHeaderFields as? [String : String] {
-         let cookies = HTTPCookie.cookies(withResponseHeaderFields: allHeaderFields, for: url)
-         HTTPCookieStorage.shared.setCookies(cookies , for: urlResponse.url!, mainDocumentURL: nil)
-         decisionHandler(.allow)
-         }
-        
-    }*/
-    
     public func getJSCookiesString(for cookies: [HTTPCookie]) -> String {
         var result = ""
         let dateFormatter = DateFormatter()
@@ -541,7 +574,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         container.last_address = web_viewer.url?.absoluteString;
         
         web_viewer.evaluateJavaScript("document.head.innerHTML") { (htmlCode, error) in
-            if error != nil {
+            if error != nil && htmlCode != nil {
                 if((htmlCode as! String).contains("atlas-mobile-web-app-no-sleep")) {
                     UIApplication.shared.isIdleTimerDisabled = true;
                 }
