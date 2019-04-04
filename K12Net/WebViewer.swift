@@ -137,8 +137,10 @@ class WebViewer : NSObject, UIWebViewDelegate, IWebView {
                     "K12Net url address is wrong", preferredStyle: UIAlertController.Style.alert)
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default,handler: nil))
                 
-                self.container.addActionSheetForiPad(actionSheet: alertController)
-                self.container.present(alertController, animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    self.container.addActionSheetForiPad(actionSheet: alertController)
+                    self.container.present(alertController, animated: true, completion: nil)
+                }
                 
                 self.container.navigationItem.rightBarButtonItem = nil;
             }
@@ -192,10 +194,10 @@ class WebViewer : NSObject, UIWebViewDelegate, IWebView {
                                 let open = DocViewer(barButton: self.container.backButton, controller: self.container.navigationController!)
                                 let activityVC = UIActivityViewController(activityItems: [destinationFileUrl],applicationActivities: [open])
                                 
-                                self.container.addActionSheetForiPad(actionSheet: activityVC)
-                                self.container.present(activityVC, animated: true, completion: nil)
-                                
                                 DispatchQueue.main.async {
+                                    self.container.addActionSheetForiPad(actionSheet: activityVC)
+                                    self.container.present(activityVC, animated: true, completion: nil)
+                                    
                                     self.container.preloader.stopAnimating()
                                     self.container.preloader.isHidden = true
                                 }

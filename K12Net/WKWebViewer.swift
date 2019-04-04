@@ -173,8 +173,10 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
                 "K12Net url address is wrong", preferredStyle: UIAlertController.Style.alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default,handler: nil))
             
-            container.addActionSheetForiPad(actionSheet: alertController)
-            container.present(alertController, animated: true, completion: nil)
+            DispatchQueue.main.async {
+                self.container.addActionSheetForiPad(actionSheet: alertController)
+                self.container.present(alertController, animated: true, completion: nil)
+            }
             
             container.navigationItem.rightBarButtonItem = nil;
         }
@@ -358,10 +360,10 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
                                 let open = DocViewer(barButton: self.container.backButton, controller: self.container.navigationController!)
                                 let activityVC = UIActivityViewController(activityItems: [destinationFileUrl],applicationActivities: [open])
                                 
-                                self.container.addActionSheetForiPad(actionSheet: activityVC)
-                                self.container.present(activityVC, animated: true, completion: nil)
-                                
                                 DispatchQueue.main.async {
+                                    self.container.addActionSheetForiPad(actionSheet: activityVC)
+                                    self.container.present(activityVC, animated: true, completion: nil)
+                                    
                                     self.container.preloader.stopAnimating()
                                     self.container.preloader.isHidden = true
                                 }
@@ -463,8 +465,10 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
             completionHandler()
         }))
         
-        container.addActionSheetForiPad(actionSheet: alertController)
-        container.present(alertController, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.container.addActionSheetForiPad(actionSheet: alertController)
+            self.container.present(alertController, animated: true, completion: nil)
+        }
         
     }
     
@@ -481,8 +485,10 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
             completionHandler(false)
         }))
         
-        container.addActionSheetForiPad(actionSheet: alertController)
-        container.present(alertController, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.container.addActionSheetForiPad(actionSheet: alertController)
+            self.container.present(alertController, animated: true, completion: nil)
+        }
     }
     
     func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo,
@@ -506,8 +512,10 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
             completionHandler(nil)
         }))
         
-        container.addActionSheetForiPad(actionSheet: alertController)
-        container.present(alertController, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.container.addActionSheetForiPad(actionSheet: alertController)
+            self.container.present(alertController, animated: true, completion: nil)
+        }
     }
     
     public func getJSCookiesString(for cookies: [HTTPCookie]) -> String {

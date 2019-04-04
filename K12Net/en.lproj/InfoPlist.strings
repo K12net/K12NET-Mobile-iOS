@@ -14,3 +14,4 @@ NSMusicUsageDescription = "Send data as app mail attachment";
 NSPhotoLibraryUsageDescription = "Send user photos as app mail attachment";
 NSLocationWhenInUseUsageDescription = "Used by bus services";
 NSAppleMusicUsageDescription = "Send data as app mail attachment";
+NSPhotoLibraryAddUsageDescription = "Add user photos";

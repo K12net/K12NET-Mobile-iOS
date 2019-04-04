@@ -39,6 +39,10 @@
 "Refresh" = "Yenile";
 "Photo Library (file upload action sheet)" = "Fotoğraflar";
 "Take Photo or Video (file upload action sheet)" = "Kamera";
+"Take Photo (file upload action sheet)" = "Fotoğraf Çek";
+"Take Video (file upload action sheet)" = "Video";
+"The URL was blocked by a content blocker" = "The URL was blocked by a content blocker";
+"The URL was blocked by a content filter" = "The URL was blocked by a content filter";
 "Passwords" = "Şifreler";
 "Typing" = "Typing";
 "Take photo" = "Kamera";
@@ -52,7 +56,7 @@
 "HDR_AUTO" = "HDR Ses";
 "CANCEL" = "İptal";
 "RETAKE" = "Tekrar Çek";
-"USE_PHOTO" = "Fotoğraf Kullan";
+"USE_PHOTO" = "Fotoğrafı Kullan";
 "Back" = "Geri";
 "Done" = "Tamam";
 "Create Document" = "Döküman Oluştur";
@@ -76,4 +80,5 @@
 "Copy[Activity]" = "Kopyala";
 "Print[Activity]" = "Yazdır";
 "AirDrop" = "Air Drop";
+"Save Video[Activity]" = "Video Kaydet";
 

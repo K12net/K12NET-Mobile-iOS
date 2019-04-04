@@ -38,6 +38,10 @@
 "Refresh" = "Refresh";
 "Photo Library (file upload action sheet)" = "Photo Library";
 "Take Photo or Video (file upload action sheet)" = "Take Photo or Video";
+"Take Photo (file upload action sheet)" = "Take Photo";
+"Take Video (file upload action sheet)" = "Take Video";
+"The URL was blocked by a content blocker" = "The URL was blocked by a content blocker";
+"The URL was blocked by a content filter" = "The URL was blocked by a content filter";
 "Passwords" = "Passwords";
 "Typing" = "Typing";
 "Take photo" = "Take photo";
@@ -75,4 +79,5 @@
 "Copy[Activity]" = "Copy";
 "Print[Activity]" = "Print";
 "AirDrop" = "Air Drop";
+"Save Video[Activity]" = "Save Video";
 
