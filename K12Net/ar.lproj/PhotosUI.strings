@@ -5,8 +5,8 @@
   Created by Ilhami Sisnelioglu on 7.03.2019.
   Copyright © 2019 K12Net. All rights reserved.
 */
-"ALL_PHOTOS_IN_LIBRARY" = "Moments";
-"PXUserCollectionsSectionTitle" = "My Albums";
-"FULL_PHOTOS_GRID_ZOOM_LEVEL_TITLE" = "Moments";
-"NO_PHOTOS_OR_VIDEOS" = "No Photos or Videos";
-"EMPTY_ALBUM_LIST_MESSAGE_iPhone" = "You can take photos and videos using camera, or sync photos and videos onto your iPhone using iTunes";
+"ALL_PHOTOS_IN_LIBRARY" = "لحظات";
+"PXUserCollectionsSectionTitle" = "البوماتي";
+"FULL_PHOTOS_GRID_ZOOM_LEVEL_TITLE" = "لحظاتي";
+"NO_PHOTOS_OR_VIDEOS" = "لا يوجد صور او فيديوهات";
+"EMPTY_ALBUM_LIST_MESSAGE_iPhone" = "يمكنك التقاط صور او فيديوهات باستخدام الكاميرا، أو مزامنة الصور والفيديوهات على جهازك باستخدام iTunes"; 

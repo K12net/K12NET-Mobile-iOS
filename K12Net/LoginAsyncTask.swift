@@ -8,6 +8,7 @@
 
 import Foundation;
 import UIKit;
+//import WebKit;
 //import SplunkMint;
 
 open class LoginAsyncTask : AsyncTask  {
@@ -21,6 +22,7 @@ open class LoginAsyncTask : AsyncTask  {
     static var urlError = false;
     static var connectionError = false;
     static var loginStarted = false;
+    static var isLoginRetry = false;
     
     init(username : String, password : String) {
         self.username = username;
@@ -38,31 +40,17 @@ open class LoginAsyncTask : AsyncTask  {
     static func loginOperation() {
         loginStarted = true;
         
-        let cookies = HTTPCookieStorage.shared.cookies
+       /*let storage = HTTPCookieStorage.shared
+        for cookie in storage.cookies! {
+            storage.deleteCookie(cookie)
+        }*/
         
-        if(cookies != nil) {
-            for cookie in cookies! {
-                
-                if(cookie.name.contains("NotCompletedPollCount")) {
-                    let newDate = Calendar.current.date(byAdding: .year, value: -10, to: Date());
-                    
-                    var cookieDict : [HTTPCookiePropertyKey : Any] = [:];
-                    cookieDict[HTTPCookiePropertyKey.name] = "NotCompletedPollCount";
-                    cookieDict[HTTPCookiePropertyKey.value] = "";
-                    cookieDict[HTTPCookiePropertyKey.version] = cookie.version;
-                    cookieDict[HTTPCookiePropertyKey.domain] = cookie.domain;
-                    cookieDict[HTTPCookiePropertyKey.originURL] = cookie.domain;
-                    cookieDict[HTTPCookiePropertyKey.path] = cookie.path;
-                    cookieDict[HTTPCookiePropertyKey.secure] = cookie.isSecure;
-                    cookieDict[HTTPCookiePropertyKey.expires] = newDate;
-                    
-                    if let cookieNew = HTTPCookie(properties: cookieDict ) {
-                        HTTPCookieStorage.shared.setCookie(cookieNew);
-                    }
-                }
+       /* WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) {
+            records in records.forEach {
+                record in WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {}); print("[WebCacheCleaner] Record \(record) deleted")
             }
-        }
-                
+        }*/
+        
         let response: AutoreleasingUnsafeMutablePointer<URLResponse?>?=nil
         
         let urlAsString = (K12NetUserPreferences.getHomeAddress() as String) + "/Authentication_JSON_AppService.axd/Login"
@@ -96,12 +84,70 @@ open class LoginAsyncTask : AsyncTask  {
                 if let success = parseJSON["d"] as? Bool {
                     LoginAsyncTask.lastOperationValue = success;
                     
-                    let task = HttpAsyncTask(operation: "SetLanguage");
-                    
-                    task.Execute();
+                    if success {
+                        
+                        if isLoginRetry {
+                            let connectionString = K12NetUserPreferences.getHomeAddress() as String;
+                            
+                            if connectionString == AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL {
+                                K12NetUserPreferences.saveLanguage(lang:"tr");
+                            } else {
+                                if (K12NetUserPreferences.getLanguage() == "tr") {
+                                    K12NetUserPreferences.saveLanguage(lang:"en");
+                                }
+                            }
+                        }
+                        
+                        if(K12NetUserPreferences.LANG_UPDATED) {
+                            let task = HttpAsyncTask(operation: "SetLanguage");
+                            
+                            task.Execute();
+                        }
+                        
+                    } else {                        
+                        if !isLoginRetry {
+                            isLoginRetry = true;
+                            
+                            let connectionString = K12NetUserPreferences.getHomeAddress() as String;
+                            
+                            if connectionString == AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL {
+                                K12NetUserPreferences.saveHomeAddress("https://azure.k12net.com");
+                                K12NetUserPreferences.saveFSAddress("http://fs.azure.k12net.com/FS/");
+                            } else {
+                                K12NetUserPreferences.saveHomeAddress(AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL);
+                                K12NetUserPreferences.saveFSAddress(AppStaticDefinition.K12NET_FS_DEFAULT_URL);
+                            }
+                            
+                            loginOperation();
+                            
+                            return;
+                            
+                        } else {
+                            LoginAsyncTask.lastOperationValue = false;
+                        }
+                    }
                 }
                 else {
-                    LoginAsyncTask.lastOperationValue = false;
+                    if !isLoginRetry {
+                        isLoginRetry = true;
+                        
+                        let connectionString = K12NetUserPreferences.getHomeAddress() as String;
+                        
+                        if connectionString == AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL {
+                            K12NetUserPreferences.saveHomeAddress("https://azure.k12net.com");
+                            K12NetUserPreferences.saveFSAddress("http://fs.azure.k12net.com/FS/");
+                        } else {
+                            K12NetUserPreferences.saveHomeAddress(AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL);
+                            K12NetUserPreferences.saveFSAddress(AppStaticDefinition.K12NET_FS_DEFAULT_URL);
+                        }
+                        
+                        loginOperation();
+                        
+                        return;
+                        
+                    } else {
+                        LoginAsyncTask.lastOperationValue = false;
+                    }
                 }
                 
             }

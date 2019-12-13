@@ -30,7 +30,7 @@ open class K12NetWebRequest {
     public static func retrievePostRequest(_ urlAsString : String, params : Any) -> NSMutableURLRequest {
         let httpMethod = "POST"
         
-        let request = NSMutableURLRequest(url: URL(string: urlAsString)!);
+        let request = NSMutableURLRequest(url: URL(string: urlAsString.trimmingCharacters(in: .whitespacesAndNewlines))!);
         request.httpMethod = httpMethod
         
         var data : Data;

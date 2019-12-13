@@ -18,7 +18,7 @@ open class K12NetUserPreferences {
     static let PASSWORD = "PASSWORD"
     static let REMEMBER_ME = "REMEMBER_ME"
     static let BADGE_COUNT = "BADGE_COUNT"
-    static let LANGUAGE = "LANGUAGE"
+    static let LANGUAGE = "LANGUAGE_CODE"
     static let DEVICE_TOKEN = "DEVICE_TOKEN"
     
     
@@ -49,13 +49,37 @@ open class K12NetUserPreferences {
         defaults.set(value, forKey: key)
     }
     
+    private static func initiateDomain() -> Void {
+        
+        let locale = NSLocale.current
+        
+        var languageCode = locale.languageCode ?? "tr";
+        
+        languageCode = languageCode.split(separator: "-")[0].split(separator: "_")[0].lowercased();
+        
+        if languageCode == "tr" {
+            
+            saveHomeAddress(AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL);
+            saveFSAddress(AppStaticDefinition.K12NET_FS_DEFAULT_URL);
+            saveLanguage(lang: AppStaticDefinition.K12NET_DEFAULT_LANGUAGE);
+            
+        } else {
+            
+            saveHomeAddress("https://azure.k12net.com");
+            saveFSAddress("http://fs.azure.k12net.com/FS/");
+            saveLanguage(lang: languageCode);
+            
+        }
+    }
+    
     public static func getLanguage() -> String {
         var language : String;
         if getStringValue(LANGUAGE) != nil {
             language = getStringValue(LANGUAGE)!;
         }
         else {
-            language = AppStaticDefinition.K12NET_DEFAULT_LANGUAGE;
+            initiateDomain();
+            language = getStringValue(LANGUAGE) ?? "tr";
         }
         return language;
     }
@@ -66,8 +90,10 @@ open class K12NetUserPreferences {
             url = url_address as NSString;
         }
         else {
-            url = AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL as NSString;
+            initiateDomain();
+            url = getStringValue(HOME_ADDRESS)! as NSString;
         }
+        
         return url
     }
     
@@ -77,7 +103,8 @@ open class K12NetUserPreferences {
             url = url_address as NSString;
         }
         else {
-            url = AppStaticDefinition.K12NET_FS_DEFAULT_URL as NSString;
+            initiateDomain();
+            url = getStringValue(FILE_SERVER_ADDRESS)! as NSString;
         }
         return url
     }
@@ -135,7 +162,7 @@ open class K12NetUserPreferences {
     }
     
     public static func saveLanguage(lang: String) {
-        LANG_UPDATED = (lang != getLanguage())
+        LANG_UPDATED = LANG_UPDATED || (lang != getStringValue(LANGUAGE))
         
         setStringValue(LANGUAGE, value: lang)
     }

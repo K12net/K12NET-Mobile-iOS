@@ -81,4 +81,13 @@
 "Print[Activity]" = "Yazdır";
 "AirDrop" = "Air Drop";
 "Save Video[Activity]" = "Video Kaydet";
+"Add to Reading List" = "Okuma Listesine Ekle";
+"Share…" = "Paylaş…";
+"Copy (ActionSheet)" = "Kopyala (Action Sheet)";
+"Create PDF[Markup]" = "PDF Oluştur[İşaretle]";
+"Cancel button label in button bar" = "İptal";
+"Save File to...[Markup]" = "Dosyayı Kaydet";
+"Delete PDF[Markup]" = "PDF Dosyasını Sil";
+"Open Link" = "Aç";
+"Copy Link" = "Kopyala";
 

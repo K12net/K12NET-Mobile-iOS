@@ -5,6 +5,7 @@
   Created by Ilhami Sisnelioglu on 7.03.2019.
   Copyright © 2019 K12Net. All rights reserved.
 */
-"PHOTOS" = "Photos";
-"CAMERA_ROLL" = "Camera roll";
+
+"PHOTOS" = "صور";
+"CAMERA_ROLL" = "فيلم الصور";
 "ALL_SCREENSHOTS" = "Screenshots";

@@ -5,12 +5,12 @@
   Created by Ilhami Sisnelioglu on 7.03.2019.
   Copyright © 2019 K12Net. All rights reserved.
 */
-"CANCEL" = "Cancel";
-"RETAKE" = "Retake";
-"STREAM_SHARED_BY_ME_SUBTITLE" = "From You";
-"STREAM_SHARED_BY_SUBTITLE" = "From %@";
-"ALBUM_IMAGE_COUNT_FORMAT" = "%@ Photos";
-"ALBUM_VIDEO_COUNT_FORMAT" = "%@ Videos";
-"1_ALBUM_PHOTO" = "1 Photo";
-"1_ALBUM_VIDEO" = "1 Video";
+"CANCEL" = "إلغاء";
+"RETAKE" = "إعادة التقاط";
+"STREAM_SHARED_BY_ME_SUBTITLE" = "منك";
+"STREAM_SHARED_BY_SUBTITLE" = "من%@";
+"ALBUM_IMAGE_COUNT_FORMAT" = "٪@ صورة";
+"ALBUM_VIDEO_COUNT_FORMAT" =  "٪@فيديوهات";
+"1_ALBUM_PHOTO" = "1 صورة";
+"1_ALBUM_VIDEO" = "1 فيديو";
 "ALBUM_TWO_TYPES_LABEL_COMMAS" = "%@, %@";

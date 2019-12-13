@@ -14,9 +14,11 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
     
     static var commonProcessPool : WKProcessPool = WKProcessPool()
     
+    var popupWebViews: [WKWebView]?
     var popupWebView: WKWebView?
     var web_viewer: WKWebView!
     var container: DocumentView!
+    var downloadInProgress: Bool!
     
     init(dv: DocumentView) {
         super.init()
@@ -55,12 +57,6 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
             }
             
             webConfiguration.userContentController = userContentController
-            
-            //let addCookieScript="var cookieNames = document.cookie.split(\'; \').map(function(cookie) { return cookie.split(\'=\')[0] } );\nif (cookieNames.indexOf(\'mycookie\') == -1) { document.cookie=\'mycookie=abc;domain=.k12net.com;path=/\'; };\n"
-            
-            //let script = WKUserScript(source: addCookieScript, injectionTime: .atDocumentStart, forMainFrameOnly: false)
-            
-            //webConfiguration.userContentController.addUserScript(script)
         }
         
         webConfiguration.allowsInlineMediaPlayback = true
@@ -70,8 +66,6 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         
         if #available(iOS 10.0, *) {
             webConfiguration.mediaTypesRequiringUserActionForPlayback = WKAudiovisualMediaTypes.all
-        } else {
-            // Fallback on earlier versions
         }
         
         web_viewer = WKWebView(frame: customFrame, configuration: webConfiguration)
@@ -82,6 +76,19 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         web_viewer.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         web_viewer.scrollView.delegate = container
+        
+        if #available(iOS 11.0, *) {
+            let wkHttpCookieStorage = WKWebsiteDataStore.default().httpCookieStore;
+            
+            wkHttpCookieStorage.getAllCookies { (cookies) in
+                // Nothing comes here sometimes !
+                for cookie in cookies {
+                    self.web_viewer.configuration.websiteDataStore.httpCookieStore.delete(cookie, completionHandler: {
+                        
+                    })
+                }
+            }
+        }
         
         container.view.addSubview(web_viewer)
         
@@ -103,10 +110,35 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
     
     public func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         
-        popupWebView = WKWebView(frame: container.view.bounds, configuration: configuration)
-        popupWebView!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        popupWebView!.navigationDelegate = self
-        popupWebView!.uiDelegate = self
+        var Ycord : CGFloat = 0.0 // for top space
+        if UIScreen.main.bounds.height == 812 { //Check for iPhone-x
+            Ycord = 44.0
+        }
+        else {
+            Ycord = 20.0
+        }
+        
+        let customFrame = CGRect(x: 0.0, y: Ycord, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-Ycord)
+        
+        if (popupWebView != nil) {
+            
+            if (popupWebViews == nil) {
+                popupWebViews = []
+            }
+            
+            popupWebViews?.append(popupWebView!)
+        }
+        
+        popupWebView = WKWebView(frame: customFrame, configuration: configuration)
+        popupWebView?.uiDelegate = self
+        popupWebView?.contentMode = UIView.ContentMode.scaleToFill
+        popupWebView?.allowsBackForwardNavigationGestures=true
+        popupWebView?.translatesAutoresizingMaskIntoConstraints=false
+        popupWebView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        popupWebView?.scrollView.delegate = container
+        
+        web_viewer.removeFromSuperview()
         container.view.addSubview(popupWebView!)
         
         return popupWebView!
@@ -115,11 +147,12 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
     func webViewDidClose(_ webView: WKWebView) {
         if webView == popupWebView {
             popupWebView?.removeFromSuperview()
+            popupWebViews?.removeAll()
             popupWebView = nil
         }
     }
     
-    func viewDidLoad() {        
+    func viewDidLoad() {
         web_viewer.navigationDelegate = self
         
         web_viewer.uiDelegate = self
@@ -183,6 +216,10 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
     }
     
     func homeView(_ sender: AnyObject) {
+        if popupWebView != nil {
+            self.backView(sender)
+            return
+        }
         container.startUrl = URL(string: K12NetUserPreferences.getHomeAddress() as String);
         self.loadURL(url: container.startUrl!);
         //progressIndicator.stopAnimating();
@@ -203,16 +240,32 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
     
     func refreshView(_ sender: AnyObject) {
         
-        self.loadURL(url: URL(string: container.last_address!)!);
+        self.loadURL(url: (container.last_address != nil) ? URL(string: container.last_address!)! : container.startUrl!);
         
         //web_viewer.reload();
     }
     
     func backView(_ sender: AnyObject) {
         if popupWebView != nil {
-            popupWebView?.removeFromSuperview()
-            popupWebView = nil
-            
+            if popupWebView!.canGoBack {
+                popupWebView?.goBack();
+            }
+            else if(container.simple_page) {
+                container.navigationController?.popViewController(animated: true);
+            } else {
+                popupWebView?.removeFromSuperview()
+                popupWebView = nil
+                
+                if(popupWebViews != nil && popupWebViews!.count > 0) {
+                    popupWebView = popupWebViews?.removeLast()
+                    
+                    container.view.addSubview(popupWebView!)
+                    popupWebView!.scrollView.delegate = container
+                } else {
+                    container.view.addSubview(web_viewer)
+                    web_viewer.scrollView.delegate = container
+                }
+            }
             return
         }
         
@@ -234,42 +287,16 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         let request = URLRequest(url: url)
         
         DocumentView.setCookie()
-        
-        let cookies = HTTPCookieStorage.shared.cookies ?? [HTTPCookie]()
-        
-        if #available(iOS 11.0, *) {
-            cookies.forEach({
-                web_viewer.configuration.websiteDataStore.httpCookieStore.setCookie($0, completionHandler: nil)
-            })
-        } else {
-            /*var values = [String]()
+         
+         let cookies = HTTPCookieStorage.shared.cookies ?? [HTTPCookie]()
+         
+         if #available(iOS 11.0, *) {
              cookies.forEach({
-             values.append($0.name + "=" + $0.value)
+                (popupWebView ?? web_viewer).configuration.websiteDataStore.httpCookieStore.setCookie($0, completionHandler: nil)
              })
-             
-             if(HTTPCookieStorage.shared.cookies != nil && (HTTPCookieStorage.shared.cookies?.count)! > 0) {
-             let df = DateFormatter()
-             df.timeZone = TimeZone(abbreviation: "UTC")
-             df.dateFormat = "EEE, d MMM yyyy HH:mm:ss zzz"
-             
-             let cookie = HTTPCookieStorage.shared.cookies![(HTTPCookieStorage.shared.cookies?.count)!-1];
-             
-             values.append("domain=" + cookie.domain)
-             values.append("originURL=" + cookie.domain)
-             values.append("path=" + cookie.path)
-             values.append("expires=" + (cookie.expiresDate == nil ? "" : df.string(from: cookie.expiresDate!)))
-             if(cookie.isSecure) {values.append("secure")}
-             }
-             
-             request.addValue(values.joined(separator: ";"), forHTTPHeaderField: "Cookie")*/
-            
-            /*let headers = HTTPCookie.requestHeaderFields(with: cookies)
-             for (name, value) in headers {
-             request.addValue(value, forHTTPHeaderField: name)
-             }*/
-        }
+         }
         
-        web_viewer.load(request);
+        (popupWebView ?? web_viewer).load(request);
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -280,15 +307,52 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         
         print(address);
         
-        DocumentView.setCookie()
-        
         if #available(iOS 11.0, *) {
-            let cookies = HTTPCookieStorage.shared.cookies ?? [HTTPCookie]()
+            /*let cookies = HTTPCookieStorage.shared.cookies ?? [HTTPCookie]()
             
             cookies.forEach({
-                web_viewer.configuration.websiteDataStore.httpCookieStore.setCookie($0, completionHandler: nil)
-            })
+                let wkHttpCookieStorage = WKWebsiteDataStore.default().httpCookieStore;
+                let cookie = $0
+                
+                if(cookie.name.contains("AUTH")) {
+                    var authCookie:HTTPCookie? = nil
+                    
+                    wkHttpCookieStorage.getAllCookies { (wkCookies) in
+                        // Nothing comes here sometimes !
+                        for wkCookie in wkCookies {
+                            if(wkCookie.name == cookie.name && wkCookie.value != cookie.value ) {
+                                authCookie = wkCookie
+                                print(wkCookie.name + "- wkCookie -" + wkCookie.value)
+                                
+                                //break
+                            }
+                        }
+                    }
+                    
+                    if(authCookie != nil) {
+                        print(cookie.name + "- cookie -" + cookie.value)
+                        var cookieDict : [HTTPCookiePropertyKey : Any] = [:];
+                        cookieDict[HTTPCookiePropertyKey.name] = authCookie?.name;
+                        cookieDict[HTTPCookiePropertyKey.value] = authCookie?.value;
+                        cookieDict[HTTPCookiePropertyKey.version] = authCookie?.version;
+                        cookieDict[HTTPCookiePropertyKey.domain] = authCookie?.domain;
+                        cookieDict[HTTPCookiePropertyKey.originURL] = authCookie?.domain;
+                        cookieDict[HTTPCookiePropertyKey.path] = authCookie?.path;
+                        cookieDict[HTTPCookiePropertyKey.secure] = authCookie?.isSecure;
+                        cookieDict[HTTPCookiePropertyKey.expires] = authCookie?.expiresDate;
+                        
+                        if let cookieNew = HTTPCookie(properties: cookieDict ) {
+                            HTTPCookieStorage.shared.setCookie(cookieNew);
+                        }
+                        
+                        UserDefaults.standard.synchronize()
+                        // web_viewer.configuration.websiteDataStore.httpCookieStore.setCookie(cookie, completionHandler: nil)
+                    }
+                }
+            })*/
         } else {
+            DocumentView.setCookie()
+            
             let cookies = HTTPCookie.requestHeaderFields(with: HTTPCookieStorage.shared.cookies ?? [])
             
             var headers = navigationAction.request.allHTTPHeaderFields ?? [:]
@@ -317,13 +381,14 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
              return*/
         }
         
-        if((address.contains("getfile.aspx") || address.contains("getimage.aspx")) && !address.contains(".google.com")) {
+        if((address.contains("FSCore.Web/api/File") || address.contains("getfile.aspx") || address.contains("getimage.aspx")) && !address.contains(".google.com")) {
             
-            if(container.preloader.isHidden == false) {
+            if(self.downloadInProgress) {
                 decisionHandler(.cancel)
                 return
             }
             
+            self.downloadInProgress = true
             container.preloader.startAnimating()
             container.preloader.isHidden = false
             
@@ -364,8 +429,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
                                     self.container.addActionSheetForiPad(actionSheet: activityVC)
                                     self.container.present(activityVC, animated: true, completion: nil)
                                     
-                                    self.container.preloader.stopAnimating()
-                                    self.container.preloader.isHidden = true
+                                    self.stopAnimating()
                                 }
                                 
                             } catch (let writeError) {
@@ -396,8 +460,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
                 
                 self.loadURL(url: URL(string: container.last_address!)!);
                 
-                container.preloader.stopAnimating()
-                container.preloader.isHidden = true
+                self.stopAnimating()
             }
             else {
                 self.container.navigationController?.popToRootViewController(animated: true);
@@ -405,7 +468,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
             
             decisionHandler(.cancel)
             return;
-        }            
+        }
         else if(address.contains("logout.aspx")) {
             K12NetUserPreferences.saveRememberMe(false);
             K12NetLogin.isLogout = true;
@@ -455,6 +518,12 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
             }
         }
         
+    }
+    
+    func stopAnimating() {
+        self.downloadInProgress = false
+        self.container.preloader.stopAnimating()
+        self.container.preloader.isHidden = true
     }
     
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo,
@@ -562,8 +631,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
-        container.preloader.stopAnimating()
-        container.preloader.isHidden = true
+        self.stopAnimating()
         
         if web_viewer.canGoBack || container.simple_page {
             container.backButton.isEnabled = true;

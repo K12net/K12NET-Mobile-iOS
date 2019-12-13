@@ -5,13 +5,13 @@
   Created by Ilhami Sisnelioglu on 7.03.2019.
   Copyright © 2019 K12Net. All rights reserved.
 */
-NSCalendarsUsageDescription = "Save app calendar information to device calendar";
-NSCameraUsageDescription = "Send user photos as app mail attachment";
-NSMicrophoneUsageDescription = "Send user videos as app mail attachment";
-NSSpeechRecognitionUsageDescription = "Send data as app mail attachment";
-NSMediaLibraryUsageDescription = "Send data as app mail attachment";
-NSMusicUsageDescription = "Send data as app mail attachment";
-NSPhotoLibraryUsageDescription = "Send user photos as app mail attachment";
-NSLocationWhenInUseUsageDescription = "Used by bus services";
-NSAppleMusicUsageDescription = "Send data as app mail attachment";
-NSPhotoLibraryAddUsageDescription = "Add user photos";
+NSCalendarsUsageDescription = "حفظ تقويم التطبيق الي تقويم الجهاز";
+NSCameraUsageDescription = "أرسل صور المستخدم كمرفقات لأيميل التطبيق";
+NSMicrophoneUsageDescription = "أرسل فيديوهات المستخدم كمرفقات لأيميل التطبيق";
+NSSpeechRecognitionUsageDescription = "أرسل البيانات كمرفقات لأيميل التطبيق";
+NSMediaLibraryUsageDescription = "أرسل البيانات كمرفقات لأيميل التطبيق";
+NSMusicUsageDescription = "أرسل البيانات كمرفقات لأيميل التطبيق";
+NSPhotoLibraryUsageDescription = "أرسل صور المستخدم كمرفقات لأيميل التطبيق";
+NSLocationWhenInUseUsageDescription = "تستخدم لخدمات الحافلات";
+NSAppleMusicUsageDescription = "أرسل البيانات كمرفقات لأيميل التطبيق";
+NSPhotoLibraryAddUsageDescription = "إضافة صور المستخدمين";

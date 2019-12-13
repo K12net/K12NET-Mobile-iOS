@@ -122,6 +122,7 @@ class DocumentView: UIViewController, UIScrollViewDelegate {
     }
     
     static func setCookie() {
+        
         var cookieDict : [HTTPCookiePropertyKey : Any] = [:];
         cookieDict[HTTPCookiePropertyKey.name] = "UICulture";
         cookieDict[HTTPCookiePropertyKey.value] = K12NetUserPreferences.getLanguage();
@@ -164,6 +165,8 @@ class DocumentView: UIViewController, UIScrollViewDelegate {
         }
         
         UserDefaults.standard.synchronize()
+        
+        print("DocumentView.setcookie")
     }
     
     func webViewDidStartLoad() {

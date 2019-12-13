@@ -14,6 +14,7 @@ class WebViewer : NSObject, UIWebViewDelegate, IWebView {
     
     var web_viewer: UIWebView!
     var container: DocumentView!
+    var downloadInProgress: Bool!
     
     init(dv: DocumentView) {
         super.init()
@@ -49,7 +50,7 @@ class WebViewer : NSObject, UIWebViewDelegate, IWebView {
         
         if(self.container.simple_page){
             self.web_viewer.loadRequest(URLRequest(url: self.container.startUrl!));
-            self.container.preloader.stopAnimating();
+            self.stopAnimating();
         }
         else  {
             
@@ -71,7 +72,7 @@ class WebViewer : NSObject, UIWebViewDelegate, IWebView {
     @IBAction func homeView(_ sender: AnyObject) {
         self.container.startUrl = URL(string: K12NetUserPreferences.getHomeAddress() as String);
         self.web_viewer.loadRequest(URLRequest(url: self.container.startUrl!));
-        self.container.preloader.stopAnimating();
+        self.stopAnimating();
     }
     
     @IBAction func closeWindow(_ sender: AnyObject) {
@@ -152,12 +153,13 @@ class WebViewer : NSObject, UIWebViewDelegate, IWebView {
         
         print(address);
         
-        if((address.contains("getfile.aspx") || address.contains("getimage.aspx")) && !address.contains(".google.com")) {
+        if((address.contains("FSCore.Web/api/File") || address.contains("getfile.aspx") || address.contains("getimage.aspx")) && !address.contains(".google.com")) {
             
-            if(container.preloader.isHidden == false) {
+            if(self.downloadInProgress) {
                 return false;
             }
             
+            self.downloadInProgress = true
             self.container.preloader.startAnimating()
             self.container.preloader.isHidden = false
             
@@ -198,8 +200,7 @@ class WebViewer : NSObject, UIWebViewDelegate, IWebView {
                                     self.container.addActionSheetForiPad(actionSheet: activityVC)
                                     self.container.present(activityVC, animated: true, completion: nil)
                                     
-                                    self.container.preloader.stopAnimating()
-                                    self.container.preloader.isHidden = true
+                                    self.stopAnimating();
                                 }
                                 
                             } catch (let writeError) {
@@ -245,6 +246,12 @@ class WebViewer : NSObject, UIWebViewDelegate, IWebView {
         return true;
     }
     
+    func stopAnimating() {
+        self.downloadInProgress = false
+        self.container.preloader.stopAnimating()
+        self.container.preloader.isHidden = true
+    }
+    
     func webViewDidFinishLoad() {
         webViewDidFinishLoad(web_viewer)
     }
@@ -259,8 +266,7 @@ class WebViewer : NSObject, UIWebViewDelegate, IWebView {
         print(webView.request?.mainDocumentURL?.absoluteString ?? "");
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        self.container.preloader.stopAnimating();
-        self.container.preloader.isHidden = true
+        self.stopAnimating();
         
         if web_viewer.canGoBack || self.container.simple_page {
             container.backButton.isEnabled = true;

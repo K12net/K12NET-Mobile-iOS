@@ -80,4 +80,13 @@
 "Print[Activity]" = "Print";
 "AirDrop" = "Air Drop";
 "Save Video[Activity]" = "Save Video";
+"Add to Reading List" = "Add to Reading List";
+"Share…" = "Share…";
+"Copy (ActionSheet)" = "Copy (ActionSheet)";
+"Create PDF[Markup]" = "Create PDF[Markup]";
+"Cancel button label in button bar" = "Cancel";
+"Save File to...[Markup]" = "Save File to...";
+"Delete PDF[Markup]" = "Delete PDF";
+"Open Link" = "Open";
+"Copy Link" = "Copy";
 

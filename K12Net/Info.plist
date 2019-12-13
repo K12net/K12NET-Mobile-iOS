@@ -23,11 +23,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.01</string>
+	<string>2.06</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>39</string>
+	<string>44</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
@@ -93,9 +93,9 @@
 	<string>Used by bus services</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Send user videos as app mail attachment</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Send user photos as app mail attachment</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Send user photos as app mail attachment</string>
+	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Send user photos as app mail attachment</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Send data as app mail attachment</string>

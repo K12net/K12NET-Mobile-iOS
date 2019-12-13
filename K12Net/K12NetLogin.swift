@@ -180,6 +180,7 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         K12NetUserPreferences.savePassword(txtPassword.text!);
         K12NetUserPreferences.saveRememberMe(chkRememberMe.isOn);
         
+        LoginAsyncTask.isLoginRetry = false;
         loginOperation();
         
     }
