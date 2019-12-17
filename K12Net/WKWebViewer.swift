@@ -77,20 +77,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         
         web_viewer.scrollView.delegate = container
         
-        if #available(iOS 11.0, *) {
-            let wkHttpCookieStorage = WKWebsiteDataStore.default().httpCookieStore;
-            
-            wkHttpCookieStorage.getAllCookies { (cookies) in
-                // Nothing comes here sometimes !
-                for cookie in cookies {
-                    self.web_viewer.configuration.websiteDataStore.httpCookieStore.delete(cookie, completionHandler: {
-                        
-                    })
-                }
-            }
-            
-            DocumentView.setCookie()
-        }
+        DocumentView.setCookie()
         
         container.view.addSubview(web_viewer)
         
