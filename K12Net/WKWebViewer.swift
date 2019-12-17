@@ -88,6 +88,8 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
                     })
                 }
             }
+            
+            DocumentView.setCookie()
         }
         
         container.view.addSubview(web_viewer)
@@ -288,9 +290,10 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         
         DocumentView.setCookie()
          
-         let cookies = HTTPCookieStorage.shared.cookies ?? [HTTPCookie]()
-         
          if #available(iOS 11.0, *) {
+            
+            let cookies = HTTPCookieStorage.shared.cookies ?? [HTTPCookie]()
+            
              cookies.forEach({
                 (popupWebView ?? web_viewer).configuration.websiteDataStore.httpCookieStore.setCookie($0, completionHandler: nil)
              })

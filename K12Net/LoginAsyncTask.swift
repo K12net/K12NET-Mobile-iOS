@@ -40,16 +40,10 @@ open class LoginAsyncTask : AsyncTask  {
     static func loginOperation() {
         loginStarted = true;
         
-       /*let storage = HTTPCookieStorage.shared
+       let storage = HTTPCookieStorage.shared
         for cookie in storage.cookies! {
             storage.deleteCookie(cookie)
-        }*/
-        
-       /* WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) {
-            records in records.forEach {
-                record in WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {}); print("[WebCacheCleaner] Record \(record) deleted")
-            }
-        }*/
+        }
         
         let response: AutoreleasingUnsafeMutablePointer<URLResponse?>?=nil
         

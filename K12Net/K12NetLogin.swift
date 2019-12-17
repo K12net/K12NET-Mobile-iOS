@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WebKit;
 
 class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListener , XMLParserDelegate{
     var latestVersion = "";
@@ -36,6 +37,14 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if #available(iOS 11.0, *) {
+            WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) {
+                records in records.forEach {
+                    record in WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {}); print("[WebCacheCleaner] Record \(record) deleted")
+                }
+            }
+        }
         
         K12NetLogin.controller = self;
         setupKeyboardNotifcationListenerForScrollView(scrollView, moveView: true);
@@ -152,6 +161,15 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated);
+        
+        if #available(iOS 11.0, *) {
+            WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) {
+                records in records.forEach {
+                    record in WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {}); print("[WebCacheCleaner] Record \(record) deleted")
+                }
+            }
+        }
+        
         navigationController?.setNavigationBarHidden(true, animated: true);
         self.navigationController?.isToolbarHidden = true;
         

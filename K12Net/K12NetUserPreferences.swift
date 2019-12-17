@@ -18,7 +18,7 @@ open class K12NetUserPreferences {
     static let PASSWORD = "PASSWORD"
     static let REMEMBER_ME = "REMEMBER_ME"
     static let BADGE_COUNT = "BADGE_COUNT"
-    static let LANGUAGE = "LANGUAGE_CODE"
+    static let LANGUAGE = "LANGUAGE"
     static let DEVICE_TOKEN = "DEVICE_TOKEN"
     
     
@@ -73,15 +73,17 @@ open class K12NetUserPreferences {
     }
     
     public static func getLanguage() -> String {
-        var language : String;
-        if getStringValue(LANGUAGE) != nil {
-            language = getStringValue(LANGUAGE)!;
-        }
-        else {
+        var language : String? = getStringValue(LANGUAGE);
+        if language == nil {
             initiateDomain();
-            language = getStringValue(LANGUAGE) ?? "tr";
+            language = getStringValue(LANGUAGE);
+            
+            if ( language == nil ) {
+                language = "tr";
+                saveLanguage(lang: language!)
+            }
         }
-        return language;
+        return language!;
     }
     
     public static func getHomeAddress() -> NSString {

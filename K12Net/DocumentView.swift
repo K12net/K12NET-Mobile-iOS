@@ -166,7 +166,16 @@ class DocumentView: UIViewController, UIScrollViewDelegate {
         
         UserDefaults.standard.synchronize()
         
-        print("DocumentView.setcookie")
+        if #available(iOS 11.0, *) {
+            
+            print("DocumentView.setcookie")
+            
+            let cookies = HTTPCookieStorage.shared.cookies ?? [HTTPCookie]()
+            
+            cookies.forEach({
+                if($0.name.contains("Culture")) {print($0.name + ":" + $0.value)}
+            })
+        }
     }
     
     func webViewDidStartLoad() {
