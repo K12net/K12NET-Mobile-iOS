@@ -15,6 +15,8 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
     public static let ENGLISH = "en";
     public static let ARABIC = "ar";
     public static let TURKISH = "tr";
+    public static let FRENCH = "fr";
+    public static let RUSSION = "ru";
     
     @IBOutlet weak var connection_url: UITextField!
     @IBOutlet weak var ftp_address: UITextField!
@@ -26,7 +28,7 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
     
     var keyboardFrame : CGRect = CGRect();
     
-    let languageMap = [TURKISH,ENGLISH,ARABIC];
+    let languageMap = [TURKISH,ENGLISH,ARABIC,FRENCH,RUSSION];
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,10 +56,14 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
             languageIndex = 1;
         case "ar":
             languageIndex = 2;
+        case "fr":
+            languageIndex = 3;
+        case "ru":
+            languageIndex = 4;
         default:
             languageIndex = 0;
         };
-        
+        languageSegmented.apportionsSegmentWidthsByContent = true;
         languageSegmented.selectedSegmentIndex = languageIndex;
         
         self.connection_url.delegate = self;

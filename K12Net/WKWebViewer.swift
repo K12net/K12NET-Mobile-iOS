@@ -61,7 +61,11 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         
         webConfiguration.allowsInlineMediaPlayback = true
         
-        webConfiguration.applicationNameForUserAgent = "K12Net_IOS"
+        if #available(iOS 9.0, *) {
+            webConfiguration.applicationNameForUserAgent = "K12Net_IOS"
+        } else {
+            // Fallback on earlier versions
+        }
         webConfiguration.processPool = WKWebViewer.commonProcessPool
         
         if #available(iOS 10.0, *) {
@@ -553,10 +557,10 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
     func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo,
                  completionHandler: @escaping (String?) -> Void) {
         
-        let alertController = UIAlertController(title: nil, message: prompt, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: nil, message: prompt, preferredStyle: .alert)
         
         alertController.addTextField { (textField) in
-            textField.text = defaultText
+           textField.text = defaultText
         }
         
         alertController.addAction(UIAlertAction(title: "OK".localized, style: .default, handler: { (action) in

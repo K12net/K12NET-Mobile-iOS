@@ -61,6 +61,20 @@
 		166CD69C20E2989C007DAD2F /* Localizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizer.swift; sourceTree = "<group>"; };
 		16997B8F21688832008BE33A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		16AA43A221E9DE31003C439C /* HttpAsyncTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpAsyncTask.swift; sourceTree = "<group>"; };
+		16AFD52625EF98CD00E7B5CF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/login.strings; sourceTree = "<group>"; };
+		16AFD52725EF98CD00E7B5CF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		16AFD52825EF98CE00E7B5CF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CameraUI.strings; sourceTree = "<group>"; };
+		16AFD52925EF98CE00E7B5CF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PhotoLibraryServices.strings; sourceTree = "<group>"; };
+		16AFD52A25EF98CE00E7B5CF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PhotoLibrary.strings; sourceTree = "<group>"; };
+		16AFD52B25EF98CE00E7B5CF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PhotosUI.strings; sourceTree = "<group>"; };
+		16AFD52C25EF98CF00E7B5CF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		16AFD52D25EF98E200E7B5CF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/login.strings; sourceTree = "<group>"; };
+		16AFD52E25EF98E200E7B5CF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		16AFD52F25EF98E200E7B5CF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/CameraUI.strings; sourceTree = "<group>"; };
+		16AFD53025EF98E200E7B5CF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PhotoLibraryServices.strings; sourceTree = "<group>"; };
+		16AFD53125EF98E200E7B5CF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PhotoLibrary.strings; sourceTree = "<group>"; };
+		16AFD53225EF98E200E7B5CF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/PhotosUI.strings; sourceTree = "<group>"; };
+		16AFD53325EF98E200E7B5CF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		16B6DCE820A462BA0078C42B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/login.strings; sourceTree = "<group>"; };
 		16E0087F22173D2D00E0D92E /* DocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentView.swift; sourceTree = "<group>"; };
 		16F22E5820F9E6A200DE86C6 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
@@ -199,7 +213,7 @@
 					4FEC88341BF8ED8E00A1BA90 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = SU64EDQ7U5;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1240;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -221,6 +235,8 @@
 				Base,
 				tr,
 				ar,
+				fr,
+				ru,
 			);
 			mainGroup = 4FEC882C1BF8ED8E00A1BA90;
 			productRefGroup = 4FEC88361BF8ED8E00A1BA90 /* Products */;
@@ -287,6 +303,8 @@
 				1650953F22313AFB00ABA194 /* en */,
 				1650954122313AFF00ABA194 /* tr */,
 				1650954222313B0000ABA194 /* ar */,
+				16AFD52725EF98CD00E7B5CF /* fr */,
+				16AFD52E25EF98E200E7B5CF /* ru */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -297,6 +315,8 @@
 				1650954A22315B9200ABA194 /* en */,
 				1650954C22315B9400ABA194 /* tr */,
 				1650954D22315B9400ABA194 /* ar */,
+				16AFD52825EF98CE00E7B5CF /* fr */,
+				16AFD52F25EF98E200E7B5CF /* ru */,
 			);
 			name = CameraUI.strings;
 			sourceTree = "<group>";
@@ -307,6 +327,8 @@
 				1650955522315C7600ABA194 /* en */,
 				1650955722315C7900ABA194 /* tr */,
 				1650955822315C7900ABA194 /* ar */,
+				16AFD52925EF98CE00E7B5CF /* fr */,
+				16AFD53025EF98E200E7B5CF /* ru */,
 			);
 			name = PhotoLibraryServices.strings;
 			sourceTree = "<group>";
@@ -317,6 +339,8 @@
 				1650955A22315C9700ABA194 /* en */,
 				1650955C22315C9900ABA194 /* tr */,
 				1650955D22315C9900ABA194 /* ar */,
+				16AFD52A25EF98CE00E7B5CF /* fr */,
+				16AFD53125EF98E200E7B5CF /* ru */,
 			);
 			name = PhotoLibrary.strings;
 			sourceTree = "<group>";
@@ -327,6 +351,8 @@
 				1650955F22315CAF00ABA194 /* en */,
 				1650956122315CB000ABA194 /* tr */,
 				1650956222315CB000ABA194 /* ar */,
+				16AFD52B25EF98CE00E7B5CF /* fr */,
+				16AFD53225EF98E200E7B5CF /* ru */,
 			);
 			name = PhotosUI.strings;
 			sourceTree = "<group>";
@@ -338,6 +364,8 @@
 				4F848CFD1C01B38C00C02EDB /* tr */,
 				4FD329911C0CDAD3002F3E8B /* ar */,
 				16997B8F21688832008BE33A /* en */,
+				16AFD52C25EF98CF00E7B5CF /* fr */,
+				16AFD53325EF98E200E7B5CF /* ru */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -349,6 +377,8 @@
 				4F8B089A1D8D24F90014CAA7 /* ar */,
 				4F8B089B1D8D24FC0014CAA7 /* tr */,
 				16B6DCE820A462BA0078C42B /* en */,
+				16AFD52625EF98CD00E7B5CF /* fr */,
+				16AFD52D25EF98E200E7B5CF /* ru */,
 			);
 			name = login.storyboard;
 			sourceTree = "<group>";
@@ -476,7 +506,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -496,7 +527,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

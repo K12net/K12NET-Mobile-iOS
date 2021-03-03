@@ -26,6 +26,7 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
     static var isLogout = false;
     
     static var controller :K12NetLogin? = nil;
+    static var notificationURL :URL? = nil;
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
         if elementName == "ios" {
@@ -226,11 +227,17 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         else if(LoginAsyncTask.lastOperationValue) {
             
             let vc : DocumentView = self.storyboard!.instantiateViewController(withIdentifier: "document_view") as! DocumentView;
-            navigationController?.pushViewController(vc, animated: true)
             vc.first_time = true;
             vc.simple_page = false;
             vc.startUrl = nil;
             vc.windowDepth = 1;
+            
+            if K12NetLogin.notificationURL != nil {
+                vc.startUrl = K12NetLogin.notificationURL;
+                K12NetLogin.notificationURL = nil;
+            }
+            
+            navigationController?.pushViewController(vc, animated: true);
         }
         else {
             let alertController = UIAlertController(title: "appTitle".localized, message:"loginFailed".localized , preferredStyle: UIAlertController.Style.alert)
@@ -239,6 +246,8 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
             self.addActionSheetForiPad(actionSheet: alertController)
             self.present(alertController, animated: true, completion: nil)
         }
+        
+        K12NetLogin.notificationURL = nil;
     }
     
     

@@ -128,13 +128,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if UIApplication.shared.applicationState != .active { return }
         }
         
+        var message = "";
+        var title = "";
+        var intent = "";
+        var portal = "";
+        var query = "";
+        
+        if userInfo.keys.contains("body") {message = userInfo["body"] as! String;}
+        if userInfo.keys.contains("title") {title = userInfo["title"] as! String;}
+        if userInfo.keys.contains("intent") {intent = userInfo["intent"] as! String;}
+        if userInfo.keys.contains("portal") {portal = userInfo["portal"] as! String;}
+        if userInfo.keys.contains("query") {query = userInfo["query"] as! String;}
+        
         if let info = userInfo["aps"] as? Dictionary<String, AnyObject>
         {
-            var message = "";
-            var title = "";
-            var intent = "";
-            var portal = "";
-            var query = "";
             
             if let alert = info["alert"] as? Dictionary<String, AnyObject>
             {
@@ -146,61 +153,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             } else {
                 message = info["alert"] as! String;
             }
-            
-            if !message.isEmpty
+        }
+        
+        if !message.isEmpty
+        {
+            if !portal.isEmpty
             {
-                if !portal.isEmpty
-                {
-                    let dialogMessage = UIAlertController(title: title, message: message + "\n\n" + "navToNotify".localized, preferredStyle: .alert)
-                    
-                    let ok = UIAlertAction(title: "OK".localized, style: .default, handler: { (action) -> Void in
-                        if (!LoginAsyncTask.loginStarted) {
-                            let viewController = K12NetLogin.controller?.navigationController?.topViewController
+                K12NetLogin.notificationURL = URL(string:String(format: AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL + "/Default.aspx?intent=%@&portal=%@&query=%@",intent.urlEncode(),portal.urlEncode(),query.urlEncode()));
+                
+                let dialogMessage = UIAlertController(title: title, message: message + "\n\n" + "navToNotify".localized, preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: "OK".localized, style: .default, handler: { (action) -> Void in
+                    if (!LoginAsyncTask.loginStarted) {
+                        let viewController = K12NetLogin.controller?.navigationController?.topViewController
+                        
+                        if(viewController != nil && viewController is DocumentView) {
+                            let dv = (viewController as! DocumentView);
                             
-                            if(viewController != nil && viewController is DocumentView) {
-                                let dv = (viewController as! DocumentView);
-                                
-                                if(dv.preloader != nil && !dv.preloader.isHidden) {
-                                    return
-                                }
+                            if(dv.preloader != nil && !dv.preloader.isHidden) {
+                                return
                             }
-                            let vc : DocumentView = K12NetLogin.controller!.storyboard!.instantiateViewController(withIdentifier: "document_view") as! DocumentView;
-                            
-                            vc.startUrl = URL(string:String(format: AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL + "/Default.aspx?intent=%@&portal=%@&query=%@",intent.urlEncode(),portal.urlEncode(),query.urlEncode()));
-                            vc.simple_page = true;
-                            vc.first_time = false;
-                            vc.windowDepth = 1;
-                            
-                            K12NetLogin.controller?.navigationController?.pushViewController(vc, animated: true);
                         }
+                        let vc : DocumentView = K12NetLogin.controller!.storyboard!.instantiateViewController(withIdentifier: "document_view") as! DocumentView;
                         
-                    })
-                    
-                    // Create Cancel button with action handlder
-                    let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel) { (action) -> Void in
+                        vc.startUrl = K12NetLogin.notificationURL;
+                        vc.simple_page = true;
+                        vc.first_time = false;
+                        vc.windowDepth = 1;
                         
+                        K12NetLogin.controller?.navigationController?.pushViewController(vc, animated: true);
                     }
                     
-                    //Add OK and Cancel button to dialog message
-                    dialogMessage.addAction(ok)
-                    dialogMessage.addAction(cancel)
-                    K12NetLogin.controller?.addActionSheetForiPad(actionSheet: dialogMessage)
+                })
+                
+                // Create Cancel button with action handlder
+                let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel) { (action) -> Void in
                     
-                    // Present dialog message to user
-                    K12NetLogin.controller?.present(dialogMessage, animated: true, completion: nil)
-                } else {
-                    let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
-                    
-                    let ok = UIAlertAction(title: "OK".localized, style: .default, handler: { (action) -> Void in
-                    })
-                    
-                    dialogMessage.addAction(ok)
-                    K12NetLogin.controller?.addActionSheetForiPad(actionSheet: dialogMessage)
-                    K12NetLogin.controller?.present(dialogMessage, animated: true, completion: nil)
                 }
+                
+                //Add OK and Cancel button to dialog message
+                dialogMessage.addAction(ok)
+                dialogMessage.addAction(cancel)
+                K12NetLogin.controller?.addActionSheetForiPad(actionSheet: dialogMessage)
+                
+                // Present dialog message to user
+                K12NetLogin.controller?.present(dialogMessage, animated: true, completion: nil)
+            } else {
+                let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: "OK".localized, style: .default, handler: { (action) -> Void in
+                })
+                
+                dialogMessage.addAction(ok)
+                K12NetLogin.controller?.addActionSheetForiPad(actionSheet: dialogMessage)
+                K12NetLogin.controller?.present(dialogMessage, animated: true, completion: nil)
             }
         }
     }
+    
     @available(iOS 10.0, *)
     func userNotificationCenter(center: UNUserNotificationCenter, willPresentNotification notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void) {
         print("User Info = ",notification.request.content.userInfo)
@@ -241,7 +251,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         if #available(iOS 10.0, *) {
             if UIApplication.shared.applicationState != .active {
-                
             } else {
             }
         } else {
