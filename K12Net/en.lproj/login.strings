@@ -2,7 +2,7 @@
 /* Class = "UIViewController"; title = "Settings"; ObjectID = "8fT-m0-Fpw"; */
 "8fT-m0-Fpw.title" = "Settings";
 
-/* Class = "UILabel"; text = "Beni Hatırla"; ObjectID = "Phl-ut-RvQ"; */
+/* Class = "UILabel"; text = "Remember Me"; ObjectID = "Phl-ut-RvQ"; */
 "Phl-ut-RvQ.text" = "Remember Me";
 
 /* Class = "UITextField"; placeholder = "Connection URL"; ObjectID = "RuS-zZ-Aix"; */
@@ -11,16 +11,31 @@
 /* Class = "UINavigationItem"; title = "Settings"; ObjectID = "YKA-d1-SuG"; */
 "YKA-d1-SuG.title" = "Settings";
 
-/* Class = "UINavigationItem"; title = "K12Net"; ObjectID = "baC-re-lLX"; */
-"baC-re-lLX.title" = "K12Net";
+/* Class = "UINavigationItem"; title = "K12Net Mobile"; ObjectID = "baC-re-lLX"; */
+"baC-re-lLX.title" = "K12Net Mobile";
 
 /* Class = "UITextField"; placeholder = "File Server Address"; ObjectID = "cA7-py-IXx"; */
 "cA7-py-IXx.placeholder" = "File Server Address";
 
-/* Class = "UIButton"; normalTitle = "Giriş"; ObjectID = "iMi-Yb-O7T"; */
+/* Class = "UISegmentedControl"; f2d-l4-1vr.segmentTitles[0] = "TR"; ObjectID = "f2d-l4-1vr"; */
+"f2d-l4-1vr.segmentTitles[0]" = "TR";
+
+/* Class = "UISegmentedControl"; f2d-l4-1vr.segmentTitles[1] = "EN"; ObjectID = "f2d-l4-1vr"; */
+"f2d-l4-1vr.segmentTitles[1]" = "EN";
+
+/* Class = "UISegmentedControl"; f2d-l4-1vr.segmentTitles[2] = " ع "; ObjectID = "f2d-l4-1vr"; */
+"f2d-l4-1vr.segmentTitles[2]" = " ع ";
+
+/* Class = "UISegmentedControl"; f2d-l4-1vr.segmentTitles[3] = "FR"; ObjectID = "f2d-l4-1vr"; */
+"f2d-l4-1vr.segmentTitles[3]" = "FR";
+
+/* Class = "UISegmentedControl"; f2d-l4-1vr.segmentTitles[4] = "RU"; ObjectID = "f2d-l4-1vr"; */
+"f2d-l4-1vr.segmentTitles[4]" = "RU";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "iMi-Yb-O7T"; */
 "iMi-Yb-O7T.normalTitle" = "Login";
 
-/* Class = "UIButton"; normalTitle = "Ayarlar"; ObjectID = "jig-GU-r43"; */
+/* Class = "UIButton"; normalTitle = "Settings"; ObjectID = "jig-GU-r43"; */
 "jig-GU-r43.normalTitle" = "Settings";
 
 /* Class = "UILabel"; text = "Settings"; ObjectID = "jyg-b2-QyP"; */
@@ -32,13 +47,15 @@
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "pKO-MT-AvQ"; */
 "pKO-MT-AvQ.placeholder" = "Password";
 
-/* Class = "UILabel"; text = "K12Net"; ObjectID = "udB-mR-CXN"; */
-"wWA-U1-0xw.title" = "K12NET Mobile";
+/* Class = "UILabel"; text = "K12NET Mobile"; ObjectID = "udB-mR-CXN"; */
 "udB-mR-CXN.text" = "K12NET Mobile";
 
-/* Class = "UITextField"; placeholder = "Username"; ObjectID = "wFZ-8g-4sc"; */
-"wFZ-8g-4sc.placeholder" = "Username";
+/* Class = "UITextField"; placeholder = "User Name"; ObjectID = "wFZ-8g-4sc"; */
+"wFZ-8g-4sc.placeholder" = "User Name";
 
-"x5Z-ND-sH3.text" = "Forgot Password";
+/* Class = "UIViewController"; title = "K12Net Mobile"; ObjectID = "wWA-U1-0xw"; */
+"wWA-U1-0xw.title" = "K12Net Mobile";
 
+/* Class = "UIButton"; normalTitle = "Forgot Password"; ObjectID = "x5Z-ND-sH3"; */
 "x5Z-ND-sH3.normalTitle" = "Forgot Password";
+
