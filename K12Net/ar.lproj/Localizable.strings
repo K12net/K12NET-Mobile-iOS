@@ -30,6 +30,7 @@
 "confirmation" = "التأكيد";
 "navToNotify" = "أنت على وشك الانتقال إلى صفحة الإشعارات. هل تريد حقًا الخروج من العرض الحالي؟";
 "alert" = "تحذير";
+"mandatoryUpdateAvailableWarning" = "A new update is available! Please update to continue.";
 "newUpdateAvailableWarning" = "تم العثور على تحديث جديد. يمكنك تحديث التطبيق لاحقًا إذا كنت تريد.";
 "update" = "تحديث";
 "browse" = "استعراض";

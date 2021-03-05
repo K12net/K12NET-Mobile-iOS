@@ -81,34 +81,33 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
             // the URL was bad!
         }
         
+        var forceToUpdate = false;
         if(self.latestVersion != "") {
             let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String;
             
             if(appVersion != nil) {
                 let latestVersionList = self.latestVersion.split(separator: ".").map{ Int($0)!};
                 let appVersionList = appVersion?.split(separator: ".").map{ Int($0)!};
-                var index = 0;
                 
-                for version in latestVersionList {
-                    if((appVersionList?.count)! > index && version > (appVersionList?[index])!) {
-                        hasNewUpdate = true;
-                        break;
-                    }
-                    
-                    index = index + 1;
+                if((appVersionList?.count)! > 0 && latestVersionList.count > 0 && latestVersionList[0] > (appVersionList?[0])!) {
+                    hasNewUpdate = true;
+                    forceToUpdate = true;
+                }
+                
+                if((appVersionList?.count)! > 1 && latestVersionList.count > 1 && latestVersionList[1] > (appVersionList?[1])!) {
+                    hasNewUpdate = true;
                 }
             }
             
         }
         
         if(hasNewUpdate) {
-            let alert = UIAlertController(title: "alert".localized, message: "newUpdateAvailableWarning".localized, preferredStyle: UIAlertController.Style.alert)
-            
-            let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel) { (action) -> Void in
-                if self.chkRememberMe.isOn {
-                    self.loginOperation();
-                }
+            var message = "newUpdateAvailableWarning".localized;
+            if(forceToUpdate) {
+                message = "mandatoryUpdateAvailableWarning".localized;
             }
+            
+            let alert = UIAlertController(title: "alert".localized, message: message, preferredStyle: UIAlertController.Style.alert)
             
             alert.addAction(UIAlertAction(title: "update".localized, style: UIAlertAction.Style.default, handler: { action in
                 let appUrl = URL(string: "https://itunes.apple.com/tr/app/k12net-mobil/id1155767502?l=tr&mt=8")
@@ -121,7 +120,15 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
                 
             }));
             
-            alert.addAction(cancel)
+            if(!forceToUpdate) {
+                let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel) { (action) -> Void in
+                    if self.chkRememberMe.isOn {
+                        self.loginOperation();
+                    }
+                }
+                
+                alert.addAction(cancel)
+            }
             
             self.addActionSheetForiPad(actionSheet: alert)
             self.present(alert, animated: true, completion: nil)

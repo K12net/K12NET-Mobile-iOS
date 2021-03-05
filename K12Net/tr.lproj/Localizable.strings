@@ -31,6 +31,7 @@
 "confirmation" = "Uyarı";
 "navToNotify" = "Bildirim sayfasına yönlendirilmek üzeresiniz. Bu sayfadan ayrılmak istediğinize emin misiniz?";
 "alert" = "Uyarı";
+"mandatoryUpdateAvailableWarning" = "Yeni güncelleme bulunmaktadır! Devam etmek için lütfen Güncelleyin.";
 "newUpdateAvailableWarning" = "Yeni güncelleme bulunmaktadır. İsterseniz daha sonra güncelleyebilirsiniz.";
 "update" = "Güncelle";
 "browse" = "Tarayıcıda Aç";

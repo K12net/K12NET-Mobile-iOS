@@ -30,6 +30,7 @@
 "confirmation" = "Confirmation";
 "navToNotify" = "You are about to navigate notification page. Do you really want to exit current view?";
 "alert" = "Alert";
+"mandatoryUpdateAvailableWarning" = "A new update is available! Please update to continue.";
 "newUpdateAvailableWarning" = "A new update is available. You can update application later if you want.";
 "update" = "Update";
 "browse" = "Browse";
