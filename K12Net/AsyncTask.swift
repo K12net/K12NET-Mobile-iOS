@@ -24,13 +24,13 @@ open class AsyncTask {
         let queue : DispatchQueue = DispatchQueue.global(qos: DispatchQoS.QoSClass.default);
         queue.async {
             
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            
-            self.doInBackground();
-            
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            
             DispatchQueue.main.async {
+                
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                
+                self.doInBackground();
+                
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 
                 self.postExecute();
                 

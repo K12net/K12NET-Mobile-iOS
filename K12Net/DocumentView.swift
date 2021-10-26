@@ -48,8 +48,8 @@ class DocumentView: UIViewController, UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView){
-        let hide = scrollView.contentOffset.y > self.lastOffsetY
-        self.navigationController?.setToolbarHidden(hide, animated: true)
+        //let hide = scrollView.contentOffset.y > self.lastOffsetY
+        //self.navigationController?.setToolbarHidden(hide, animated: true)
     }
     
     override func viewDidLoad() {
@@ -59,6 +59,9 @@ class DocumentView: UIViewController, UIScrollViewDelegate {
         web_viewer.viewDidLoad()
         
         self.preloader.transform = CGAffineTransform(scaleX: 2, y: 2)
+        
+        self.navigationController?.navigationBar.isTranslucent = true;
+        self.edgesForExtendedLayout = [];
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -173,7 +176,7 @@ class DocumentView: UIViewController, UIScrollViewDelegate {
             let cookies = HTTPCookieStorage.shared.cookies ?? [HTTPCookie]()
             
             cookies.forEach({
-                if($0.name.contains("Culture")) {print($0.name + ":" + $0.value)}
+                print($0.name + ":" + $0.value)
             })
         }
     }

@@ -12,7 +12,7 @@ open class K12NetUserPreferences {
     
     static let FILE_SERVER_ADDRESS = "FILE_SERVER_ADDRESS"
     static let HOME_ADDRESS = "HOME_ADDRESS"
-    static var LANG_UPDATED = false
+    static var LANG_UPDATED = true
     
     static let USERNAME = "USERNAME"
     static let PASSWORD = "PASSWORD"

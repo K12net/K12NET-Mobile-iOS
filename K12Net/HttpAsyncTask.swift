@@ -36,8 +36,6 @@ open class HttpAsyncTask : AsyncTask  {
         
         K12NetUserPreferences.LANG_UPDATED = false;
         
-        let response: AutoreleasingUnsafeMutablePointer<URLResponse?>?=nil
-        
         let urlAsString = (K12NetUserPreferences.getHomeAddress() as String) + "/Authentication_JSON_AppService.axd/SetLanguage"
         var params : [String:String] = [:];
         params["createPersistentCookie"] = "false";
@@ -46,20 +44,20 @@ open class HttpAsyncTask : AsyncTask  {
         
         request.setValue(K12NetUserPreferences.getLanguage(), forHTTPHeaderField: "LanguageCode")
         
-        let data: Data = K12NetWebRequest.sendSynchronousRequest(request, returningResponse: response)
-        
-        if(K12NetWebRequest.getLastError() == nil) {
+        K12NetWebRequest.sendSynchronousRequest(request, complation: { (data, error) in
+            if(error == nil) {
+                let jsonStr = NSString(data: data!, encoding: String.Encoding.utf8.rawValue);
+                
+                print("LanguageCode : \(String(describing: jsonStr))");
+                
+                DocumentView.setCookie()
+            }
+            else {
+                print("LanguageCode lasterror");
+                print(error ?? "");
+            }
             
-            let jsonStr = NSString(data: data, encoding: String.Encoding.utf8.rawValue);
-            
-            print("LanguageCode : \(String(describing: jsonStr))");
-            
-            DocumentView.setCookie()
-        }
-        else {
-            print("LanguageCode lasterror");
-            print(K12NetWebRequest.getLastError() ?? "");
-        }
+        })
         
     }
 }

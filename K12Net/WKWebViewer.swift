@@ -103,6 +103,15 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
     
     public func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
         
+        let address = navigationAction.request.url!.absoluteString.lowercased();
+        
+        print(address);
+        
+        if(address.contains("browse=newtab")) {
+            UIApplication.shared.openURL(navigationAction.request.url!)
+            return nil;
+        }
+        
         var Ycord : CGFloat = 0.0 // for top space
         if UIScreen.main.bounds.height == 812 { //Check for iPhone-x
             Ycord = 44.0
@@ -301,6 +310,12 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         
         print(address);
         
+        if(address.contains("browse=newtab")) {
+            UIApplication.shared.openURL(navigationAction.request.url!)
+            decisionHandler(.cancel)
+            return
+        }
+        
         if #available(iOS 11.0, *) {
             /*let cookies = HTTPCookieStorage.shared.cookies ?? [HTTPCookie]()
             
@@ -416,10 +431,10 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
                                     try FileManager.default.copyItem(at: tempLocalUrl, to: destinationFileUrl)
                                 }
                                 
-                                let open = DocViewer(barButton: self.container.backButton, controller: self.container.navigationController!)
-                                let activityVC = UIActivityViewController(activityItems: [destinationFileUrl],applicationActivities: [open])
-                                
                                 DispatchQueue.main.async {
+                                    let open = DocViewer(barButton: self.container.backButton, controller: self.container.navigationController!)
+                                    let activityVC = UIActivityViewController(activityItems: [destinationFileUrl],applicationActivities: [open])
+                                    
                                     self.container.addActionSheetForiPad(actionSheet: activityVC)
                                     self.container.present(activityVC, animated: true, completion: nil)
                                     
@@ -528,11 +543,16 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
             completionHandler()
         }))
         
-        DispatchQueue.main.async {
-            self.container.addActionSheetForiPad(actionSheet: alertController)
-            self.container.present(alertController, animated: true, completion: nil)
+        if var topController = UIApplication.shared.keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            
+            DispatchQueue.main.async {
+                topController.addActionSheetForiPad(actionSheet: alertController)
+                topController.present(alertController, animated: true, completion: nil)
+            }
         }
-        
     }
     
     func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo,

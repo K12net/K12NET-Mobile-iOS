@@ -45,8 +45,6 @@ open class LoginAsyncTask : AsyncTask  {
             storage.deleteCookie(cookie)
         }
         
-        let response: AutoreleasingUnsafeMutablePointer<URLResponse?>?=nil
-        
         let urlAsString = (K12NetUserPreferences.getHomeAddress() as String) + "/Authentication_JSON_AppService.axd/Login"
         var params : [String:String] = [:];
         params["userName"] = K12NetUserPreferences.getUsername();
@@ -58,47 +56,81 @@ open class LoginAsyncTask : AsyncTask  {
         LoginAsyncTask.urlError = false;
         LoginAsyncTask.connectionError = false;
         
-        let data: Data = K12NetWebRequest.sendSynchronousRequest(request, returningResponse: response)
-        
-        if(K12NetWebRequest.getLastError() == nil) {
-            
-            let jsonStr = NSString(data: data, encoding: String.Encoding.utf8.rawValue);
-            
-            print("logintex : \(String(describing: jsonStr))");
-            
-            var json : NSDictionary?;
-            
-            do {
-                json = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as? NSDictionary
-            } catch _ {
-                json = NSDictionary();
-            }
-            
-            if let parseJSON = json {
-                if let success = parseJSON["d"] as? Bool {
-                    LoginAsyncTask.lastOperationValue = success;
-                    
-                    if success {
+        K12NetWebRequest.sendSynchronousRequest(request, complation: { (data, error) in
+            if error != nil {
+                    print("lasterror");
+                    print(error ?? "");
+                    if(error?.code == -1003) { //NSURLErrorDomain
+                        LoginAsyncTask.urlError = true;
+                    }
+                    else if(error?.code == NSURLErrorTimedOut ||
+                                error?.code == NSURLErrorCannotConnectToHost ||
+                                error?.code == NSURLErrorNetworkConnectionLost ||
+                                error?.code == NSURLErrorNotConnectedToInternet) {
+                        LoginAsyncTask.connectionError = true;
+                    }
+            } else {
+                
+                let jsonStr = NSString(data: data!, encoding: String.Encoding.utf8.rawValue);
+                
+                print("logintex : \(String(describing: jsonStr))");
+                
+                var json : NSDictionary?;
+                
+                do {
+                    json = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as? NSDictionary
+                } catch _ {
+                    json = NSDictionary();
+                }
+                
+                if let parseJSON = json {
+                    if let success = parseJSON["d"] as? Bool {
+                        LoginAsyncTask.lastOperationValue = success;
                         
-                        if isLoginRetry {
-                            let connectionString = K12NetUserPreferences.getHomeAddress() as String;
+                        if success {
                             
-                            if connectionString == AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL {
-                                K12NetUserPreferences.saveLanguage(lang:"tr");
-                            } else {
-                                if (K12NetUserPreferences.getLanguage() == "tr") {
-                                    K12NetUserPreferences.saveLanguage(lang:"en");
+                            if isLoginRetry {
+                                let connectionString = K12NetUserPreferences.getHomeAddress() as String;
+                                
+                                if connectionString == AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL {
+                                    K12NetUserPreferences.saveLanguage(lang:"tr");
+                                } else {
+                                    if (K12NetUserPreferences.getLanguage() == "tr") {
+                                        K12NetUserPreferences.saveLanguage(lang:"en");
+                                    }
                                 }
                             }
-                        }
-                        
-                        if(K12NetUserPreferences.LANG_UPDATED) {
-                            let task = HttpAsyncTask(operation: "SetLanguage");
                             
-                            task.Execute();
+                            if(K12NetUserPreferences.LANG_UPDATED) {
+                                let task = HttpAsyncTask(operation: "SetLanguage");
+                                
+                                task.Execute();
+                            }
+                            
+                        } else {
+                            if !isLoginRetry {
+                                isLoginRetry = true;
+                                
+                                let connectionString = K12NetUserPreferences.getHomeAddress() as String;
+                                
+                                if connectionString == AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL {
+                                    K12NetUserPreferences.saveHomeAddress("https://azure.k12net.com");
+                                    K12NetUserPreferences.saveFSAddress("http://fs.azure.k12net.com/FS/");
+                                } else {
+                                    K12NetUserPreferences.saveHomeAddress(AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL);
+                                    K12NetUserPreferences.saveFSAddress(AppStaticDefinition.K12NET_FS_DEFAULT_URL);
+                                }
+                                
+                                loginOperation();
+                                
+                                return;
+                                
+                            } else {
+                                LoginAsyncTask.lastOperationValue = false;
+                            }
                         }
-                        
-                    } else {                        
+                    }
+                    else {
                         if !isLoginRetry {
                             isLoginRetry = true;
                             
@@ -120,47 +152,13 @@ open class LoginAsyncTask : AsyncTask  {
                             LoginAsyncTask.lastOperationValue = false;
                         }
                     }
+                    
                 }
-                else {
-                    if !isLoginRetry {
-                        isLoginRetry = true;
-                        
-                        let connectionString = K12NetUserPreferences.getHomeAddress() as String;
-                        
-                        if connectionString == AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL {
-                            K12NetUserPreferences.saveHomeAddress("https://azure.k12net.com");
-                            K12NetUserPreferences.saveFSAddress("http://fs.azure.k12net.com/FS/");
-                        } else {
-                            K12NetUserPreferences.saveHomeAddress(AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL);
-                            K12NetUserPreferences.saveFSAddress(AppStaticDefinition.K12NET_FS_DEFAULT_URL);
-                        }
-                        
-                        loginOperation();
-                        
-                        return;
-                        
-                    } else {
-                        LoginAsyncTask.lastOperationValue = false;
-                    }
-                }
-                
             }
-        }
-        else {
-            print("lasterror");
-            print(K12NetWebRequest.getLastError() ?? "");
-            if(K12NetWebRequest.getLastError()?.code == -1003) { //NSURLErrorDomain
-                LoginAsyncTask.urlError = true;
-            }
-            else if(K12NetWebRequest.getLastError()?.code == NSURLErrorTimedOut ||
-                K12NetWebRequest.getLastError()?.code == NSURLErrorCannotConnectToHost ||
-                K12NetWebRequest.getLastError()?.code == NSURLErrorNetworkConnectionLost ||
-                K12NetWebRequest.getLastError()?.code == NSURLErrorNotConnectedToInternet) {
-                LoginAsyncTask.connectionError = true;
-            }
-        }
+            
+            loginStarted = false;
+        })
         
-        loginStarted = false;
     }
     
 }

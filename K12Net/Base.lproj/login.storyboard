@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mG3-rm-Rac">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mG3-rm-Rac">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -272,14 +273,9 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="wve-3x-t0o"/>
                         <barButtonItem id="iE9-p4-9dM"/>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="wEJ-4E-gO9"/>
-                        <barButtonItem enabled="NO" image="Browse" id="6E4-Ui-swo" userLabel="Browser Button">
-                            <inset key="imageInsets" minX="0.0" minY="0.0" maxX="21" maxY="0.0"/>
-                            <connections>
-                                <action selector="browseView:" destination="vxU-z1-K1a" id="E9x-HS-aKn"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem systemItem="refresh" id="QTh-WI-Wif">
-                            <inset key="imageInsets" minX="0.0" minY="0.0" maxX="3" maxY="0.0"/>
+                        <barButtonItem landscapeImage="Refresh" id="QTh-WI-Wif">
+                            <imageReference key="image" image="Refresh" symbolScale="large"/>
+                            <inset key="imageInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                             <connections>
                                 <action selector="refreshView:" destination="vxU-z1-K1a" id="Hy3-c7-daH"/>
                             </connections>
@@ -289,7 +285,6 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="backButton" destination="HEx-59-zdx" id="VuO-09-knh"/>
-                        <outlet property="browseButton" destination="6E4-Ui-swo" id="84Z-8a-Elb"/>
                         <outlet property="homeButton" destination="umc-Io-4dP" id="fZx-3V-7YY"/>
                         <outlet property="nextButton" destination="Klk-Yp-Duq" id="RZH-DL-cca"/>
                         <outlet property="preloader" destination="63L-Co-WRd" id="FPh-NA-lVy"/>
@@ -501,37 +496,12 @@
             </objects>
             <point key="canvasLocation" x="301.875" y="832.39436619718299"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="5wx-pf-ZJ3">
-            <objects>
-                <navigationController navigationBarHidden="YES" toolbarHidden="NO" hidesBarsOnSwipe="YES" id="c8C-WC-Xah" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vm9-Ge-LB4">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" red="0.93725490199999995" green="0.42745098040000001" blue="0.1058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <textAttributes key="titleTextAttributes">
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="textShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="5LO-bS-GRf">
-                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="vxU-z1-K1a" kind="relationship" relationship="rootViewController" id="V4c-8Q-GJg"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9mO-Tt-wuX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="301" y="1606"/>
-        </scene>
     </scenes>
     <resources>
         <image name="Back" width="32" height="32"/>
-        <image name="Browse" width="32" height="32"/>
         <image name="Logo" width="171" height="171"/>
         <image name="Next" width="32" height="32"/>
+        <image name="Refresh" width="29" height="29"/>
         <image name="home_white" width="32" height="32"/>
     </resources>
 </document>

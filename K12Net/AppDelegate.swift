@@ -161,7 +161,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             {
                 K12NetLogin.notificationURL = URL(string:String(format: AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL + "/Default.aspx?intent=%@&portal=%@&query=%@",intent.urlEncode(),portal.urlEncode(),query.urlEncode()));
                 
-                let dialogMessage = UIAlertController(title: title, message: message + "\n\n" + "navToNotify".localized, preferredStyle: .alert)
+                var body = message + "\n\n" + "navToNotify".localized;
+                
+                if(intent == "confirm") {
+                    body = message;
+                }
+                
+                let dialogMessage = UIAlertController(title: title, message: body, preferredStyle: .alert)
                 
                 let ok = UIAlertAction(title: "OK".localized, style: .default, handler: { (action) -> Void in
                     if (!LoginAsyncTask.loginStarted) {

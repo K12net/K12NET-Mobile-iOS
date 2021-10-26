@@ -10,12 +10,6 @@ import Foundation
 
 open class K12NetWebRequest {
     
-    fileprivate static var lastError : NSError?;
-    
-    public static func getLastError() -> NSError? {
-        return K12NetWebRequest.lastError;
-    }
-    
     public static func retrieveGetRequest(_ urlAsString : String) -> NSMutableURLRequest {
         let httpMethod = "GET"
         
@@ -65,29 +59,65 @@ open class K12NetWebRequest {
         return request;
     }
     
-    public static func sendSynchronousRequest( _ getReq : NSMutableURLRequest ,returningResponse : AutoreleasingUnsafeMutablePointer<URLResponse?>?) -> Data {
+    public static func sendSynchronousRequest( _ getReq : NSMutableURLRequest , complation : @escaping (Data?,NSError?)->Void, retry:Bool = true){
         
-        var data : Data?;
-        K12NetWebRequest.lastError = nil;
         
-        do {
-            data = try  NSURLConnection.sendSynchronousRequest(getReq as URLRequest, returning: returningResponse);
+        /* var data : Data?;
+         
+         do {
+            data = try  NSURLConnection.sendSynchronousRequest(getReq as URLRequest, returning: nil);
             if let jsonStr = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) {
                 if jsonStr.length > 100 {
                     let splitString = jsonStr.substring(to: 100) as String;
                     if (splitString.lowercased().contains("Authentication Failed".lowercased())) {
                         LoginAsyncTask.loginOperation();
-                        data = try  NSURLConnection.sendSynchronousRequest(getReq as URLRequest, returning: returningResponse);
+                        data = try  NSURLConnection.sendSynchronousRequest(getReq as URLRequest, returning: nil);
                     }
                 }
             }
-        } catch let error as NSError {
+            complation(data,nil)
+    } catch let error as NSError {
             data = Data();
-            K12NetWebRequest.lastError = error;
-        }
-    
-    
+            complation(data,error)
+        }*/
+        var data : Data?;
+        var err = nil as NSError?
+        let group = DispatchGroup()
+        group.enter()
         
-        return data!;
+        let session = URLSession.shared
+        let task = session.dataTask(with: getReq as URLRequest, completionHandler: { d, response, error in
+            data = d
+            err = error as NSError?
+            
+            if(err != nil){
+                group.leave()
+                return
+            }
+            
+            if let jsonStr = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) {
+                if jsonStr.length > 100 {
+                    let splitString = jsonStr.substring(to: 100) as String;
+                    if (splitString.lowercased().contains("Authentication Failed".lowercased())) {
+                        if(retry) {
+                            LoginAsyncTask.loginOperation();
+                            K12NetWebRequest.sendSynchronousRequest(getReq,complation: { (d, error) in
+                                data = d
+                                err = error as NSError?
+                                group.leave()
+                            }, retry:false);
+                            return
+                        }
+                    }
+                }
+            }
+            
+            group.leave()
+        })
+
+        task.resume()
+        group.wait()
+        
+        complation(data,err)
     }
 }
