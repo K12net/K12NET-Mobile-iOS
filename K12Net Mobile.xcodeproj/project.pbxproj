@@ -17,6 +17,7 @@
 		1650955922315C9700ABA194 /* PhotoLibrary.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1650955B22315C9700ABA194 /* PhotoLibrary.strings */; };
 		1650955E22315CAF00ABA194 /* PhotosUI.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1650956022315CAF00ABA194 /* PhotosUI.strings */; };
 		166CD69D20E2989D007DAD2F /* Localizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 166CD69C20E2989C007DAD2F /* Localizer.swift */; };
+		167513FA27C7785B00C89F69 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167513F927C7785B00C89F69 /* UIDeviceExtension.swift */; };
 		16AA43A321E9DE31003C439C /* HttpAsyncTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16AA43A221E9DE31003C439C /* HttpAsyncTask.swift */; };
 		16E0088022173D2D00E0D92E /* DocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E0087F22173D2D00E0D92E /* DocumentView.swift */; };
 		16F22E5920F9E6A200DE86C6 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16F22E5820F9E6A200DE86C6 /* UserNotifications.framework */; };
@@ -59,6 +60,7 @@
 		1650956122315CB000ABA194 /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/PhotosUI.strings; sourceTree = "<group>"; };
 		1650956222315CB000ABA194 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/PhotosUI.strings; sourceTree = "<group>"; };
 		166CD69C20E2989C007DAD2F /* Localizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizer.swift; sourceTree = "<group>"; };
+		167513F927C7785B00C89F69 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		16997B8F21688832008BE33A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		16AA43A221E9DE31003C439C /* HttpAsyncTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpAsyncTask.swift; sourceTree = "<group>"; };
 		16AFD52625EF98CD00E7B5CF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/login.strings; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				162F47C1221BDCE90012D329 /* WKWebViewer.swift */,
 				162F47C3221BDD050012D329 /* WebViewer.swift */,
 				162F47C5221BE87F0012D329 /* IWebView.swift */,
+				167513F927C7785B00C89F69 /* UIDeviceExtension.swift */,
 			);
 			path = K12Net;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				4FEC88C51BF90F6100A1BA90 /* UIViewControllerExtension.swift in Sources */,
 				4FEC88B51BF90F6100A1BA90 /* K12NetSettings.swift in Sources */,
 				4FEC88BE1BF90F6100A1BA90 /* LoginAsyncTask.swift in Sources */,
+				167513FA27C7785B00C89F69 /* UIDeviceExtension.swift in Sources */,
 				4FEC88C31BF90F6100A1BA90 /* StringExtension.swift in Sources */,
 				16509546223157EE00ABA194 /* BundleExtensions.swift in Sources */,
 			);
