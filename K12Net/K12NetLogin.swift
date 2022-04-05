@@ -26,6 +26,7 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
     static var isLogout = false;
     
     static var controller :K12NetLogin? = nil;
+    static var userInfo: [AnyHashable: Any] = [:];
     static var notificationURL :URL? = nil;
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
@@ -99,6 +100,18 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
                 }
             }
             
+        }
+        
+        if !K12NetLogin.userInfo.isEmpty {
+            AppDelegate.handlerRemoteNotification(K12NetLogin.userInfo,actionIdentifier: "K12netLogin");
+            K12NetLogin.userInfo = [:];
+            
+            var intent = "";
+            if K12NetLogin.userInfo.keys.contains("intent") {intent = K12NetLogin.userInfo["intent"] as! String;}
+            
+            if intent == "confirm" {
+                return;
+            }
         }
         
         if(hasNewUpdate) {
@@ -233,18 +246,23 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         }
         else if(LoginAsyncTask.lastOperationValue) {
             
-            let vc : DocumentView = self.storyboard!.instantiateViewController(withIdentifier: "document_view") as! DocumentView;
-            vc.first_time = true;
-            vc.simple_page = false;
-            vc.startUrl = nil;
-            vc.windowDepth = 1;
-            
-            if K12NetLogin.notificationURL != nil {
-                vc.startUrl = K12NetLogin.notificationURL;
-                K12NetLogin.notificationURL = nil;
+            if !K12NetLogin.userInfo.isEmpty {
+                AppDelegate.handlerRemoteNotification(K12NetLogin.userInfo,actionIdentifier: "K12netLogin");
+                K12NetLogin.userInfo = [:];
+            } else {
+                let vc : DocumentView = self.storyboard!.instantiateViewController(withIdentifier: "document_view") as! DocumentView;
+                vc.first_time = true;
+                vc.simple_page = false;
+                vc.startUrl = nil;
+                vc.windowDepth = 1;
+                
+                if K12NetLogin.notificationURL != nil {
+                    vc.startUrl = K12NetLogin.notificationURL;
+                }
+                
+                navigationController?.pushViewController(vc, animated: true);
             }
             
-            navigationController?.pushViewController(vc, animated: true);
         }
         else {
             let alertController = UIAlertController(title: "appTitle".localized, message:"loginFailed".localized , preferredStyle: UIAlertController.Style.alert)
@@ -254,6 +272,7 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
             self.present(alertController, animated: true, completion: nil)
         }
         
+        K12NetLogin.userInfo = [:];
         K12NetLogin.notificationURL = nil;
     }
     

@@ -10,3 +10,15 @@
 "FULL_PHOTOS_GRID_ZOOM_LEVEL_TITLE" = "Anlar";
 "NO_PHOTOS_OR_VIDEOS" = "Fotoğraf ve video yok";
 "EMPTY_ALBUM_LIST_MESSAGE_iPhone" = "You can take photos and videos using camera, or sync photos and videos onto your iPhone using iTunes";
+"REVIEW_MODE_DELETE_TITLE" = "Seçilmeyen %@ fotoğraf silinecek.";
+"AVALANCHE_ALL" = "Bütün Fotoğrafları Tut";
+"PUPHOTOBROWSER_BUTTON_REVIEW_CAMERA" = "Favoriler…";
+"AVALANCHE_SELECTED" = "Seçili Fotoğrafları Tut";
+"REVIEW_MODE_DESTRUCTIVE_TITLE" = "%@ Fotoğraf";
+"REVIEW_MULTIPLE_TITLE_TEXT" = "%@ Fotoğraf Seçildi";
+"PUPHOTOBROWSER_BUTTON_REVIEW" = "Favorileri Seç…";
+"REVIEW_INSTRUCTION_TEXT" = "Tap to select the best photos in this burst.";
+"EMPTY_REVIEW_TITLE_TEXT" = "Favorileri Seç";
+"REVIEW_SINGLE_TITLE_TEXT" = "%@ Fotoğraf Seçildi";
+"AVALANCHE_CANCEL" = "İptal";
+

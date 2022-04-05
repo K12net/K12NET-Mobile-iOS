@@ -107,7 +107,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         
         print(address);
         
-        if(address.contains("browse=newtab")) {
+        if(address.contains("browse=newtab") || address.contains("razplus")) {
             UIApplication.shared.openURL(navigationAction.request.url!)
             return nil;
         }
@@ -390,7 +390,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
              return*/
         }
         
-        if((address.contains("FSCore.Web/api/File") || address.contains("getfile.aspx") || address.contains("getimage.aspx")) && !address.contains(".google.com")) {
+        if((address.contains("FSCore.Web/api/File") || address.contains("getfile.aspx") || address.contains("getimage.aspx")) && !address.contains(".google.com") && !address.contains("pdfviewer/viewer.html")) {
             
             if(self.downloadInProgress) {
                 decisionHandler(.cancel)
@@ -543,14 +543,15 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
             completionHandler()
         }))
         
-        if var topController = UIApplication.shared.keyWindow?.rootViewController {
-            while let presentedViewController = topController.presentedViewController {
-                topController = presentedViewController
+        DispatchQueue.main.async {
+            if self.container.presentedViewController == nil
+            {
+                self.container.addActionSheetForiPad(actionSheet: alertController)
+                self.container.present(alertController, animated: true, completion: nil)
             }
-            
-            DispatchQueue.main.async {
-                topController.addActionSheetForiPad(actionSheet: alertController)
-                topController.present(alertController, animated: true, completion: nil)
+            else
+            {
+                completionHandler()
             }
         }
     }

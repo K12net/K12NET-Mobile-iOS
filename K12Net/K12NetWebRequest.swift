@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit;
 
 open class K12NetWebRequest {
     
@@ -44,6 +45,7 @@ open class K12NetWebRequest {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue(K12NetUserPreferences.getDeviceToken() as String, forHTTPHeaderField: "Atlas-DeviceID");
         request.addValue(AppStaticDefinition.K12NET_IOS_APPLICATION_ID, forHTTPHeaderField: "Atlas-DeviceTypeID");
+        request.addValue(UIDevice.current.name + " [" + UIDevice.current.modelName + "] [" + UIDevice.current.systemName + " " + UIDevice.current.systemVersion + "]", forHTTPHeaderField: "Atlas-DeviceModel");
         
         return request;
     }

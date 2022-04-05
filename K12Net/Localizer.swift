@@ -20,7 +20,7 @@ class Localizer: NSObject {
 
 extension Bundle {
     @objc func specialLocalizedString(key: String, value: String?, table tableName: String?) -> String {
-        let currentLanguage = K12NetUserPreferences.getLanguage()
+        let currentLanguage = String(K12NetUserPreferences.getLanguage().split(separator:"-")[0])
         var bundle = Bundle();
         if let _path = Bundle.main.path(forResource: currentLanguage, ofType: "lproj") {
             bundle = Bundle(path: _path)!

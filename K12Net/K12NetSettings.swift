@@ -13,7 +13,7 @@ import UIKit
 class K12NetSettings : UIViewController, UITextFieldDelegate {
     
     public static let ENGLISH = "en";
-    public static let ARABIC = "ar";
+    public static let ARABIC = "ar-AE";
     public static let TURKISH = "tr";
     public static let FRENCH = "fr";
     public static let RUSSION = "ru";
@@ -55,6 +55,8 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
         case "en":
             languageIndex = 1;
         case "ar":
+            languageIndex = 2;
+        case "ar-AE":
             languageIndex = 2;
         case "fr":
             languageIndex = 3;

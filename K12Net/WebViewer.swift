@@ -153,7 +153,7 @@ class WebViewer : NSObject, UIWebViewDelegate, IWebView {
         
         print(address);
         
-        if((address.contains("FSCore.Web/api/File") || address.contains("getfile.aspx") || address.contains("getimage.aspx")) && !address.contains(".google.com")) {
+        if((address.contains("FSCore.Web/api/File") || address.contains("getfile.aspx") || address.contains("getimage.aspx")) && !address.contains(".google.com") && !address.contains("pdfviewer/viewer.html")) {
             
             if(self.downloadInProgress) {
                 return false;

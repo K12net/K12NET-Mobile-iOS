@@ -50,6 +50,14 @@ class DocViewer: UIActivity,UIDocumentInteractionControllerDelegate {
         docController.delegate = self
         docController.presentPreview(animated: true)
         
+        let navigationController = self.controller as! UINavigationController
+             
+        let navigationBar = navigationController.navigationBar
+        // The bar must be set isTranslucent = false for the tint colours to work
+        navigationBar.isTranslucent = false
+        navigationBar.barTintColor = UIColor.blue
+        navigationBar.tintColor = UIColor.blue
+     
         activityDidFinish(true)
     }
     

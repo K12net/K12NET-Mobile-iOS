@@ -41,6 +41,7 @@
 "Take Photo or Video (file upload action sheet)" = "التقط فيديو / صورة";
 "Take Photo (file upload action sheet)" = "التقط صورة";
 "Take Video (file upload action sheet)" = "التقط فيديو";
+"Browse (file upload action sheet)" = "Browse";
 "The URL was blocked by a content blocker" = "تم حجب المحتوى من حاجب محتوى؛";
 "The URL was blocked by a content filter" = "تم حجب المحتوى من فلتر محتوى";
 "Passwords" = "كلمات السر";

@@ -6,11 +6,16 @@
   Copyright © 2015 K12Net. All rights reserved.
 */
 
+"SHARE_SHEET_EDIT_ACTIONS_BUTTON_TITLE" = "Edit Actions";
+"SHARE_SHEET_EDIT_SECTION_TITLE_FAVORITES" = "Favoriler";
+"SHARE_SHEET_EDIT_SECTION_TITLE_OTHER" = "Diğer";
 "addressError" = "Bağlantı adresi hatalı. Lütfen kontrol edip tekrar deneyiniz.";
 "connectionError" = "Bağlantı yapılamadı. Lütfen data paketinizi ya da WiFi ayarlarınızı kontrol edin";
 "loginError" = "Kullanıcı adı ya da şifre hatalı. Lütfen kontrol edip tekrar deneyiniz.";
 "ok" = "Tamam";
 "OK" = "Tamam";
+"YES" = "EVET";
+"NO" = "HAYIR";
 "Cancel" = "İptal";
 "close" = "Kapat";
 "appTitle" = "K12NET Mobil";
@@ -42,6 +47,8 @@
 "Take Photo or Video (file upload action sheet)" = "Kamera";
 "Take Photo (file upload action sheet)" = "Fotoğraf Çek";
 "Take Video (file upload action sheet)" = "Video";
+"Browse (file upload action sheet)" = "Aç";
+"Open (file upload action sheet)" = "Aç";
 "The URL was blocked by a content blocker" = "The URL was blocked by a content blocker";
 "The URL was blocked by a content filter" = "The URL was blocked by a content filter";
 "Passwords" = "Şifreler";
@@ -63,6 +70,7 @@
 "Create Document" = "Döküman Oluştur";
 "Create Folder" = "Dizin Oluştur";
 "Copy" = "Kopyala";
+"Markup" = "İşaretle";
 "Duplicate" = "Tekrarla";
 "Paste" = "Yapıştır";
 "Move" = "Taşı";

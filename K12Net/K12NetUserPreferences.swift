@@ -164,9 +164,13 @@ open class K12NetUserPreferences {
     }
     
     public static func saveLanguage(lang: String) {
-        LANG_UPDATED = LANG_UPDATED || (lang != getStringValue(LANGUAGE))
+        var mlang = lang;
+        if(mlang == "ar") {
+            mlang = "ar-AE";
+        }
+        LANG_UPDATED = LANG_UPDATED || (mlang != getStringValue(LANGUAGE))
         
-        setStringValue(LANGUAGE, value: lang)
+        setStringValue(LANGUAGE, value: mlang)
     }
     
     public static func saveUsername(_ username: String) {

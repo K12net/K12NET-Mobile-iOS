@@ -49,6 +49,7 @@ open class LoginAsyncTask : AsyncTask  {
         var params : [String:String] = [:];
         params["userName"] = K12NetUserPreferences.getUsername();
         params["password"] = K12NetUserPreferences.getPassword();
+        
         params["createPersistentCookie"] = "false";
         
         let request = K12NetWebRequest.retrievePostRequest(urlAsString, params: params);
