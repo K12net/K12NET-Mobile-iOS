@@ -6,6 +6,17 @@
   Copyright © 2015 K12Net. All rights reserved.
 */
 
+"attendanceService" = "Attendance Service";
+"noGeoFence" = "User has no defined location fences! Background services are closed!";
+"locationMonitorNotSupport" = "Location Monitoring Not Supported on this device!";
+"locationAccessAppSettings" = "K12NET Mobile collects your location data to enable Location Based Attendance Tracking even when the app is closed or not in use. Please allow Location permission - Allow all the time in App Settings. You can disable this service from K12NET Mobile - Settings whenever you want";
+"location_permission" = "📍 Use Your Location";
+"attendance_service_started" = "Location Region Tracking is running";
+"geofences_removed" = "Geofences removed";
+"geofences_added" = "Geofences added";
+"enter" = "Time In Updated";
+"exit" = "Time Out Updated";
+"attendanceTake" = "%@ [Distance: %@ m.] [Accuracy: %@ m.]";
 "addressError" = "Connection URL is not correct. Please check it and try again";
 "connectionError" = "Data connection can not be establised. Please check your data or WiFi connectivity";
 "loginError" = "Username or password is incorrect. Please check them and try again.";

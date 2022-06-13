@@ -39,7 +39,7 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+         
         if #available(iOS 11.0, *) {
             WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) {
                 records in records.forEach {
@@ -287,7 +287,7 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
     
     @IBAction func clickForgotPassword(_ sender: Any) {
         let vc : DocumentView = self.storyboard!.instantiateViewController(withIdentifier: "document_view") as! DocumentView;
-        vc.startUrl = URL(string:AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL + "/ResetPassword.aspx");
+        vc.startUrl = URL(string:K12NetUserPreferences.getHomeAddress() + "/ResetPassword.aspx");
         vc.simple_page = true;
         vc.first_time = false;
         vc.windowDepth = 1;

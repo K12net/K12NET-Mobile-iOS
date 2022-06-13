@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mG3-rm-Rac">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mG3-rm-Rac">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -373,18 +374,32 @@
                                         </connections>
                                     </segmentedControl>
                                     <button contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oX0-f3-QTp">
-                                        <rect key="frame" x="22" y="296" width="323" height="30"/>
+                                        <rect key="frame" x="78" y="353" width="220" height="41"/>
+                                        <color key="backgroundColor" systemColor="linkColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="4HR-3e-RoF"/>
                                         </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Save">
-                                            <color key="titleColor" red="0.0" green="0.56464199120000003" blue="0.90862238220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="save_address:" destination="8fT-m0-Fpw" eventType="touchUpInside" id="uQR-e8-YOo"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Location Service" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hph-HR-9t9">
+                                        <rect key="frame" x="46" y="312" width="205" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" systemColor="linkColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JEa-68-fGM" userLabel="Location Service">
+                                        <rect key="frame" x="267" y="307" width="51" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="4u0-ZE-oeT"/>
+                                        </constraints>
+                                    </switch>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="oX0-f3-QTp" secondAttribute="bottom" constant="246" id="4Ul-jD-34q"/>
@@ -394,11 +409,13 @@
                                     <constraint firstAttribute="centerX" secondItem="cA7-py-IXx" secondAttribute="centerX" id="7p6-rq-Kbx"/>
                                     <constraint firstItem="oX0-f3-QTp" firstAttribute="centerX" secondItem="awn-Z0-SXu" secondAttribute="centerX" id="9Dp-d5-CE4"/>
                                     <constraint firstAttribute="bottom" secondItem="oX0-f3-QTp" secondAttribute="bottom" constant="209" id="9Ho-w5-1fJ"/>
+                                    <constraint firstItem="JEa-68-fGM" firstAttribute="top" secondItem="f2d-l4-1vr" secondAttribute="bottom" constant="19" id="9To-4Y-2aT"/>
                                     <constraint firstItem="RuS-zZ-Aix" firstAttribute="top" secondItem="jyg-b2-QyP" secondAttribute="bottom" constant="8" id="Byh-vM-1BI"/>
                                     <constraint firstItem="jyg-b2-QyP" firstAttribute="trailing" secondItem="RuS-zZ-Aix" secondAttribute="trailing" id="HkC-W5-lfC"/>
                                     <constraint firstItem="oX0-f3-QTp" firstAttribute="centerY" secondItem="awn-Z0-SXu" secondAttribute="centerY" id="IBh-9p-aFk"/>
                                     <constraint firstItem="jyg-b2-QyP" firstAttribute="leading" secondItem="RuS-zZ-Aix" secondAttribute="leading" id="IDk-6p-L67"/>
                                     <constraint firstAttribute="trailing" secondItem="29P-hm-qUQ" secondAttribute="trailing" constant="30" id="JQq-Az-Tcm"/>
+                                    <constraint firstItem="JEa-68-fGM" firstAttribute="leading" secondItem="Hph-HR-9t9" secondAttribute="trailing" constant="43.5" id="Lem-Oa-WvJ"/>
                                     <constraint firstItem="oX0-f3-QTp" firstAttribute="top" secondItem="awn-Z0-SXu" secondAttribute="top" constant="297" id="M2E-DF-bwY"/>
                                     <constraint firstItem="f2d-l4-1vr" firstAttribute="top" secondItem="RuS-zZ-Aix" secondAttribute="bottom" constant="8" id="QEg-Pd-13f"/>
                                     <constraint firstItem="RuS-zZ-Aix" firstAttribute="leading" secondItem="cA7-py-IXx" secondAttribute="leading" id="QMc-75-o4l"/>
@@ -409,9 +426,11 @@
                                     <constraint firstAttribute="trailing" secondItem="oX0-f3-QTp" secondAttribute="trailing" constant="265" id="dne-SK-dkP"/>
                                     <constraint firstItem="29P-hm-qUQ" firstAttribute="top" secondItem="cA7-py-IXx" secondAttribute="bottom" constant="42" id="e4H-Db-cuk"/>
                                     <constraint firstAttribute="trailing" secondItem="jyg-b2-QyP" secondAttribute="trailing" constant="200" id="h7M-4g-YlE"/>
+                                    <constraint firstItem="Hph-HR-9t9" firstAttribute="centerX" secondItem="awn-Z0-SXu" secondAttribute="centerX" id="isn-oH-Oal"/>
                                     <constraint firstItem="29P-hm-qUQ" firstAttribute="top" secondItem="awn-Z0-SXu" secondAttribute="topMargin" constant="8" id="j2L-N2-xj8"/>
                                     <constraint firstAttribute="centerX" secondItem="29P-hm-qUQ" secondAttribute="centerX" id="juP-8B-f58"/>
-                                    <constraint firstItem="oX0-f3-QTp" firstAttribute="top" secondItem="f2d-l4-1vr" secondAttribute="bottom" constant="8" id="sKz-Ra-yjb"/>
+                                    <constraint firstItem="Hph-HR-9t9" firstAttribute="top" secondItem="f2d-l4-1vr" secondAttribute="bottom" constant="24" id="meb-9J-1gb"/>
+                                    <constraint firstItem="oX0-f3-QTp" firstAttribute="top" secondItem="Hph-HR-9t9" secondAttribute="bottom" constant="22" id="sKz-Ra-yjb"/>
                                     <constraint firstItem="oX0-f3-QTp" firstAttribute="top" secondItem="RuS-zZ-Aix" secondAttribute="bottom" constant="7" id="sOd-nh-LNg"/>
                                     <constraint firstAttribute="bottom" secondItem="cA7-py-IXx" secondAttribute="bottom" constant="570" id="uOQ-ZW-gUm"/>
                                     <constraint firstItem="29P-hm-qUQ" firstAttribute="centerX" secondItem="jyg-b2-QyP" secondAttribute="centerX" id="v8D-Xv-JnI"/>
@@ -460,6 +479,7 @@
                     <navigationItem key="navigationItem" title="Settings" id="YKA-d1-SuG"/>
                     <connections>
                         <outlet property="btnSave" destination="oX0-f3-QTp" id="i6O-3c-6GS"/>
+                        <outlet property="chkLocationService" destination="JEa-68-fGM" id="GIM-Cq-rTM"/>
                         <outlet property="connection_url" destination="RuS-zZ-Aix" id="cgt-AX-IMO"/>
                         <outlet property="ftp_address" destination="cA7-py-IXx" id="HYg-zd-9K8"/>
                         <outlet property="languageSegmented" destination="f2d-l4-1vr" id="n3u-KO-OiI"/>
@@ -503,5 +523,8 @@
         <image name="Next" width="32" height="32"/>
         <image name="Refresh" width="29" height="29"/>
         <image name="home_white" width="32" height="32"/>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

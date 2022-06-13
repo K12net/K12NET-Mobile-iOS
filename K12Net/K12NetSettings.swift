@@ -22,6 +22,7 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
     @IBOutlet weak var ftp_address: UITextField!
     @IBOutlet weak var btnSave: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var chkLocationService: UISwitch!
     
     @IBOutlet weak var languageSegmented: UISegmentedControl!
     @IBOutlet weak var lblPageTitle: UILabel!
@@ -70,13 +71,15 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
         
         self.connection_url.delegate = self;
         self.ftp_address.delegate = self;
+        let hasUserPermit = K12NetUserPreferences.getBooleanValue("PERMIT_LOCATION_ATTENDANCE");
         
+        chkLocationService.setOn(hasUserPermit != nil && hasUserPermit == true, animated: true);
     }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
     }
-    	
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
         textField.resignFirstResponder()
         return true
@@ -86,6 +89,19 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
         
         K12NetUserPreferences.saveHomeAddress(connection_url.text!)
         K12NetUserPreferences.saveFSAddress(ftp_address.text!)
+        K12NetUserPreferences.setBooleanValue("PERMIT_LOCATION_ATTENDANCE",value: chkLocationService.isOn);
+        
+        if(chkLocationService.isOn) {
+            
+        } else {
+            AttendanceManager.Instance.stopMonitorServices()
+            
+            let alertController = UIAlertController(title: "location_permission".localized, message:"locationAccessAppSettings".localized , preferredStyle: UIAlertController.Style.alert)
+            alertController.addAction(UIAlertAction(title: "ok".localized, style: UIAlertAction.Style.default,handler: nil))
+            
+            K12NetLogin.controller?.addActionSheetForiPad(actionSheet: alertController)
+            K12NetLogin.controller?.present(alertController, animated: true, completion: nil)
+        }
         
         Localizer.RefreshUI(self);
     }

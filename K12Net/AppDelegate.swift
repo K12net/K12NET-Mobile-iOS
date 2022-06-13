@@ -236,26 +236,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     if (intent == "confirm") {
                         let notificationID = query.components(separatedBy:";").last;
                         AppDelegate.doSetNotificationResponse(isConfirmed: true,notificationID: notificationID ?? "0")
-                    } else if (LoginAsyncTask.loginStarted) {
+                    } else {
                         let viewController = K12NetLogin.controller?.navigationController?.topViewController
                         
                         if(viewController != nil && viewController is DocumentView) {
                             let dv = (viewController as! DocumentView);
                             
                             if(dv.preloader != nil && !dv.preloader.isHidden) {
+                                
+                                    K12NetLogin.notificationURL = URL(string:String(format: K12NetUserPreferences.getHomeAddress() + "/Default.aspx?intent=%@&portal=%@&query=%@",intent.urlEncode(),portal.urlEncode(),query.urlEncode()));
+                                
                                 return
                             }
                         }
                         let vc : DocumentView = K12NetLogin.controller!.storyboard!.instantiateViewController(withIdentifier: "document_view") as! DocumentView;
                         
-                        vc.startUrl = URL(string:String(format: AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL + "/Default.aspx?intent=%@&portal=%@&query=%@",intent.urlEncode(),portal.urlEncode(),query.urlEncode()));
+                        vc.startUrl = URL(string:String(format: K12NetUserPreferences.getHomeAddress() + "/Default.aspx?intent=%@&portal=%@&query=%@",intent.urlEncode(),portal.urlEncode(),query.urlEncode()));
                         vc.simple_page = true;
                         vc.first_time = false;
                         vc.windowDepth = 1;
                         
                         K12NetLogin.controller?.navigationController?.pushViewController(vc, animated: true);
-                    } else {
-                        K12NetLogin.notificationURL = URL(string:String(format: AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL + "/Default.aspx?intent=%@&portal=%@&query=%@",intent.urlEncode(),portal.urlEncode(),query.urlEncode()));
                     }
                 })
                 

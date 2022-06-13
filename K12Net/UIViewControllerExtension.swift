@@ -12,6 +12,12 @@ private var scrollViewKey : UInt8 = 0
 private var moveViewKey : UInt8 = 1
 
 extension UIViewController {
+    func showAlert(withTitle title: String?, message: String?) {
+      let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+      let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+      alert.addAction(action)
+      present(alert, animated: true, completion: nil)
+    }
     
     public func addActionSheetForiPad(actionSheet: UIViewController) {
         if let popoverPresentationController = actionSheet.popoverPresentationController {

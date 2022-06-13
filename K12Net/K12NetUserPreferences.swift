@@ -42,6 +42,7 @@ open class K12NetUserPreferences {
     }
     
     static func getBooleanValue(_ keyValue:String) -> Bool? {
+        if(defaults.object(forKey: keyValue) == nil) {return nil}
         return defaults.bool(forKey: keyValue)
     }
     
@@ -86,7 +87,7 @@ open class K12NetUserPreferences {
         return language!;
     }
     
-    public static func getHomeAddress() -> NSString {
+    public static func getHomeAddress() -> String {
         var url : NSString;
         if let url_address = getStringValue(HOME_ADDRESS) {
             url = url_address as NSString;
@@ -96,7 +97,7 @@ open class K12NetUserPreferences {
             url = getStringValue(HOME_ADDRESS)! as NSString;
         }
         
-        return url
+        return url as String
     }
     
     public static func getFSAddress() -> NSString {

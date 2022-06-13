@@ -13,5 +13,7 @@ NSMediaLibraryUsageDescription = "أرسل البيانات كمرفقات لأ�
 NSMusicUsageDescription = "أرسل البيانات كمرفقات لأيميل التطبيق";
 NSPhotoLibraryUsageDescription = "أرسل صور المستخدم كمرفقات لأيميل التطبيق";
 NSLocationWhenInUseUsageDescription = "تستخدم لخدمات الحافلات";
+NSLocationAlwaysUsageDescription = "This app requires to always access your device location to attendance region tracking when user enters and/or exits a school geofence";
+NSLocationAlwaysAndWhenInUseUsageDescription = "This app requires to always access your device location to attendance region tracking when user enters and/or exits a school geofence";
 NSAppleMusicUsageDescription = "أرسل البيانات كمرفقات لأيميل التطبيق";
 NSPhotoLibraryAddUsageDescription = "إضافة صور المستخدمين";

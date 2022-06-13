@@ -108,6 +108,8 @@ open class LoginAsyncTask : AsyncTask  {
                                 task.Execute();
                             }
                             
+                            AttendanceManager.Instance.Initialize(controller: K12NetLogin.controller!)
+                            
                         } else {
                             if !isLoginRetry {
                                 isLoginRetry = true;

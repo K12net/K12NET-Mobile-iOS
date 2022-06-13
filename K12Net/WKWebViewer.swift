@@ -83,9 +83,8 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         
         DocumentView.setCookie()
         
-        container.view.addSubview(web_viewer)
-        
         container.preloader.removeFromSuperview()
+        container.view.addSubview(web_viewer)
         container.view.addSubview(container.preloader)
     }
     
@@ -120,7 +119,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
             Ycord = 20.0
         }
         
-        let customFrame = CGRect(x: 0.0, y: Ycord, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-Ycord)
+        let customFrame = CGRect(x: 0.0, y: Ycord, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height-Ycord-80)
         
         if (popupWebView != nil) {
             
@@ -205,7 +204,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
             self.loadURL(url: urlAddress);
         } else {
             let alertController = UIAlertController(title: "Web View", message:
-                "K12Net url address is wrong", preferredStyle: UIAlertController.Style.alert)
+                                                        "K12Net url address is wrong", preferredStyle: UIAlertController.Style.alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default,handler: nil))
             
             DispatchQueue.main.async {
@@ -289,15 +288,15 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         let request = URLRequest(url: url)
         
         DocumentView.setCookie()
-         
-         if #available(iOS 11.0, *) {
+        
+        if #available(iOS 11.0, *) {
             
             let cookies = HTTPCookieStorage.shared.cookies ?? [HTTPCookie]()
             
-             cookies.forEach({
+            cookies.forEach({
                 (popupWebView ?? web_viewer).configuration.websiteDataStore.httpCookieStore.setCookie($0, completionHandler: nil)
-             })
-         }
+            })
+        }
         
         (popupWebView ?? web_viewer).load(request);
     }
@@ -318,47 +317,47 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         
         if #available(iOS 11.0, *) {
             /*let cookies = HTTPCookieStorage.shared.cookies ?? [HTTPCookie]()
-            
-            cookies.forEach({
-                let wkHttpCookieStorage = WKWebsiteDataStore.default().httpCookieStore;
-                let cookie = $0
-                
-                if(cookie.name.contains("AUTH")) {
-                    var authCookie:HTTPCookie? = nil
-                    
-                    wkHttpCookieStorage.getAllCookies { (wkCookies) in
-                        // Nothing comes here sometimes !
-                        for wkCookie in wkCookies {
-                            if(wkCookie.name == cookie.name && wkCookie.value != cookie.value ) {
-                                authCookie = wkCookie
-                                print(wkCookie.name + "- wkCookie -" + wkCookie.value)
-                                
-                                //break
-                            }
-                        }
-                    }
-                    
-                    if(authCookie != nil) {
-                        print(cookie.name + "- cookie -" + cookie.value)
-                        var cookieDict : [HTTPCookiePropertyKey : Any] = [:];
-                        cookieDict[HTTPCookiePropertyKey.name] = authCookie?.name;
-                        cookieDict[HTTPCookiePropertyKey.value] = authCookie?.value;
-                        cookieDict[HTTPCookiePropertyKey.version] = authCookie?.version;
-                        cookieDict[HTTPCookiePropertyKey.domain] = authCookie?.domain;
-                        cookieDict[HTTPCookiePropertyKey.originURL] = authCookie?.domain;
-                        cookieDict[HTTPCookiePropertyKey.path] = authCookie?.path;
-                        cookieDict[HTTPCookiePropertyKey.secure] = authCookie?.isSecure;
-                        cookieDict[HTTPCookiePropertyKey.expires] = authCookie?.expiresDate;
-                        
-                        if let cookieNew = HTTPCookie(properties: cookieDict ) {
-                            HTTPCookieStorage.shared.setCookie(cookieNew);
-                        }
-                        
-                        UserDefaults.standard.synchronize()
-                        // web_viewer.configuration.websiteDataStore.httpCookieStore.setCookie(cookie, completionHandler: nil)
-                    }
-                }
-            })*/
+             
+             cookies.forEach({
+             let wkHttpCookieStorage = WKWebsiteDataStore.default().httpCookieStore;
+             let cookie = $0
+             
+             if(cookie.name.contains("AUTH")) {
+             var authCookie:HTTPCookie? = nil
+             
+             wkHttpCookieStorage.getAllCookies { (wkCookies) in
+             // Nothing comes here sometimes !
+             for wkCookie in wkCookies {
+             if(wkCookie.name == cookie.name && wkCookie.value != cookie.value ) {
+             authCookie = wkCookie
+             print(wkCookie.name + "- wkCookie -" + wkCookie.value)
+             
+             //break
+             }
+             }
+             }
+             
+             if(authCookie != nil) {
+             print(cookie.name + "- cookie -" + cookie.value)
+             var cookieDict : [HTTPCookiePropertyKey : Any] = [:];
+             cookieDict[HTTPCookiePropertyKey.name] = authCookie?.name;
+             cookieDict[HTTPCookiePropertyKey.value] = authCookie?.value;
+             cookieDict[HTTPCookiePropertyKey.version] = authCookie?.version;
+             cookieDict[HTTPCookiePropertyKey.domain] = authCookie?.domain;
+             cookieDict[HTTPCookiePropertyKey.originURL] = authCookie?.domain;
+             cookieDict[HTTPCookiePropertyKey.path] = authCookie?.path;
+             cookieDict[HTTPCookiePropertyKey.secure] = authCookie?.isSecure;
+             cookieDict[HTTPCookiePropertyKey.expires] = authCookie?.expiresDate;
+             
+             if let cookieNew = HTTPCookie(properties: cookieDict ) {
+             HTTPCookieStorage.shared.setCookie(cookieNew);
+             }
+             
+             UserDefaults.standard.synchronize()
+             // web_viewer.configuration.websiteDataStore.httpCookieStore.setCookie(cookie, completionHandler: nil)
+             }
+             }
+             })*/
         } else {
             DocumentView.setCookie()
             
@@ -538,26 +537,55 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
     func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo,
                  completionHandler: @escaping () -> Void) {
         
+        if self.container.presentedViewController != nil {
+            // either the Alert is already presented, or any other view controller
+            // is active (e.g. a PopOver)
+            // ...
+            completionHandler()
+            return
+        }
+        
         let alertController = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "OK".localized, style: .default, handler: { (action) in
             completionHandler()
         }))
         
         DispatchQueue.main.async {
-            if self.container.presentedViewController == nil
-            {
-                self.container.addActionSheetForiPad(actionSheet: alertController)
-                self.container.present(alertController, animated: true, completion: nil)
-            }
-            else
-            {
-                completionHandler()
-            }
+            self.container.addActionSheetForiPad(actionSheet: alertController)
+            self.container.present(alertController, animated: true, completion: nil)
         }
     }
     
     func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo,
                  completionHandler: @escaping (Bool) -> Void) {
+        
+        if self.container.presentedViewController != nil {
+            // either the Alert is already presented, or any other view controller
+            // is active (e.g. a PopOver)
+            // ...
+            
+            let thePresentedVC : UIViewController? = self.container.presentedViewController as UIViewController?
+            
+            if thePresentedVC != nil {
+                /*if let thePresentedVCAsAlertController : UIAlertController = thePresentedVC as? UIAlertController {
+                 // nothing to do , AlertController already active
+                 // ...
+                 print("Alert not necessary, already on the screen !")
+                 
+                 } else {
+                 // there is another ViewController presented
+                 // but it is not an UIAlertController, so do
+                 // your UIAlertController-Presentation with
+                 // this (presented) ViewController
+                 // ...
+                 
+                 print("Alert comes up via another presented VC, e.g. a PopOver")
+                 }*/
+                
+                completionHandler(false)
+                return
+            }
+        }
         
         let alertController = UIAlertController(title: nil, message: message, preferredStyle: .actionSheet)
         
@@ -581,7 +609,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         let alertController = UIAlertController(title: nil, message: prompt, preferredStyle: .alert)
         
         alertController.addTextField { (textField) in
-           textField.text = defaultText
+            textField.text = defaultText
         }
         
         alertController.addAction(UIAlertAction(title: "OK".localized, style: .default, handler: { (action) in
