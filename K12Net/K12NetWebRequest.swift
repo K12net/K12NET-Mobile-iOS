@@ -52,12 +52,13 @@ open class K12NetWebRequest {
     
     public static func retrievePostRequest(_ urlAsString : String) -> NSMutableURLRequest {
         let httpMethod = "POST"
+        let url = URL(string: urlAsString)
         
-        let request = NSMutableURLRequest(url: URL(string: urlAsString)!);
+        let request = NSMutableURLRequest(url: url!);
         request.httpMethod = httpMethod
         
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json;charset=UTF-8", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json, text/plain, */*", forHTTPHeaderField: "Accept")
         return request;
     }
     
@@ -67,21 +68,21 @@ open class K12NetWebRequest {
         /* var data : Data?;
          
          do {
-            data = try  NSURLConnection.sendSynchronousRequest(getReq as URLRequest, returning: nil);
-            if let jsonStr = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) {
-                if jsonStr.length > 100 {
-                    let splitString = jsonStr.substring(to: 100) as String;
-                    if (splitString.lowercased().contains("Authentication Failed".lowercased())) {
-                        LoginAsyncTask.loginOperation();
-                        data = try  NSURLConnection.sendSynchronousRequest(getReq as URLRequest, returning: nil);
-                    }
-                }
-            }
-            complation(data,nil)
-    } catch let error as NSError {
-            data = Data();
-            complation(data,error)
-        }*/
+         data = try  NSURLConnection.sendSynchronousRequest(getReq as URLRequest, returning: nil);
+         if let jsonStr = NSString(data: data!, encoding: String.Encoding.utf8.rawValue) {
+         if jsonStr.length > 100 {
+         let splitString = jsonStr.substring(to: 100) as String;
+         if (splitString.lowercased().contains("Authentication Failed".lowercased())) {
+         LoginAsyncTask.loginOperation();
+         data = try  NSURLConnection.sendSynchronousRequest(getReq as URLRequest, returning: nil);
+         }
+         }
+         }
+         complation(data,nil)
+         } catch let error as NSError {
+         data = Data();
+         complation(data,error)
+         }*/
         var data : Data?;
         var err = nil as NSError?
         let group = DispatchGroup()
@@ -91,6 +92,13 @@ open class K12NetWebRequest {
         let task = session.dataTask(with: getReq as URLRequest, completionHandler: { d, response, error in
             data = d
             err = error as NSError?
+            
+         /*   if let response = response {
+                print(response)
+                if let httpResponse = response as? HTTPURLResponse {
+                    print("statusCode: \(httpResponse.statusCode)")
+                }
+            }*/
             
             if(err != nil){
                 group.leave()
@@ -116,7 +124,7 @@ open class K12NetWebRequest {
             
             group.leave()
         })
-
+        
         task.resume()
         group.wait()
         

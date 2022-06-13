@@ -52,10 +52,28 @@ class DocumentView: UIViewController, UIScrollViewDelegate {
         //self.navigationController?.setToolbarHidden(hide, animated: true)
     }
     
+    @objc func appMovedToBackground() {
+        if self.isViewLoaded && (self.view.window != nil) {
+            print("view enters background")
+        }
+    }
+    
+    @objc func appCameToForeground() {
+        if self.isViewLoaded && (self.view.window != nil) {
+            print("view enters foreground")
+            // refresh makes unsaved data loss refreshView(self)
+        }
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        //let notificationCenter = NotificationCenter.default
+        //notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        
+        //notificationCenter.addObserver(self, selector: #selector(appCameToForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+                       
         web_viewer.viewDidLoad()
         
         self.preloader.transform = CGAffineTransform(scaleX: 2, y: 2)

@@ -150,14 +150,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     private static func doSetNotificationResponse(isConfirmed:Bool, notificationID:String) {
-        let urlAsString = (K12NetUserPreferences.getHomeAddress() as String) + "/Authentication_JSON_AppService.axd/NotificationResponse"
-        var params : [String:String] = [:];
-        params["createPersistentCookie"] = "false";
+        let urlAsString = (K12NetUserPreferences.getHomeAddress() as String) + "/GWCore.Web/api/Portals/NotificationResponse/"+(isConfirmed ? "1" : "0")+"/"+notificationID;
         
-        let request = K12NetWebRequest.retrievePostRequest(urlAsString, params: params);
-        
-        request.setValue(isConfirmed ? "1" : "0", forHTTPHeaderField: "result")
-        request.setValue(notificationID, forHTTPHeaderField: "notificationID")
+        let request = K12NetWebRequest.retrieveGetRequest(urlAsString);
         
         K12NetWebRequest.sendSynchronousRequest(request, complation: { (data, error) in
             if(error == nil) {
@@ -175,6 +170,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     public static func handlerRemoteNotification(_ userInfo: [AnyHashable: Any], actionIdentifier: String? = nil) {
+        if userInfo.isEmpty {return}
         var message = "";
         var title = "";
         var intent = "";
@@ -209,9 +205,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 switch actionIdentifier {
                    case "accept":
+                    K12NetLogin.userInfo = [:];
                     AppDelegate.doSetNotificationResponse(isConfirmed: true,notificationID: notificationID ?? "0")
                       return
                    case "reject":
+                    K12NetLogin.userInfo = [:];
                     AppDelegate.doSetNotificationResponse(isConfirmed: false,notificationID: notificationID ?? "0")
                       return
                    default:
@@ -236,26 +234,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     if (intent == "confirm") {
                         let notificationID = query.components(separatedBy:";").last;
                         AppDelegate.doSetNotificationResponse(isConfirmed: true,notificationID: notificationID ?? "0")
-                    } else if (LoginAsyncTask.loginStarted) {
+                    } else {
                         let viewController = K12NetLogin.controller?.navigationController?.topViewController
                         
                         if(viewController != nil && viewController is DocumentView) {
                             let dv = (viewController as! DocumentView);
                             
                             if(dv.preloader != nil && !dv.preloader.isHidden) {
+                                
+                                K12NetLogin.notificationURL = URL(string:String(format: K12NetUserPreferences.getHomeAddress() + "/Default.aspx?intent=%@&portal=%@&query=%@",intent.urlEncode(),portal.urlEncode(),query.urlEncode()));
+                                
                                 return
                             }
                         }
                         let vc : DocumentView = K12NetLogin.controller!.storyboard!.instantiateViewController(withIdentifier: "document_view") as! DocumentView;
                         
-                        vc.startUrl = URL(string:String(format: AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL + "/Default.aspx?intent=%@&portal=%@&query=%@",intent.urlEncode(),portal.urlEncode(),query.urlEncode()));
+                        vc.startUrl = URL(string:String(format: K12NetUserPreferences.getHomeAddress() + "/Default.aspx?intent=%@&portal=%@&query=%@",intent.urlEncode(),portal.urlEncode(),query.urlEncode()));
                         vc.simple_page = true;
                         vc.first_time = false;
                         vc.windowDepth = 1;
                         
-                        K12NetLogin.controller?.navigationController?.pushViewController(vc, animated: true);
-                    } else {
-                        K12NetLogin.notificationURL = URL(string:String(format: AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL + "/Default.aspx?intent=%@&portal=%@&query=%@",intent.urlEncode(),portal.urlEncode(),query.urlEncode()));
+                        vc.navigationController?.pushViewController(vc, animated: true);
                     }
                 })
                 
@@ -280,6 +279,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
                 
                 let ok = UIAlertAction(title: "OK".localized, style: .default, handler: { (action) -> Void in
+                    K12NetLogin.userInfo = [:];
                 })
                 
                 dialogMessage.addAction(ok)

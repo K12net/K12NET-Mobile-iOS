@@ -5,7 +5,16 @@
   Created by Tarik Canturk on 22/11/15.
   Copyright © 2015 K12Net. All rights reserved.
 */
-
+"attendanceService" = "Devam Durum Servisi";
+"noGeoFence" = "Kullanıcı için tanımlı devamsızlık coğrafi sınır bulunamadı! Arka plan konum servisleri kapatıldı.";
+"locationMonitorNotSupport" = "Bu cihaz coğrafi konum izlemeyi desteklemiyor!";
+"locationAccessAppSettings" = "K12NET Mobil, uygulama kapalıyken veya kullanımda değilken bile Konum Bazlı Devam Durum Takibini etkinleştirmek için konum bilginize ihtiyaç duyar. Lütfen Ayarlar/K12NET Mobil/Konum İzni için (Her zaman) seçeneğine onay verin. Bu hizmeti K12NET Mobil - Ayarlar kısmından istediğiniz zaman devre dışı bırakabilirsiniz.";
+"location_permission" = "📍 Konum İzni";
+"attendance_service_started" = "Konum Bölge Takip arka planda çalışıyor";
+"geofences_removed" = "Coğrafi Sınırlar çıkarıldı";
+"geofences_added" = "Coğrafi Sınırlar eklendi";
+"enter" = "Giriş Yapıldı";
+"exit" = "Çıkış Yapıldı";
 "SHARE_SHEET_EDIT_ACTIONS_BUTTON_TITLE" = "Edit Actions";
 "SHARE_SHEET_EDIT_SECTION_TITLE_FAVORITES" = "Favoriler";
 "SHARE_SHEET_EDIT_SECTION_TITLE_OTHER" = "Diğer";

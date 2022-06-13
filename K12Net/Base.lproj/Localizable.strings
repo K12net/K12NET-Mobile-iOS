@@ -1,3 +1,14 @@
+"attendanceService" = "Attendance Service";
+"noGeoFence" = "User has no defined location fences! Background services are closed!";
+"locationMonitorNotSupport" = "Location Monitoring Not Supported on this device!";
+"locationAccessAppSettings" = "K12NET Mobile collects your location data to enable Location Based Attendance Tracking even when the app is closed or not in use. Please allow Location permission - Always in App Settings. You can disable this service from K12NET Mobile - Settings whenever you want";
+"location_permission" = "📍 Use Your Location";
+"attendance_service_started" = "Location Region Tracking is running";
+"geofences_removed" = "Geofences removed";
+"geofences_added" = "Geofences added";
+"enter" = "Time In Updated";
+"exit" = "Time Out Updated";
+"attendanceTake" = "%@ [Distance: %@ m.] [Accuracy: %@ m.]";
 "SHARE_SHEET_EDIT_ACTIONS_BUTTON_TITLE" = "Edit Actions";
 "SHARE_SHEET_EDIT_SECTION_TITLE_FAVORITES" = "Favorites";
 "SHARE_SHEET_EDIT_SECTION_TITLE_OTHER" = "Other";

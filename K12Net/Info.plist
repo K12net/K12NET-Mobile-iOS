@@ -25,11 +25,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.14</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>59</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
@@ -91,8 +91,12 @@
 	<string>Send user photos as app mail attachment</string>
 	<key>NSHumanReadableCopyright</key>
 	<string></string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app requires to always access your device location to attendance region tracking when user enters and/or exits a school geofence</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app requires to always access your device location to attendance region tracking when user enters and/or exits a school geofence</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Used by bus services</string>
+	<string>Please allow location to approach bus stop location notification.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Send user videos as app mail attachment</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
@@ -103,6 +107,7 @@
 	<string>Send data as app mail attachment</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>location</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
