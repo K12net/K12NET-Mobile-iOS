@@ -254,7 +254,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         vc.first_time = false;
                         vc.windowDepth = 1;
                         
-                        vc.navigationController?.pushViewController(vc, animated: true);
+                        K12NetLogin.controller?.navigationController?.pushViewController(vc, animated: true);
                     }
                 })
                 
