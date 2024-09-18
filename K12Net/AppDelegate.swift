@@ -13,6 +13,7 @@ import UserNotifications;
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     var window: UIWindow?
+    public static var NotificationIsPermitted: Bool?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
@@ -27,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 if let error = error {
                     print("Error: \(error)");
                 }
+                
+                AppDelegate.NotificationIsPermitted = granted;
+                
                 if granted {
                     DispatchQueue.main.async {
                         self.configureUserNotifications()
@@ -50,6 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
             UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings(types: [.sound, .alert, .badge], categories: nil))
             UIApplication.shared.registerForRemoteNotifications()
+            
+            AppDelegate.NotificationIsPermitted = UIApplication.shared.isRegisteredForRemoteNotifications
         }
         
         Localizer.DoTheSwizzling();
@@ -255,6 +261,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         vc.windowDepth = 1;
                         
                         K12NetLogin.controller?.navigationController?.pushViewController(vc, animated: true);
+                        K12NetLogin.controller?.addActionSheetForiPad(actionSheet: dialogMessage)
+// vc.navigationController?.pushViewController(vc, animated: true);
                     }
                 })
                 

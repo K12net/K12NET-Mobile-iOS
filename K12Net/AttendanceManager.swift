@@ -14,7 +14,7 @@ class AttendanceManager: NSObject {
     var LocationManager :CLLocationManager?
     static let Instance = AttendanceManager()
     
-    func Initialize( controller : UIViewController){
+    func Initialize(controller : UIViewController){
         let hasUserPermit = K12NetUserPreferences.getBooleanValue("PERMIT_LOCATION_ATTENDANCE");
         if hasUserPermit != nil && hasUserPermit == false {
             return

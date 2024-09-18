@@ -16,5 +16,6 @@ protocol IWebView {
     func refreshView(_ sender: AnyObject) -> Void
     func backView(_ sender: AnyObject) -> Void
     func nextView(_ sender: AnyObject) -> Void
+    func signoutView() -> Void
     func webViewDidFinishLoad() -> Void
 }

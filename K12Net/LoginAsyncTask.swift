@@ -22,7 +22,6 @@ open class LoginAsyncTask : AsyncTask  {
     static var urlError = false;
     static var connectionError = false;
     static var loginStarted = false;
-    static var isLoginRetry = false;
     
     init(username : String, password : String) {
         self.username = username;
@@ -45,10 +44,28 @@ open class LoginAsyncTask : AsyncTask  {
             storage.deleteCookie(cookie)
         }
         
-        let urlAsString = (K12NetUserPreferences.getHomeAddress() as String) + "/Authentication_JSON_AppService.axd/Login"
+        let deviceToken = K12NetUserPreferences.getDeviceToken();
+        
+        if(deviceToken.isEmpty && AppDelegate.NotificationIsPermitted != nil && AppDelegate.NotificationIsPermitted == true  ){
+            if let wd = UIApplication.shared.delegate?.window {
+                let vc = wd!.rootViewController
+
+                if(vc != nil){
+                    let alertController = UIAlertController(title: "appTitle".localized, message:"deviceIDFailed".localized , preferredStyle: UIAlertController.Style.alert)
+                    alertController.addAction(UIAlertAction(title: "ok".localized, style: UIAlertAction.Style.default,handler: nil))
+                    
+                    vc?.addActionSheetForiPad(actionSheet: alertController)
+                    vc?.present(alertController, animated: true, completion: nil)
+                    
+                    return;
+                }
+            }
+        }
+        
+        let urlAsString = (K12NetUserPreferences.getHomeAddress() as String) + "/GWCore.Web/api/Login/Validate"
         var params : [String:String] = [:];
-        params["userName"] = K12NetUserPreferences.getUsername();
-        params["password"] = K12NetUserPreferences.getPassword();
+        params["UserName"] = K12NetUserPreferences.getUsername();
+        params["Password"] = K12NetUserPreferences.getPassword();
         
         params["createPersistentCookie"] = "false";
         
@@ -57,19 +74,25 @@ open class LoginAsyncTask : AsyncTask  {
         LoginAsyncTask.urlError = false;
         LoginAsyncTask.connectionError = false;
         
+        let appVersion = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String ?? "";
+            
+        var userAgent = "K12net " + appVersion + UIDevice.current.name + " ; " ;
+        userAgent = userAgent + UIDevice.current.modelName + " ; " + UIDevice.current.systemName + " - " + UIDevice.current.systemVersion + "";
+            
+        request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
         K12NetWebRequest.sendSynchronousRequest(request, complation: { (data, error) in
             if error != nil {
-                    print("lasterror");
-                    print(error ?? "");
-                    if(error?.code == -1003) { //NSURLErrorDomain
-                        LoginAsyncTask.urlError = true;
-                    }
-                    else if(error?.code == NSURLErrorTimedOut ||
-                                error?.code == NSURLErrorCannotConnectToHost ||
-                                error?.code == NSURLErrorNetworkConnectionLost ||
-                                error?.code == NSURLErrorNotConnectedToInternet) {
-                        LoginAsyncTask.connectionError = true;
-                    }
+                print("lasterror");
+                print(error ?? "");
+                if(error?.code == -1003) { //NSURLErrorDomain
+                    LoginAsyncTask.urlError = true;
+                }
+                else if(error?.code == NSURLErrorTimedOut ||
+                            error?.code == NSURLErrorCannotConnectToHost ||
+                            error?.code == NSURLErrorNetworkConnectionLost ||
+                            error?.code == NSURLErrorNotConnectedToInternet) {
+                    LoginAsyncTask.connectionError = true;
+                }
             } else {
                 
                 let jsonStr = NSString(data: data!, encoding: String.Encoding.utf8.rawValue);
@@ -85,82 +108,34 @@ open class LoginAsyncTask : AsyncTask  {
                 }
                 
                 if let parseJSON = json {
-                    if let success = parseJSON["d"] as? Bool {
+                    if let success = parseJSON["Success"] as? Bool {
                         LoginAsyncTask.lastOperationValue = success;
                         
                         if success {
                             
-                            if isLoginRetry {
+                            if let loginSite = parseJSON["LoginSite"] as? String {
                                 let connectionString = K12NetUserPreferences.getHomeAddress() as String;
                                 
-                                if connectionString == AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL {
-                                    K12NetUserPreferences.saveLanguage(lang:"tr");
-                                } else {
-                                    if (K12NetUserPreferences.getLanguage() == "tr") {
-                                        K12NetUserPreferences.saveLanguage(lang:"en");
-                                    }
+                                if(loginSite.starts(with: "http") && connectionString != loginSite) {
+                                    K12NetUserPreferences.saveHomeAddress(loginSite);
                                 }
-                            }
-                            
-                            if(K12NetUserPreferences.LANG_UPDATED) {
-                                let task = HttpAsyncTask(operation: "SetLanguage");
-                                
-                                task.Execute();
                             }
                             
                             AttendanceManager.Instance.Initialize(controller: K12NetLogin.controller!)
                             
                         } else {
-                            if !isLoginRetry {
-                                isLoginRetry = true;
-                                
-                                let connectionString = K12NetUserPreferences.getHomeAddress() as String;
-                                
-                                if connectionString == AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL {
-                                    K12NetUserPreferences.saveHomeAddress("https://azure.k12net.com");
-                                    K12NetUserPreferences.saveFSAddress("http://fs.azure.k12net.com/FS/");
-                                } else {
-                                    K12NetUserPreferences.saveHomeAddress(AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL);
-                                    K12NetUserPreferences.saveFSAddress(AppStaticDefinition.K12NET_FS_DEFAULT_URL);
-                                }
-                                
-                                loginOperation();
-                                
-                                return;
-                                
-                            } else {
-                                LoginAsyncTask.lastOperationValue = false;
-                            }
+                            LoginAsyncTask.lastOperationValue = false;
                         }
                     }
                     else {
-                        if !isLoginRetry {
-                            isLoginRetry = true;
-                            
-                            let connectionString = K12NetUserPreferences.getHomeAddress() as String;
-                            
-                            if connectionString == AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL {
-                                K12NetUserPreferences.saveHomeAddress("https://azure.k12net.com");
-                                K12NetUserPreferences.saveFSAddress("http://fs.azure.k12net.com/FS/");
-                            } else {
-                                K12NetUserPreferences.saveHomeAddress(AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL);
-                                K12NetUserPreferences.saveFSAddress(AppStaticDefinition.K12NET_FS_DEFAULT_URL);
-                            }
-                            
-                            loginOperation();
-                            
-                            return;
-                            
-                        } else {
-                            LoginAsyncTask.lastOperationValue = false;
-                        }
+                        LoginAsyncTask.lastOperationValue = false;
                     }
                     
                 }
             }
             
             loginStarted = false;
-        })
+        },retry: false,isLogin: true)
         
     }
     

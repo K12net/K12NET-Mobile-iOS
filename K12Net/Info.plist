@@ -2,139 +2,126 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleAllowMixedLocalizations</key>
-	<true/>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>en</string>
-	<key>CFBundleDisplayName</key>
-	<string>$(PRODUCT_NAME)</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleGetInfoString</key>
-	<string></string>
-	<key>CFBundleIcons</key>
-	<dict/>
-	<key>CFBundleIcons~ipad</key>
-	<dict/>
-	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string>$(MARKETING_VERSION)</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>LSApplicationCategoryType</key>
-	<string></string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>LSVisibleInClassic</key>
-	<false/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-		<key>NSExceptionDomains</key>
-		<dict>
-			<key>azure.k12net.com</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-				<key>NSTemporaryExceptionMinimumTLSVersion</key>
-				<string>TLSv1.1</string>
-				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-				<true/>
-			</dict>
-			<key>http://fs.k12net.com</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-				<key>NSTemporaryExceptionMinimumTLSVersion</key>
-				<string>TLSv1.1</string>
-				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-				<true/>
-			</dict>
-			<key>sev.k12net.com</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-				<key>NSTemporaryExceptionMinimumTLSVersion</key>
-				<string>TLSv1.1</string>
-				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-				<false/>
-			</dict>
-		</dict>
-	</dict>
-	<key>NSAppleMusicUsageDescription</key>
-	<string>Send data as app mail attachment</string>
-	<key>NSCalendarsUsageDescription</key>
-	<string>Save app calendar information to device calendar</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Send user photos as app mail attachment</string>
-	<key>NSHumanReadableCopyright</key>
-	<string></string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This app requires to always access your device location to attendance region tracking when user enters and/or exits a school geofence</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>This app requires to always access your device location to attendance region tracking when user enters and/or exits a school geofence</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Please allow location to approach bus stop location notification.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Send user videos as app mail attachment</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Send user photos as app mail attachment</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Send user photos as app mail attachment</string>
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Send data as app mail attachment</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>location</string>
-		<string>remote-notification</string>
-	</array>
-	<key>UILaunchStoryboardName</key>
-	<string>login</string>
-	<key>UIMainStoryboardFile</key>
-	<string>login</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
-	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleDefault</string>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>NSAllowsArbitraryLoads</string>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>kTCCServiceMediaLibrary</key>
-	<string>Send data as app mail attachment</string>
+    <key>CFBundleAllowMixedLocalizations</key>
+    <true/>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+    <key>CFBundleDisplayName</key>
+    <string>$(PRODUCT_NAME)</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleGetInfoString</key>
+    <string></string>
+    <key>CFBundleIcons</key>
+    <dict/>
+    <key>CFBundleIcons~ipad</key>
+    <dict/>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>$(PRODUCT_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>$(MARKETING_VERSION)</string>
+    <key>CFBundleSignature</key>
+    <string>????</string>
+    <key>CFBundleVersion</key>
+    <string>$(CURRENT_PROJECT_VERSION)</string>
+    <key>LSApplicationCategoryType</key>
+    <string></string>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>LSVisibleInClassic</key>
+    <false/>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>azure.k12net.com</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSTemporaryExceptionMinimumTLSVersion</key>
+                <string>TLSv1.1</string>
+                <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+                <true/>
+            </dict>
+            <key>http://fs.k12net.com</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSTemporaryExceptionMinimumTLSVersion</key>
+                <string>TLSv1.1</string>
+                <key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
+                <true/>
+            </dict>
+        </dict>
+    </dict>
+    <key>NSAppleMusicUsageDescription</key>
+    <string>Send data as app mail attachment</string>
+    <key>NSCalendarsUsageDescription</key>
+    <string>Save app calendar information to device calendar</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Send user photos as app mail attachment</string>
+    <key>NSHumanReadableCopyright</key>
+    <string></string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>This app requires to always access your device location to attendance region tracking when user enters and/or exits a school geofence</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>This app requires to always access your device location to attendance region tracking when user enters and/or exits a school geofence</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>Please allow location to approach bus stop location notification.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Send user videos as app mail attachment</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>Send user photos as app mail attachment</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Send user photos as app mail attachment</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>Send data as app mail attachment</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>location</string>
+        <string>remote-notification</string>
+    </array>
+    <key>UILaunchStoryboardName</key>
+    <string>login</string>
+    <key>UIMainStoryboardFile</key>
+    <string>login</string>
+    <key>UIRequiredDeviceCapabilities</key>
+    <array>
+        <string>armv7</string>
+    </array>
+    <key>UIStatusBarStyle</key>
+    <string></string>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>NSAllowsArbitraryLoads</string>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    <key>kTCCServiceMediaLibrary</key>
+    <string>Send data as app mail attachment</string>
 </dict>
 </plist>

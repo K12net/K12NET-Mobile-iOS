@@ -147,6 +147,7 @@
 "login" = "Login";
 "loginError" = "Username or password is incorrect. Please check them and try again.";
 "loginFailed" = "Username or password is incorrect. Please check them and try again.";
+"deviceIDFailed" = "Device Id is not created yet! Please wait a few seconds and try again.";
 "Look Up â€œ%@â€ " = "Look Up â€œ%@â€ ";
 "Look Up â€œ%sâ€ " = "Look Up â€œ%sâ€ ";
 "Copy Image" = "Copy Image";

@@ -66,7 +66,7 @@ class WebViewer : NSObject, UIWebViewDelegate, IWebView {
     func viewWillAppear(_ animated: Bool) {
         self.container.navigationController?.isToolbarHidden = false;
         self.container.navigationController?.isNavigationBarHidden = true;
-        container.browseButton?.tintColor = .clear;
+        //container.browseButton?.tintColor = .clear;
     }
     
     @IBAction func homeView(_ sender: AnyObject) {
@@ -109,6 +109,16 @@ class WebViewer : NSObject, UIWebViewDelegate, IWebView {
     @IBAction func nextView(_ sender: AnyObject) {
         if web_viewer.canGoForward {
             web_viewer.goForward();
+        }
+    }
+    
+    func signoutView() {
+        if let urlAddress = URL(string: (K12NetUserPreferences.getHomeAddress() as String) + "/logout.aspx") {
+            
+            // let randomNumber = arc4random();
+            let urlRequest : URLRequest = URLRequest(url: urlAddress);
+            
+            web_viewer.loadRequest(urlRequest);
         }
     }
     

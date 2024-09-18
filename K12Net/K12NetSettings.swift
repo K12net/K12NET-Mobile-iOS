@@ -19,7 +19,6 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
     public static let RUSSION = "ru";
     
     @IBOutlet weak var connection_url: UITextField!
-    @IBOutlet weak var ftp_address: UITextField!
     @IBOutlet weak var btnSave: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var chkLocationService: UISwitch!
@@ -45,7 +44,6 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
         }
         
         connection_url.text = K12NetUserPreferences.getHomeAddress() as String;
-        ftp_address.text = K12NetUserPreferences.getFSAddress() as String;
         
         setupKeyboardNotifcationListenerForScrollView(scrollView, moveView: true);
         
@@ -70,7 +68,6 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
         languageSegmented.selectedSegmentIndex = languageIndex;
         
         self.connection_url.delegate = self;
-        self.ftp_address.delegate = self;
         let hasUserPermit = K12NetUserPreferences.getBooleanValue("PERMIT_LOCATION_ATTENDANCE");
         
         chkLocationService.setOn(hasUserPermit != nil && hasUserPermit == true, animated: true);
@@ -88,7 +85,6 @@ class K12NetSettings : UIViewController, UITextFieldDelegate {
     @IBAction func save_address(_ sender: AnyObject) {
         
         K12NetUserPreferences.saveHomeAddress(connection_url.text!)
-        K12NetUserPreferences.saveFSAddress(ftp_address.text!)
         K12NetUserPreferences.setBooleanValue("PERMIT_LOCATION_ATTENDANCE",value: chkLocationService.isOn);
         
         if(chkLocationService.isOn) {

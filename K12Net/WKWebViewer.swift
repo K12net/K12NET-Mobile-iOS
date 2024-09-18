@@ -187,7 +187,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
     func viewWillAppear(_ animated: Bool) {
         container.navigationController?.isToolbarHidden = false;
         container.navigationController?.isNavigationBarHidden = true;
-        container.browseButton?.tintColor = .clear;
+        //container.browseButton?.tintColor = .clear;
     }
     
     func configureView() {
@@ -284,6 +284,10 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         }
     }
     
+    func signoutView() {
+        loadURL( url: URL(string: (K12NetUserPreferences.getHomeAddress() + "/logout.aspx"))!)
+    }
+    
     func loadURL(url: URL) {
         let request = URLRequest(url: url)
         
@@ -313,6 +317,29 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
             UIApplication.shared.openURL(navigationAction.request.url!)
             decisionHandler(.cancel)
             return
+        }
+        
+        let checkAddress = address.starts(with: "https") && !address.starts(with: K12NetUserPreferences.getHomeAddress());
+        
+        if(checkAddress) {
+            let portals :[String] = ["/spts.web/","/tpjs.web/","/epjs.web/"];
+            for portal in portals {
+                if(address.contains(portal)) {
+                    var connString = K12NetUserPreferences.getHomeAddress() + portal;
+
+                    if (!address.starts(with: connString)) {
+                        connString = address.components(separatedBy:portal)[0];
+                        K12NetUserPreferences.saveHomeAddress(connString);
+                    }
+
+                    break;
+                }
+            }
+            
+            if(address.hasSuffix(".k12net.com/")) {
+                let connString = String(address.prefix(address.count - 1));
+                if(address.contains("azure.") || address.contains("okul.")) {K12NetUserPreferences.saveHomeAddress(connString)}
+            }
         }
         
         if #available(iOS 11.0, *) {

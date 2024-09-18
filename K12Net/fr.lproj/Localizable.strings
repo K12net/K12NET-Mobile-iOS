@@ -34,6 +34,7 @@
 "connectionUrlFailed" = "Connection URL is not correct. Please check it and try again";
 "noWifi" = "Data connection can not be establised. Please check your data or WiFi connectivity";
 "loginFailed" = "Username or password is incorrect. Please check them and try again.";
+"deviceIDFailed" = "Device Id is not created yet! Please wait a few seconds and try again.";
 "english" = "English";
 "arabic" = "العربية";
 "turkish" = "Türkçe";

@@ -85,7 +85,7 @@ class DocumentView: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isToolbarHidden = false;
         self.navigationController?.isNavigationBarHidden = true;
-        browseButton?.tintColor = .clear;
+        //browseButton?.tintColor = .clear;
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -140,6 +140,10 @@ class DocumentView: UIViewController, UIScrollViewDelegate {
     
     @IBAction func nextView(_ sender: AnyObject) {
         web_viewer.nextView(sender)
+    }
+    
+    @IBAction func signoutView(_ sender: UIBarButtonItem) {
+        web_viewer.signoutView()
     }
     
     static func setCookie() {

@@ -33,6 +33,7 @@
 "connectionUrlFailed" = "الرابط غير صحيح. يرجى التحقق منه والمحاولة مرة اخرى.";
 "noWifi" = "لم تتم عملية الربط. يرجى التحقق من الاتصال بشبكة الانترنت او WIFI";
 "loginFailed" = "اسم المستخدم او كلمة السر غير صحيحة. يرجى التحقق منهما والمحاولة مرة اخرى.";
+"deviceIDFailed" = "Device Id is not created yet! Please wait a few seconds and try again.";
 "english" = "English";
 "arabic" = "العربية";
 "turkish" = "Türkçe";

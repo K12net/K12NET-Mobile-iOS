@@ -20,44 +20,13 @@ open class HttpAsyncTask : AsyncTask  {
     }
     
     override func doInBackground(){
-        if (self.operation == "SetLanguage") {
-            self.doSetLanguage();
-        }
+       // if (self.operation == "SetLanguage") {
+        //     self.doSetLanguage();
+        //}
     }
     
     override func postExecute(){
         
     }
     
-    private func doSetLanguage() {
-        if(!K12NetUserPreferences.LANG_UPDATED) {
-            return;
-        }
-        
-        K12NetUserPreferences.LANG_UPDATED = false;
-        
-        let urlAsString = (K12NetUserPreferences.getHomeAddress() as String) + "/Authentication_JSON_AppService.axd/SetLanguage"
-        var params : [String:String] = [:];
-        params["createPersistentCookie"] = "false";
-        
-        let request = K12NetWebRequest.retrievePostRequest(urlAsString, params: params);
-        
-        request.setValue(K12NetUserPreferences.getLanguage(), forHTTPHeaderField: "LanguageCode")
-        
-        K12NetWebRequest.sendSynchronousRequest(request, complation: { (data, error) in
-            if(error == nil) {
-                let jsonStr = NSString(data: data!, encoding: String.Encoding.utf8.rawValue);
-                
-                print("LanguageCode : \(String(describing: jsonStr))");
-                
-                DocumentView.setCookie()
-            }
-            else {
-                print("LanguageCode lasterror");
-                print(error ?? "");
-            }
-            
-        })
-        
-    }
 }

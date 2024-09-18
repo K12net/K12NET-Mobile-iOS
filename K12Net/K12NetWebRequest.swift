@@ -62,7 +62,7 @@ open class K12NetWebRequest {
         return request;
     }
     
-    public static func sendSynchronousRequest( _ getReq : NSMutableURLRequest , complation : @escaping (Data?,NSError?)->Void, retry:Bool = true){
+    public static func sendSynchronousRequest( _ getReq : NSMutableURLRequest , complation : @escaping (Data?,NSError?)->Void, retry:Bool = true, isLogin:Bool = false){
         
         
         /* var data : Data?;
@@ -109,7 +109,7 @@ open class K12NetWebRequest {
                 if jsonStr.length > 100 {
                     let splitString = jsonStr.substring(to: 100) as String;
                     if (splitString.lowercased().contains("Authentication Failed".lowercased())) {
-                        if(retry) {
+                        if(retry && isLogin == false) {
                             LoginAsyncTask.loginOperation();
                             K12NetWebRequest.sendSynchronousRequest(getReq,complation: { (d, error) in
                                 data = d

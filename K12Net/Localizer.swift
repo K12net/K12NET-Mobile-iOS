@@ -11,7 +11,7 @@ class Localizer: NSObject {
          let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
          rootviewcontroller.rootViewController = settings.storyboard?.instantiateViewController(withIdentifier: "rootNav")
          let mainwindow = (UIApplication.shared.delegate?.window!)!
-         mainwindow.backgroundColor = UIColor(hue: 0.6477, saturation: 0.6314, brightness: 0.6077, alpha: 0.8)
+         //mainwindow.backgroundColor = UIColor(hue: 0.6477, saturation: 0.6314, brightness: 0.6077, alpha: 0.8)
          UIView.transition(with: mainwindow, duration: 0.55001, options: .transitionFlipFromLeft, animations: { () -> Void in
          }) { (finished) -> Void in
          }
@@ -42,3 +42,4 @@ func MethodSwizzleGivenClassName(cls: AnyClass, originalSelector: Selector, over
         method_exchangeImplementations(origMethod, overrideMethod);
     }
 }
+

@@ -10,7 +10,6 @@ import Foundation
 
 open class K12NetUserPreferences {
     
-    static let FILE_SERVER_ADDRESS = "FILE_SERVER_ADDRESS"
     static let HOME_ADDRESS = "HOME_ADDRESS"
     static var LANG_UPDATED = true
     
@@ -61,13 +60,11 @@ open class K12NetUserPreferences {
         if languageCode == "tr" {
             
             saveHomeAddress(AppStaticDefinition.K12NET_LOGIN_DEFAULT_URL);
-            saveFSAddress(AppStaticDefinition.K12NET_FS_DEFAULT_URL);
             saveLanguage(lang: AppStaticDefinition.K12NET_DEFAULT_LANGUAGE);
             
         } else {
             
             saveHomeAddress("https://azure.k12net.com");
-            saveFSAddress("http://fs.azure.k12net.com/FS/");
             saveLanguage(lang: languageCode);
             
         }
@@ -98,18 +95,6 @@ open class K12NetUserPreferences {
         }
         
         return url as String
-    }
-    
-    public static func getFSAddress() -> NSString {
-        var url : NSString;
-        if let url_address = getStringValue(FILE_SERVER_ADDRESS) {
-            url = url_address as NSString;
-        }
-        else {
-            initiateDomain();
-            url = getStringValue(FILE_SERVER_ADDRESS)! as NSString;
-        }
-        return url
     }
     
     public static func getUsername() -> String {
@@ -157,11 +142,14 @@ open class K12NetUserPreferences {
     }
     
     public static func saveHomeAddress(_ address: String) {
-        setStringValue(HOME_ADDRESS, value: address)
-    }
-
-    public static func saveFSAddress(_ address: String) {
-        setStringValue(FILE_SERVER_ADDRESS, value: address)
+        var m_address = address;
+        if(m_address.isEmpty || m_address.contains("192.")) {
+            return;
+        }
+        if(m_address.starts(with: "http://")) {
+            m_address = m_address.replacingOccurrences(of: "http://", with: "https://");
+        }
+        setStringValue(HOME_ADDRESS, value: m_address)
     }
     
     public static func saveLanguage(lang: String) {
