@@ -509,6 +509,8 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
             K12NetLogin.isLogout = true;
             self.container.navigationController?.popToRootViewController(animated: true);
             
+            K12NetLogin.userInfo = [:];
+            K12NetLogin.notificationURL = nil;
             decisionHandler(.cancel)
             return;
         }

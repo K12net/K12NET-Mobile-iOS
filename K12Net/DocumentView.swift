@@ -110,6 +110,8 @@ class DocumentView: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func homeView(_ sender: AnyObject) {
+        K12NetLogin.userInfo = [:];
+        K12NetLogin.notificationURL = nil;
         web_viewer.homeView(sender)
     }
     
@@ -131,18 +133,26 @@ class DocumentView: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func refreshView(_ sender: AnyObject) {
+        K12NetLogin.userInfo = [:];
+        K12NetLogin.notificationURL = nil;
         web_viewer.refreshView(sender)
     }
     
     @IBAction func backView(_ sender: AnyObject) {
+        K12NetLogin.userInfo = [:];
+        K12NetLogin.notificationURL = nil;
         web_viewer.backView(sender)
     }
     
     @IBAction func nextView(_ sender: AnyObject) {
+        K12NetLogin.userInfo = [:];
+        K12NetLogin.notificationURL = nil;
         web_viewer.nextView(sender)
     }
     
     @IBAction func signoutView(_ sender: UIBarButtonItem) {
+        K12NetLogin.userInfo = [:];
+        K12NetLogin.notificationURL = nil;
         web_viewer.signoutView()
     }
     

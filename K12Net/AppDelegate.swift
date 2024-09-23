@@ -42,7 +42,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
             
             if let remoteNotification = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? NSDictionary {
-                AppDelegate.handlerRemoteNotification((remoteNotification) as! [AnyHashable : Any] as! [String : AnyObject]);
+                //let aps = remoteNotification["aps"] as? [String:AnyObject];
+                //AppDelegate.handlerRemoteNotification((aps)! );
+                
+                AppDelegate.handlerRemoteNotification(controller: self.window?.rootViewController,(remoteNotification) as! [AnyHashable : Any] as! [String : AnyObject],actionIdentifier: "lunchingNotification");
             }
         }
         else {
@@ -175,7 +178,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
     }
     
-    public static func handlerRemoteNotification(_ userInfo: [AnyHashable: Any], actionIdentifier: String? = nil) {
+    public static func handlerRemoteNotification(controller: UIViewController?, _ userInfo: [AnyHashable: Any], actionIdentifier: String? = nil) {
+        
         if userInfo.isEmpty {return}
         var message = "";
         var title = "";
@@ -225,6 +229,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if !portal.isEmpty
             {
                 K12NetLogin.userInfo = userInfo;
+                K12NetLogin.notificationURL = URL(string:String(format: K12NetUserPreferences.getHomeAddress() + "/Default.aspx?intent=%@&portal=%@&query=%@",intent.urlEncode(),portal.urlEncode(),query.urlEncode()));
                 
                 var body = message + "\n\n" + "navToNotify".localized;
                 
@@ -234,36 +239,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 let dialogMessage = UIAlertController(title: title, message: body, preferredStyle: .alert)
                 
-                let ok = UIAlertAction(title: "OK".localized, style: .default, handler: { (action) -> Void in
+                if(actionIdentifier == "K12netLogin") {
                     K12NetLogin.userInfo = [:];
-                    
-                    if (intent == "confirm") {
-                        let notificationID = query.components(separatedBy:";").last;
-                        AppDelegate.doSetNotificationResponse(isConfirmed: true,notificationID: notificationID ?? "0")
-                    } else {
-                        let viewController = K12NetLogin.controller?.navigationController?.topViewController
-                        
-                        if(viewController != nil && viewController is DocumentView) {
-                            let dv = (viewController as! DocumentView);
-                            
-                            if(dv.preloader != nil && !dv.preloader.isHidden) {
-                                
-                                K12NetLogin.notificationURL = URL(string:String(format: K12NetUserPreferences.getHomeAddress() + "/Default.aspx?intent=%@&portal=%@&query=%@",intent.urlEncode(),portal.urlEncode(),query.urlEncode()));
-                                
-                                return
-                            }
-                        }
-                        let vc : DocumentView = K12NetLogin.controller!.storyboard!.instantiateViewController(withIdentifier: "document_view") as! DocumentView;
-                        
-                        vc.startUrl = URL(string:String(format: K12NetUserPreferences.getHomeAddress() + "/Default.aspx?intent=%@&portal=%@&query=%@",intent.urlEncode(),portal.urlEncode(),query.urlEncode()));
-                        vc.simple_page = true;
-                        vc.first_time = false;
-                        vc.windowDepth = 1;
-                        
-                        K12NetLogin.controller?.navigationController?.pushViewController(vc, animated: true);
-                        K12NetLogin.controller?.addActionSheetForiPad(actionSheet: dialogMessage)
-// vc.navigationController?.pushViewController(vc, animated: true);
-                    }
+                    // K12NetLogin.notificationURL = nil; not remove since app closed case it needs
+                    GotoNotificationPage(intent: intent,portal: portal,query: query,dialogMessage: dialogMessage);
+                    return;
+                }
+                
+                let ok = UIAlertAction(title: "OK".localized, style: .default, handler: { (action) -> Void in
+                    GotoNotificationPage(intent: intent,portal: portal,query: query,dialogMessage: dialogMessage);
                 })
                 
                 // Create Cancel button with action handlder
@@ -279,10 +263,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 //Add OK and Cancel button to dialog message
                 dialogMessage.addAction(ok)
                 dialogMessage.addAction(cancel)
-                K12NetLogin.controller?.addActionSheetForiPad(actionSheet: dialogMessage)
                 
-                // Present dialog message to user
-                K12NetLogin.controller?.present(dialogMessage, animated: true, completion: nil)
+                DispatchQueue.main.async {
+                    if controller == nil {
+                        K12NetLogin.controller?.addActionSheetForiPad(actionSheet: dialogMessage)
+                        K12NetLogin.controller?.present(dialogMessage, animated: true, completion: nil)
+                    } else {
+                        controller?.addActionSheetForiPad(actionSheet: dialogMessage)
+                        controller?.present(dialogMessage, animated: true, completion: nil)
+                    }
+                }
             } else {
                 let dialogMessage = UIAlertController(title: title, message: message, preferredStyle: .alert)
                 
@@ -297,18 +287,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
+    static func GotoNotificationPage(intent:String,portal:String,query:String,dialogMessage:UIAlertController) {
+        
+        if (intent == "confirm") {
+            let notificationID = query.components(separatedBy:";").last;
+            AppDelegate.doSetNotificationResponse(isConfirmed: true,notificationID: notificationID ?? "0")
+        } else {
+            let viewController = K12NetLogin.controller?.navigationController?.topViewController
+            
+            if(viewController != nil && viewController is DocumentView) {
+                let dv = (viewController as! DocumentView);
+                
+                if(dv.preloader != nil && !dv.preloader.isHidden) {
+                    
+                    K12NetLogin.notificationURL = URL(string:String(format: K12NetUserPreferences.getHomeAddress() + "/Default.aspx?intent=%@&portal=%@&query=%@",intent.urlEncode(),portal.urlEncode(),query.urlEncode()));
+                    
+                    return
+                }
+            }
+            
+            let vc : DocumentView = K12NetLogin.controller!.storyboard!.instantiateViewController(withIdentifier: "document_view") as! DocumentView;
+            
+            vc.startUrl = URL(string:String(format: K12NetUserPreferences.getHomeAddress() + "/Default.aspx?intent=%@&portal=%@&query=%@",intent.urlEncode(),portal.urlEncode(),query.urlEncode()));
+            vc.simple_page = true;
+            vc.first_time = false;
+            vc.windowDepth = 1;
+            
+            K12NetLogin.controller?.navigationController?.pushViewController(vc, animated: true);
+        }
+    }
+    
         
     @available(iOS 10.0, *)
     func userNotificationCenter(center: UNUserNotificationCenter, willPresentNotification notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void) {
         print("User Info = ",notification.request.content.userInfo)
-        AppDelegate.handlerRemoteNotification(notification.request.content.userInfo)
+        AppDelegate.handlerRemoteNotification(controller: self.window?.rootViewController,notification.request.content.userInfo)
         completionHandler([.alert, .badge, .sound])
     }
     
     @available(iOS 10.0, *)
     func userNotificationCenter(center: UNUserNotificationCenter, didReceiveNotificationResponse response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping() -> Void) {
         print("User Info 1 = ",response.notification.request.content.userInfo)
-        AppDelegate.handlerRemoteNotification(response.notification.request.content.userInfo, actionIdentifier:response.actionIdentifier)
+        AppDelegate.handlerRemoteNotification(controller: self.window?.rootViewController,response.notification.request.content.userInfo, actionIdentifier:response.actionIdentifier)
         completionHandler()
     }
     
@@ -316,7 +336,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         print("User Info = ",notification.request.content.userInfo)
-        AppDelegate.handlerRemoteNotification(notification.request.content.userInfo)
+        AppDelegate.handlerRemoteNotification(controller: self.window?.rootViewController,notification.request.content.userInfo)
         completionHandler([.alert, .badge, .sound])
     }
     
@@ -324,7 +344,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         print("User Info 1 = ",response.notification.request.content.userInfo)
-        AppDelegate.handlerRemoteNotification(response.notification.request.content.userInfo, actionIdentifier:response.actionIdentifier)
+        AppDelegate.handlerRemoteNotification(controller: self.window?.rootViewController,response.notification.request.content.userInfo, actionIdentifier:response.actionIdentifier)
         completionHandler()
     }
     
@@ -335,13 +355,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         K12NetUserPreferences.increaseBadgeCount();
         
         K12NetLogin.refreshAppBadge();
+        K12NetLogin.userInfo = userInfo;
         
         if #available(iOS 10.0, *) {
             if UIApplication.shared.applicationState != .active {
             } else {
             }
         } else {
-            AppDelegate.handlerRemoteNotification(userInfo)
+            AppDelegate.handlerRemoteNotification(controller: self.window?.rootViewController,userInfo)
         }
         
         print("application = ",userInfo)

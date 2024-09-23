@@ -103,7 +103,7 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         }
         
         if !K12NetLogin.userInfo.isEmpty {
-            AppDelegate.handlerRemoteNotification(K12NetLogin.userInfo,actionIdentifier: "K12netLogin");
+            AppDelegate.handlerRemoteNotification(controller: self,K12NetLogin.userInfo,actionIdentifier: "K12netLogin");
             K12NetLogin.userInfo = [:];
             
             var intent = "";
@@ -246,7 +246,7 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         else if(LoginAsyncTask.lastOperationValue) {
             
             if !K12NetLogin.userInfo.isEmpty {
-                AppDelegate.handlerRemoteNotification(K12NetLogin.userInfo,actionIdentifier: "K12netLogin");
+                AppDelegate.handlerRemoteNotification(controller: self,K12NetLogin.userInfo,actionIdentifier: "K12netLogin");
                 K12NetLogin.userInfo = [:];
             } else {
                 let vc : DocumentView = self.storyboard!.instantiateViewController(withIdentifier: "document_view") as! DocumentView;
@@ -257,6 +257,8 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
                 
                 if K12NetLogin.notificationURL != nil {
                     vc.startUrl = K12NetLogin.notificationURL;
+                } else {
+                    vc.startUrl = nil;
                 }
                 
                 navigationController?.pushViewController(vc, animated: true);
