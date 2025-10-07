@@ -66,6 +66,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
         
     }
+    
+     // Eğer iOS < 13 desteklenecekse:
+    @available(iOS 13.0, *)
+    func application(_ application: UIApplication,
+                      configurationForConnecting connectingSceneSession: UISceneSession,
+                      options: UIScene.ConnectionOptions) -> UISceneConfiguration {
+         return UISceneConfiguration(name: "Default Configuration",
+                                     sessionRole: connectingSceneSession.role)
+     }
            
     @available(iOS 10.0, *)
     func scheduleTestNotification() {

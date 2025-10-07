@@ -8,9 +8,9 @@ class Localizer: NSObject {
     }
     
     class func RefreshUI(_ settings:UIViewController) {
-         let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
+        let rootviewcontroller: UIWindow = (UIApplication.shared.currentWindow)!
          rootviewcontroller.rootViewController = settings.storyboard?.instantiateViewController(withIdentifier: "rootNav")
-         let mainwindow = (UIApplication.shared.delegate?.window!)!
+         let mainwindow = (UIApplication.shared.currentWindow)!
          //mainwindow.backgroundColor = UIColor(hue: 0.6477, saturation: 0.6314, brightness: 0.6077, alpha: 0.8)
          UIView.transition(with: mainwindow, duration: 0.55001, options: .transitionFlipFromLeft, animations: { () -> Void in
          }) { (finished) -> Void in

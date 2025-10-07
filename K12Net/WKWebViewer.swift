@@ -33,6 +33,30 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         preferences.setValue(true, forKey: "allowFileAccessFromFileURLs")
         
         let webConfiguration = WKWebViewConfiguration()
+        
+            if #available(iOS 14.0, *) {
+                webConfiguration.defaultWebpagePreferences.allowsContentJavaScript = true
+            }
+        // iOS 17+ KRİTİK AYARLAR
+                if #available(iOS 17.0, *) {
+                    // JavaScript için tam erişim
+                    webConfiguration.defaultWebpagePreferences.allowsContentJavaScript = true
+                    webConfiguration.defaultWebpagePreferences.preferredContentMode = .desktop
+                    
+                    // Güvenlik kısıtlamalarını kaldır
+                    preferences.setValue(true, forKey: "allowFileAccessFromFileURLs")
+                    
+                    // Yeni privacy özelliklerini devre dışı bırak
+                    webConfiguration.limitsNavigationsToAppBoundDomains = false
+                }
+                
+                // iOS 18 AYARLARI
+                if #available(iOS 18.0, *) {
+                    webConfiguration.defaultWebpagePreferences.allowsContentJavaScript = true
+                    webConfiguration.defaultWebpagePreferences.preferredContentMode = .desktop
+                }
+        
+        webConfiguration.setValue(true, forKey: "allowUniversalAccessFromFileURLs")
         webConfiguration.preferences = preferences
         
         var Ycord : CGFloat = 0.0 // for top space
@@ -107,7 +131,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         print(address);
         
         if(address.contains("browse=newtab") || address.contains("razplus")) {
-            UIApplication.shared.openURL(navigationAction.request.url!)
+            UIApplication.shared.open(navigationAction.request.url!, options: [:], completionHandler: nil)
             return nil;
         }
         
@@ -306,7 +330,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        
+       
         let hostAddress = navigationAction.request.url?.host
         
         let address = navigationAction.request.url!.absoluteString.lowercased();
@@ -314,7 +338,7 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         print(address);
         
         if(address.contains("browse=newtab")) {
-            UIApplication.shared.openURL(navigationAction.request.url!)
+            UIApplication.shared.open(navigationAction.request.url!, options: [:], completionHandler: nil)
             decisionHandler(.cancel)
             return
         }
@@ -403,14 +427,15 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         // To connnect app store
         if hostAddress == "itunes.apple.com" {
             if UIApplication.shared.canOpenURL(navigationAction.request.url!) {
-                UIApplication.shared.openURL(navigationAction.request.url!)
-                decisionHandler(.cancel)
+                UIApplication.shared.open(navigationAction.request.url!, options: [:], completionHandler: nil)
                 return
             }
         }
         
-        if navigationAction.targetFrame == nil {
+        if navigationAction.targetFrame == nil  {
             webView.load(navigationAction.request);
+            // || navigationAction.targetFrame?.isMainFrame == false decisionHandler(.cancel);
+            //return;
         } else if (!(navigationAction.targetFrame?.isMainFrame)! && address == "about:blank") {
             /*decisionHandler(.cancel)
              return*/
@@ -517,14 +542,14 @@ class WKWebViewer: NSObject, WKNavigationDelegate, WKUIDelegate, IWebView {
         
         if navigationAction.request.url?.scheme == "tel" {
             
-            UIApplication.shared.openURL(navigationAction.request.url!)
+            UIApplication.shared.open(navigationAction.request.url!, options: [:], completionHandler: nil)
             
             decisionHandler(.cancel)
             
         }
         else if navigationAction.request.url?.scheme == "mailto" {
             
-            UIApplication.shared.openURL(navigationAction.request.url!)
+            UIApplication.shared.open(navigationAction.request.url!, options: [:], completionHandler: nil)
             
             decisionHandler(.cancel)
             

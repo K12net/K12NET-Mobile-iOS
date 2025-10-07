@@ -65,22 +65,25 @@ class K12NetLogin: UIViewController, UITextFieldDelegate, AsyncTaskCompleteListe
         var hasNewUpdate = false;
         var xmlString = ""
         //todo: App provider must include their own PrivacyPolicy by changing below url
-        if let url = URL(string: "http://fs.k12net.com/mobile/files/versions.k12net.txt") {
-            do {
-                xmlString = try String(contentsOf: url)
-                
-                let xmlData = xmlString.data(using: String.Encoding.utf8)!
-                let parser = XMLParser(data: xmlData)
-                
-                parser.delegate = self;
-                
-                parser.parse()
-            } catch {
-                print("Error download url \(url) : \(error)")
+        guard let url = URL(string: "http://fs.k12net.com/mobile/files/versions.k12net.txt") else { return }
+
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                print("Download error: \(error)")
+                return
             }
-        } else {
-            // the URL was bad!
-        }
+
+            guard let data = data,
+                  let xmlString = String(data: data, encoding: .utf8) else {
+                print("Invalid data")
+                return
+            }
+
+            let xmlData = xmlString.data(using: .utf8)!
+            let parser = XMLParser(data: xmlData)
+            parser.delegate = self
+            parser.parse()
+        }.resume()
         
         var forceToUpdate = false;
         if(self.latestVersion != "") {

@@ -99,7 +99,7 @@ class AttendanceManager: NSObject {
         let isAppActive = false;//UIApplication.shared.applicationState == .active
         
         if isAppActive {
-            let rootviewcontroller: UIWindow = ((UIApplication.shared.delegate?.window)!)!
+            let rootviewcontroller: UIWindow = (UIApplication.shared.currentWindow)!
             rootviewcontroller.rootViewController!.showAlert(withTitle: title, message: message)
         } else if #available(iOS 10.0, *) {
             // Otherwise present a local notification

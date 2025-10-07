@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mG3-rm-Rac">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mG3-rm-Rac">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +18,7 @@
                         <viewControllerLayoutGuide type="bottom" id="95X-YQ-oYx"/>
                     </layoutGuides>
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="bkw-kZ-okp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="619"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView autoresizesSubviews="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" translatesAutoresizingMaskIntoConstraints="NO" id="5CM-FF-ZOj">
@@ -52,11 +52,11 @@
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                                     </textField>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="75O-Jj-SbI">
-                                        <rect key="frame" x="61.5" y="290" width="51" height="31"/>
+                                        <rect key="frame" x="61.5" y="290" width="63" height="28"/>
                                         <color key="onTintColor" red="0.0" green="0.56464199120000003" blue="0.90862238220000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember Me" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phl-ut-RvQ">
-                                        <rect key="frame" x="115.5" y="297.5" width="95" height="16"/>
+                                        <rect key="frame" x="127.5" y="296" width="95" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="95" id="Dzi-I2-AGT"/>
                                         </constraints>
@@ -65,7 +65,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jig-GU-r43">
-                                        <rect key="frame" x="230.5" y="291.5" width="51" height="28"/>
+                                        <rect key="frame" x="230.5" y="290" width="51" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="52" id="hJA-Gc-uAw"/>
                                         </constraints>
@@ -84,7 +84,7 @@
                                         </connections>
                                     </button>
                                     <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMi-Yb-O7T">
-                                        <rect key="frame" x="91.5" y="329.5" width="160" height="30"/>
+                                        <rect key="frame" x="91.5" y="328" width="160" height="30"/>
                                         <color key="backgroundColor" red="0.0" green="0.56464199115588365" blue="0.90862238219895286" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="160" id="dKu-c8-mF8"/>
@@ -105,7 +105,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x5Z-ND-sH3" userLabel="btnForgotPassword">
-                                        <rect key="frame" x="120.5" y="367.5" width="102" height="28"/>
+                                        <rect key="frame" x="120.5" y="366" width="102" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="52" id="ylm-85-qM5"/>
                                         </constraints>
@@ -274,16 +274,16 @@
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="wve-3x-t0o">
                             <inset key="imageInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                         </barButtonItem>
-                        <barButtonItem title="Refresh" landscapeImage="reload1" largeContentSizeImage="reload1" id="QTh-WI-Wif" userLabel="Refresh Button">
+                        <barButtonItem title="Refresh" id="QTh-WI-Wif" userLabel="Refresh Button">
                             <imageReference key="image" image="reload1" symbolScale="large"/>
-                            <inset key="imageInsets" minX="0.0" minY="0.0" maxX="30" maxY="0.0"/>
+                            <inset key="largeContentSizeImageInsets" minX="1" minY="0.0" maxX="1" maxY="0.0"/>
                             <connections>
                                 <action selector="refreshView:" destination="vxU-z1-K1a" id="Hy3-c7-daH"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem landscapeImage="signout" largeContentSizeImage="signout" id="FzR-ht-Thh" userLabel="Signout Button">
                             <imageReference key="image" image="signout" symbolScale="large"/>
-                            <inset key="imageInsets" minX="30" minY="0.0" maxX="10" maxY="0.0"/>
+                            <inset key="largeContentSizeImageInsets" minX="1" minY="0.0" maxX="1" maxY="0.0"/>
                             <connections>
                                 <action selector="signoutView:" destination="vxU-z1-K1a" id="n2B-AH-eFb"/>
                             </connections>
@@ -312,7 +312,7 @@
                         <viewControllerLayoutGuide type="bottom" id="rMf-OH-jfV"/>
                     </layoutGuides>
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="kH3-fS-Mbm">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="619"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awn-Z0-SXu">
@@ -356,7 +356,7 @@
                                         </variation>
                                     </imageView>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="f2d-l4-1vr">
-                                        <rect key="frame" x="8" y="257" width="359" height="32"/>
+                                        <rect key="frame" x="10" y="257" width="355" height="32"/>
                                         <segments>
                                             <segment title="TR" width="71"/>
                                             <segment title="EN" width="71"/>
@@ -484,7 +484,6 @@
                         </textAttributes>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translucent="NO" id="hwB-dE-jto">
-                        <rect key="frame" x="0.0" y="623" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>

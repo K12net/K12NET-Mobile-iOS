@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1614E455283CBD5100A66B64 /* AttendanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1614E454283CBD5100A66B64 /* AttendanceManager.swift */; };
+		161A1D542E7C7820002264EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 161A1D532E7C781C002264EF /* SceneDelegate.swift */; };
 		162F47C2221BDCEA0012D329 /* WKWebViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162F47C1221BDCE90012D329 /* WKWebViewer.swift */; };
 		162F47C4221BDD050012D329 /* WebViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162F47C3221BDD050012D329 /* WebViewer.swift */; };
 		162F47C6221BE87F0012D329 /* IWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162F47C5221BE87F0012D329 /* IWebView.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		1614E454283CBD5100A66B64 /* AttendanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceManager.swift; sourceTree = "<group>"; };
+		161A1D532E7C781C002264EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		162F47C1221BDCE90012D329 /* WKWebViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WKWebViewer.swift; sourceTree = "<group>"; };
 		162F47C3221BDD050012D329 /* WebViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewer.swift; sourceTree = "<group>"; };
 		162F47C5221BE87F0012D329 /* IWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IWebView.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		4FEC88371BF8ED8E00A1BA90 /* K12Net */ = {
 			isa = PBXGroup;
 			children = (
+				161A1D532E7C781C002264EF /* SceneDelegate.swift */,
 				166CD69C20E2989C007DAD2F /* Localizer.swift */,
 				4FEC88CE1BF9117D00A1BA90 /* AppDelegate.swift */,
 				4FEC889E1BF90F6000A1BA90 /* AsyncTask.swift */,
@@ -283,6 +286,7 @@
 				16FE2D432216A81400B88330 /* DocViewer.swift in Sources */,
 				1614E455283CBD5100A66B64 /* AttendanceManager.swift in Sources */,
 				4FEC88D01BF9117D00A1BA90 /* AppDelegate.swift in Sources */,
+				161A1D542E7C7820002264EF /* SceneDelegate.swift in Sources */,
 				4FEC88B71BF90F6100A1BA90 /* K12NetUserPreferences.swift in Sources */,
 				4F41758D1F4381D100D56A8C /* AppStaticDefinition.swift in Sources */,
 				166CD69D20E2989D007DAD2F /* Localizer.swift in Sources */,
@@ -506,12 +510,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 75;
+				CURRENT_PROJECT_VERSION = 77;
 				DEVELOPMENT_TEAM = SU64EDQ7U5;
 				INFOPLIST_FILE = K12Net/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.04;
+				MARKETING_VERSION = 5.06;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atlas.k12netframe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -529,12 +533,12 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 75;
+				CURRENT_PROJECT_VERSION = 77;
 				DEVELOPMENT_TEAM = SU64EDQ7U5;
 				INFOPLIST_FILE = K12Net/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 5.04;
+				MARKETING_VERSION = 5.06;
 				PRODUCT_BUNDLE_IDENTIFIER = com.atlas.k12netframe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

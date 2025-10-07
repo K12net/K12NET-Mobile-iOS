@@ -44,11 +44,13 @@ open class LoginAsyncTask : AsyncTask  {
             storage.deleteCookie(cookie)
         }
         
-        let deviceToken = K12NetUserPreferences.getDeviceToken();
+        var deviceToken = K12NetUserPreferences.getDeviceToken();
+        if(deviceToken.isEmpty) {deviceToken = "testdelete"; }
         
         if(deviceToken.isEmpty && AppDelegate.NotificationIsPermitted != nil && AppDelegate.NotificationIsPermitted == true  ){
-            if let wd = UIApplication.shared.delegate?.window {
-                let vc = wd!.rootViewController
+            
+            if let wd = UIApplication.shared.currentWindow {
+                let vc = wd.rootViewController
 
                 if(vc != nil){
                     let alertController = UIAlertController(title: "appTitle".localized, message:"deviceIDFailed".localized , preferredStyle: UIAlertController.Style.alert)
